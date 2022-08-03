@@ -1,2 +1,3 @@
 #!/bin/bash
-export FLASK_APP=app/$1 && python3 -m flask run
+EXPORT_
+export FLASK_APP=app/$1 && flask run --reload
