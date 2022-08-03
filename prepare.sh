@@ -38,6 +38,7 @@ echo zsh >> ~/.bashrc
 
 chsh -s /bin/zsh
 
-git@github.com:RafaelFino/learnops-api-python.git
+cd 
+git clone https://github.com/RafaelFino/learnops-api-python.git
 
 echo 'Done!'
