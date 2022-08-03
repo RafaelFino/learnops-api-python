@@ -6,7 +6,7 @@
 #   https://killercoda.com/playgrounds/scenario/ubuntu
 #
 # 2: Execute this command on terminal:
-#   curl https://raw.githubusercontent.com/RafaelFino/Linux-prepare/main/killercoda.sh | bash && zsh
+#   curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepare.sh | bash && zsh
 #
 # Have fun! :)
 
