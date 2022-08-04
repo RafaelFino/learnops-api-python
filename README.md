@@ -20,11 +20,11 @@ curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepa
 ```
 
 Availables APIs:
-| Name | Description | Using swagger | HTTP Return |
-|-|-|:-:|:-:|
-| ping | A ping pong example API | &#x10102; | &#x10102; |
-| example | Simple api, using swagger | &#x2713; | 	&#x10102; |
-| hello | Api with one path GET method | &#x2713; | &#x2713; |
-| body | Api with one POST method, passing args in body | &#x2713; | &#x2713; |
-| sum | Api with methods, with args | &#x2713; | &#x2713; |
-| currency | Api to query and convert currency values, args on path and body | &#x2713; | &#x2713; |
+| Name | Description | Using swagger | HTTP Return | Path args | Body args | 
+|-|-|:-:|:-:|:-:|:-:|
+| ping | A ping pong example API | &#x10102; | &#x10102; | &#x10102; |&#x10102; |
+| example | Simple api, using swagger | &#x2713; | 	&#x10102; | &#x10102; | &#x10102; |
+| hello | Api with one path GET method | &#x2713; | &#x2713; | &#x2713; | &#x10102; |
+| body | Api with one POST method, passing args in body | &#x2713; | &#x2713; | &#x10102; | &&#x2713; |
+| sum | Api with methods, with args | &#x2713; | &#x2713; | &#x10102; | &&#x2713; |
+| currency | Api to query and convert currency values, args on path and body | &#x2713; | &#x2713; | &#x2713; | &#x2713; |
