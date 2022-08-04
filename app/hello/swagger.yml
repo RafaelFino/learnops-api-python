@@ -2,9 +2,20 @@ Swagger example file to describe hello method
 ---
 parameters:
   - name: name
+    description: Name to answer a hello
     in: path
     type: string
     required: true
 responses:
   200:
-    description: Return hello to name 
+    description: Json struct to say hello
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            - hello:
+              type: string
+            - timestamp:
+              type: string
+              format: date-time    

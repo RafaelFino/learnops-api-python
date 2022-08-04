@@ -1,0 +1,37 @@
+Get all currency values
+---
+responses:
+  200:
+    description: Currency data
+    content:
+      application/json:
+        schema:          
+          properties:
+            - timestamp:
+              type: string
+              format: date-time   
+            - lastUpdate:
+              type: string
+              format: date-time
+            - elapsedTime:
+              type: float              
+          additionalProperties:
+            type: object
+            additionalProperties:
+              - description:
+                type: string
+              - high:
+                type: number
+              - low:
+                type: number
+              - varBid:
+                type: number
+              - pctChange:
+                type: number                  
+              - bid:
+                type: number
+              - ask:
+                type: number
+              - createDate:
+                type: string
+                format: date-time

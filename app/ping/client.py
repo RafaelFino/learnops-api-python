@@ -4,4 +4,4 @@ import requests
 
 response = requests.get('http://localhost:5000/ping')
 
-print(response.text)
+print(json.dumps(response.json(), indent=4, sort_keys=True))

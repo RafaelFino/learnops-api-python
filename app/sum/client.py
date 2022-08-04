@@ -25,4 +25,4 @@ while len(typed) > 0:
 
 response = requests.post(f"http://localhost:5000/sum", json = body)
 
-print(response.json())
+print(json.dumps(response.json(), indent=4, sort_keys=True))

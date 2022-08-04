@@ -1,0 +1,65 @@
+Convert values to other currencies
+---
+parameters:
+  - name: value
+    in: body
+    description: Value to convert to other currencies
+    type: object
+    example: 
+      { 
+        "value": 1,
+        "codes": [
+          "EUR",
+          "USD"
+        ]
+      }
+
+    properties:
+      - value:
+        description: Value to convert
+        type: number
+
+      - name: codes
+        description: Currencies codes to convert
+        type: array        
+        items:
+          type: string
+          minLength: 3
+          maxLength: 12
+
+responses:
+  200:
+    description: Converted currencies values
+    content:
+      application/json:
+        schema:          
+          properties:
+            - timestamp:
+              type: string
+              format: date-time   
+            - lastUpdate:
+              type: string
+              format: date-time
+            - notFound:
+              type: array
+              items:
+                type: string
+            - result:
+              type: object
+
+  404:
+    description: Code not found
+    content:
+      application/json:
+        schema:          
+          properties:
+            - timestamp:
+              type: string
+              format: date-time   
+            - lastUpdate:
+              type: string
+              format: date-time            
+            - notFound:
+              type: array
+              items:
+                type: string                

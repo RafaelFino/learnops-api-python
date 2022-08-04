@@ -18,3 +18,13 @@ parameters:
 responses:
   200:
     description: Sum of values
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            - result:
+              type: integer
+            - timestamp:
+              type: string
+              format: date-time    

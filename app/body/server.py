@@ -10,13 +10,15 @@ app = Flask(__name__)
 swagger = Swagger(app)
 
 @app.route("/", methods = ['POST'])
-@swag_from("body-swagger.yml")
-def post_name_from_json_body():
-    name = request.json['name']
-    if len(name) == 0:
-      name = "envergonhado"
+@swag_from("swagger.yml")
+def post_sum():
+    numbers = request.json['numbers']
+    result = 0
+
+    for i in numbers:
+      result += i    
 
     return { 
-      "hello-from-json-body" : name,
+      "result" : result,
       "timestamp:" : datetime.now()
     }, HTTPStatus.OK
