@@ -9,7 +9,7 @@ from flasgger import Swagger, swag_from
 app = Flask(__name__)
 swagger = Swagger(app)
 
-@app.route("/", methods = ['POST'])
+@app.route("/sum", methods = ['POST'])
 @swag_from("swagger.yml")
 def post_sum():
     numbers = request.json['numbers']

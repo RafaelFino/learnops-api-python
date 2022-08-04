@@ -6,4 +6,4 @@ app = Flask(__name__)
 
 @app.route("/ping")
 def awnser():
-    return { "awnser": "pong" }
+    return "pong"

@@ -11,6 +11,8 @@ def awnser():
     """
     Just answer request
     ---
+    content:
+      application/json:
     responses:
       200:
         description: Success
