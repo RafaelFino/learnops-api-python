@@ -9,9 +9,14 @@ APIs with Python - Intro with KillerCoda
 curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepare.sh | bash && zsh
 ```
 
-3. To execute, on application path (~/learnops-api-python):
+3. To execute server, on application path (~/learnops-api-python):
 ```
-./run.sh {api-name}
+./run-server.sh {api-name}
+```
+
+4. To execute clients, on application path (~/learnops-api-python):
+```
+./run-client.sh {api-name}
 ```
 
 Availables APIs:
