@@ -1,0 +1,20 @@
+Swagger example file to get data from request body and sum an array
+---
+parameters:
+  - name: numbers
+    in: body
+    description: Sum an array of numbers
+    type: object    
+    properties:
+      - name: numbers
+        type: array
+        items:
+          type: integer 
+        required: true
+        minItems: 1
+        maxItems: 64
+    example: { "numbers": [1,2,3] }
+
+responses:
+  200:
+    description: Sum of values
