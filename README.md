@@ -27,3 +27,4 @@ Availables APIs:
 | hello | Api with one path GET method | &#x2713; | &#x2713; |
 | body | Api with one POST method, passing args in body | &#x2713; | &#x2713; |
 | sum | Api with methods, with args | &#x2713; | &#x2713; |
+| currency | Api to query and convert currency values, args on path and body | &#x2713; | &#x2713; |
