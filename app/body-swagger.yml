@@ -1,0 +1,12 @@
+Swagger example file to get data from request body
+---
+parameters:
+  - name: name
+    in: body
+    description: Name to say hello
+    type: string
+    required: true
+    example: "{ \"name\": \"jaozinho\" }"
+responses:
+  200:
+    description: Return hello to name 

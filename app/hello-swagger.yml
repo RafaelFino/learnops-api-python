@@ -1,0 +1,10 @@
+Swagger example file to describe hello method
+---
+parameters:
+  - name: name
+    in: path
+    type: string
+    required: true
+responses:
+  200:
+    description: Return hello to name 

@@ -22,6 +22,6 @@ pip3 install -r requirements.txt
 Availables APIs:
 | Name | Description |
 |-|-|
-| ping-api | A ping pong example API | 
-| hello-api-simple | Simple hello api, using swagger |
-| hello-api | Api with methods, with args, using swagger and HTTP returns |
+| ping | A ping pong example API | 
+| example | Simple api, using swagger |
+| hello | Api with methods, with args, using swagger and HTTP returns |

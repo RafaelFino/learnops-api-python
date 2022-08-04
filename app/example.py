@@ -6,10 +6,10 @@ from flasgger import Swagger
 app = Flask(__name__)
 swagger = Swagger(app)
 
-@app.route("/hello")
+@app.route("/")
 def awnser():
     """
-    Anonymous hello answer
+    Just answer request
     ---
     responses:
       200:
