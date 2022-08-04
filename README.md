@@ -8,3 +8,13 @@ APIs with Python - Intro with KillerCoda
 ```
 curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepare.sh | bash && zsh
 ```
+
+3. Install python dependencies
+```
+pip3 install -r requirements.txt
+```
+
+4. To execute, on application path (~/learnops-api-python):
+```
+./run.sh {api-name}
+```
