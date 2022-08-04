@@ -2,7 +2,6 @@
 
 import requests
 import json
-from sympy import content
 
 def tryParseInt(s, base=10, val=None):
     try:
