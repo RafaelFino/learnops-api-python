@@ -10,7 +10,7 @@ app = Flask(__name__)
 swagger = Swagger(app)
 
 @app.route("/", methods = ['POST'])
-@swag_from("sum-swagger.yml")
+@swag_from("swagger.yml")
 def post_sum():
     numbers = request.json['numbers']
     result = 0

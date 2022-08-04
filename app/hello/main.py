@@ -9,7 +9,7 @@ app = Flask(__name__)
 swagger = Swagger(app)
  
 @app.route("/hello/<name>")
-@swag_from("hello-swagger.yml")
+@swag_from("swagger.yml")
 def named_answer(name):
     if len(name) == 0:
       name = "envergonhado"
