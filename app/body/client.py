@@ -2,7 +2,6 @@
 
 import requests
 import json
-from sympy import content
 
 body = {}
 body["name"] = input("Type your name: ")
