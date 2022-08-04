@@ -31,14 +31,21 @@ rm exa.zip
 #install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+#change ZSH theme
 sed -i 's/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"frisk\"/g' .zshrc
 echo 'alias ls="exa -hHbmgaFl"' >> ~/.zshrc
 echo set nu >> ~/.vim_runtime/my_configs.vim
 echo zsh >> ~/.bashrc
 
+#change default shell
 chsh -s /bin/zsh
 
-cd 
+#clone lab repo
+cd
 git clone https://github.com/RafaelFino/learnops-api-python.git
+
+#install python3 dependencies
+cd learnops-api-python
+pip3 install -r requirements.txt
 
 echo 'Done!'
