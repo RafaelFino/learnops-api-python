@@ -6,6 +6,7 @@ from authlib.integrations.flask_oauth2 import current_token
 from authlib.oauth2 import OAuth2Error
 from .models import db, User, OAuth2Client
 from .oauth2 import authorization, require_oauth
+import flasgger
 
 
 bp = Blueprint('home', __name__)

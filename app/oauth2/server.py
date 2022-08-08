@@ -1,5 +1,6 @@
-from website.app import create_app
+#!/bin/python3
 
+from website.app import create_app
 
 app = create_app({
     'SECRET_KEY': 'secret',
@@ -7,3 +8,4 @@ app = create_app({
     'SQLALCHEMY_TRACK_MODIFICATIONS': False,
     'SQLALCHEMY_DATABASE_URI': 'sqlite:///db.sqlite',
 })
+
