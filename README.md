@@ -29,3 +29,4 @@ Availables APIs:
 | sum | Api with methods, with args | &#x2713; | in file | in body | json body |
 | currency | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
 | simple-auth | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
+| oauth | Api to implement OAUTH pattern | &#x2713; | on file per method | in body and header | json body |

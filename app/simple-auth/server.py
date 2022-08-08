@@ -15,7 +15,7 @@ tokens = {}
 timeToExpire = 1
 
 @app.route("/login", methods = ['POST'])
-@swag_from("post_login.yml")
+@swag_from("swagger/post_login.yml")
 def post_login():
     user = request.headers['user']
     passwd = request.headers['pass']
@@ -35,7 +35,7 @@ def post_login():
     }, HTTPStatus.UNAUTHORIZED
 
 @app.route("/validate", methods = ['POST'])
-@swag_from("post_validate.yml")
+@swag_from("swagger/post_validate.yml")
 def post_validate():
   token = request.headers['token']
   if token in tokens:
