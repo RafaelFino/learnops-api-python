@@ -20,11 +20,12 @@ curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepa
 ```
 
 Availables APIs:
-| Name | Description | Using swagger | HTTP Return | Path args | Body args | 
+| Name | Description | HTTP return | Swaggger | Args | Return type |
 |-|-|:-:|:-:|:-:|:-:|
-| ping | A ping pong example API | &#x10102; | &#x10102; | &#x10102; |&#x10102; |
-| example | Simple api, using swagger | &#x2713; | 	&#x10102; | &#x10102; | &#x10102; |
-| hello | Api with one path GET method | &#x2713; | &#x2713; | &#x2713; | &#x10102; |
-| body | Api with one POST method, passing args in body | &#x2713; | &#x2713; | &#x10102; | &#x2713; |
-| sum | Api with methods, with args | &#x2713; | &#x2713; | &#x10102; | &#x2713; |
-| currency | Api to query and convert currency values, args on path and body | &#x2713; | &#x2713; | &#x2713; | &#x2713; |
+| ping | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text |
+| example | Simple api, using swagger | &#x2713; | in code | &#x10102; | json body |
+| hello | Api with one path GET method | &#x2713; | in file | in path | json body |
+| body | Api with one POST method, passing args in body | &#x2713; | in file | in body | json body |
+| sum | Api with methods, with args | &#x2713; | in file | in body | json body |
+| currency | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
+| simple-auth | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |

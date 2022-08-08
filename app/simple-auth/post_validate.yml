@@ -1,0 +1,39 @@
+Swagger example file to try validate a token previously generated
+---
+parameters:
+  - name: token
+    in: header
+    description: Token to try validate
+    type: string
+    required: true
+    example: "01G9YVW0YPW22Z1QDG3ZSGKACJ"
+
+responses:
+  200:
+    description: Token validated
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Valid token
+          properties:
+            - timestamp:
+              type: string
+              format: date-time    
+              required: true
+          
+  401:
+    description: Token rejected, try login again
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Token not allowed
+          properties:
+            - message:
+              type: string
+              description: Error message 
+            - timestamp:
+              type: string
+              format: date-time    
+              required: true          

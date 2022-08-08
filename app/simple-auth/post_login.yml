@@ -1,0 +1,43 @@
+Swagger example file to try login with hardcoded data (do not use something like it!)
+---
+parameters:
+  - name: user
+    in: header
+    description: Username to login
+    type: string
+    required: true
+    example: "usuario1"
+
+  - name: pass
+    in: header
+    description: User password, in a plain text (never do that too!)
+    type: string
+    required: true
+    example: "senha1"
+
+responses:
+  200:
+    description: Login accepted
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            - token:
+              type: string          
+              required: true
+            - timestamp:
+              type: string
+              format: date-time    
+              required: true
+          
+  401:
+    description: Login rejected, invalid user os password
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+              type: string
+              format: date-time    
+              required: true          

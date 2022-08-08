@@ -1,3 +1,5 @@
 flask
 flasgger
 setuptools
+python-ulid
+requests

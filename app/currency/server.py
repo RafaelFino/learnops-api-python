@@ -19,8 +19,8 @@ def getElapsedTime(start:datetime):
 
 # creates a dict struct to body response
 def createResponseBody(ret={}):
-  ret['lastUpdate'] = service.LastUpdate.strftime("%m-%d-%Y %H:%M:%S")
-  ret['timestamp'] = datetime.now().strftime("%m-%d-%Y %H:%M:%S")  
+  ret['lastUpdate'] = service.LastUpdate.strftime("%Y-%m-%d %H:%M:%S")
+  ret['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  
 
   return ret
 
