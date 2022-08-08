@@ -3,3 +3,6 @@ flasgger
 setuptools
 python-ulid
 requests
+SQLAlchemy
+Flask-SQLAlchemy
+Authlib==0.14.3
