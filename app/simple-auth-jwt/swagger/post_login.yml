@@ -1,0 +1,48 @@
+Swagger example file to try login with JWT and hardcodes claims
+---
+parameters:
+  - name: user
+    in: header
+    description: Username to login
+    schema:
+      type: string
+    required: true
+    example: "user"
+    default: "usuario1"
+
+  - name: pass
+    in: header
+    description: User password, in a plain text (never do that too!)
+    schema:
+      type: string
+    required: true
+    example: "passwd"
+    default: "senha1"
+
+responses:
+  200:
+    description: Login accepted
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            - jwt:
+              type: string          
+              required: true
+              description: JWT token
+            - timestamp:
+              type: string
+              format: date-time    
+              required: true
+          
+  401:
+    description: Login rejected, invalid user os password
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+              type: string
+              format: date-time    
+              required: true          

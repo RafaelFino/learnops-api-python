@@ -1,0 +1,38 @@
+Swagger example file to try get an method restricted to query role 
+---
+parameters:
+  - name: Authorization
+    in: header
+    description: Authorization token
+    schema:
+      type: string
+    required: true
+responses:
+  200:
+    description: JWT validated and this method is allowed
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Valid token
+          properties:
+            - timestamp:
+              type: string
+              format: date-time    
+              required: true
+          
+  401:
+    description: Token rejected
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Token not allowed
+          properties:
+            - message:
+              type: string
+              description: Error message 
+            - timestamp:
+              type: string
+              format: date-time    
+              required: true          
