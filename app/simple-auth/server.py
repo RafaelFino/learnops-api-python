@@ -14,6 +14,10 @@ users = { 'usuario1': 'senha1', 'usuario2': 'senha2' }
 tokens = {}
 timeToExpire = 1
 
+def create_body(pars = {}):
+  pars['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+  return pars
+
 @app.route("/login", methods = ['POST'])
 @swag_from("swagger/post_login.yml")
 def post_login():
@@ -25,14 +29,9 @@ def post_login():
         token = str(ULID.from_datetime(datetime.now()))
         tokens[token] = datetime.now()
         
-        return {
-          'token' : token,
-          'timestamp:' : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        }, HTTPStatus.OK        
+        return create_body({ 'token' : token }), HTTPStatus.OK
 
-    return { 
-      'timestamp:' : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    }, HTTPStatus.UNAUTHORIZED
+    return create_body, HTTPStatus.UNAUTHORIZED
 
 @app.route("/validate", methods = ['POST'])
 @swag_from("swagger/post_validate.yml")
@@ -40,18 +39,11 @@ def post_validate():
   token = request.headers['token']
   if token in tokens:
     if datetime.now() - tokens[token] <= timedelta(minutes=timeToExpire):
-      return {
-        'timestamp:' : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-      }, HTTPStatus.OK
+      return create_body(), HTTPStatus.OK
     
     else:
-      return {
-        'message' : 'expired',
-        'timestamp:' : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-      }, HTTPStatus.UNAUTHORIZED
+      return create_body({ 'message' : 'expired' }), HTTPStatus.UNAUTHORIZED
 
-  return {
-    'timestamp:' : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-  }, HTTPStatus.UNAUTHORIZED
+  return create_body(), HTTPStatus.UNAUTHORIZED
 
 

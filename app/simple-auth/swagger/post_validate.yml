@@ -4,7 +4,9 @@ parameters:
   - name: token
     in: header
     description: Token to try validate
-    type: string
+    schema:
+      type: string
+      format: uuid
     required: true
     example: "01G9YVW0YPW22Z1QDG3ZSGKACJ"
 

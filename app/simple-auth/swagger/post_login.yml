@@ -4,16 +4,20 @@ parameters:
   - name: user
     in: header
     description: Username to login
-    type: string
+    schema:
+      type: string
     required: true
-    example: "usuario1"
+    example: "user"
+    default: "usuario1"
 
   - name: pass
     in: header
     description: User password, in a plain text (never do that too!)
-    type: string
+    schema:
+      type: string
     required: true
-    example: "senha1"
+    example: "passwd"
+    default: "senha1"
 
 responses:
   200:
@@ -26,6 +30,7 @@ responses:
             - token:
               type: string          
               required: true
+              format: uuid
             - timestamp:
               type: string
               format: date-time    
