@@ -5,8 +5,12 @@ from flask import Flask, jsonify, Response, request
 from datetime import datetime, timedelta, timezone
 import time
 from flasgger import Swagger, swag_from
-from ulid import ULID
 import jwt
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+import base64
 
 #
 # Great text to read JWT: 
@@ -17,6 +21,7 @@ import jwt
 app = Flask(__name__)
 swagger = Swagger(app)
 
+# users fake struct
 users = { 
   'usuario1': {
     'pass' : 'senha1',
@@ -36,35 +41,45 @@ users = {
   }
 }
 
-key = "Minha Chave"
-
-def create_jwt(payload = {}):  
-  return jwt.encode(payload, key, algorithm="HS256")
+def create_jwt(payload = {}):
+  with open("./keys/jwtRSA256-private.pem", "rb") as key_file:
+    return jwt.encode(payload, key_file.read(), algorithm="RS256")
 
 def get_claims(token):
-  return jwt.decode(token, key, algorithms=[ "HS256" ])
+  with open("./keys/jwtRSA256-public.pem", "rb") as key_file:
+    data = jwt.decode(token, key_file.read(), algorithms=[ "RS256" ])
+    return data
+
+login_key = "My secret login key"
+
+def get_userinfo(token):
+  return jwt.decode(token, login_key, algorithms=[ "HS256" ])  
 
 def create_body(pars = {}):
   pars['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-  return pars
+  return pars          
+
+time_to_expire = 2
 
 @app.route("/login", methods = ['POST'])
 @swag_from("swagger/post_login.yml")
 def post_login():
-    user = request.headers['user']
-    passwd = request.headers['pass']
+  userInfo = get_userinfo(request.headers['requestToken'])
 
-    if user in users:
-      if users[user]['pass'] == passwd:
-        payload = users[user]['claims']
-        payload['iat'] = time.mktime(datetime.now(tz=timezone.utc).timetuple())
-        payload['exp'] = time.mktime((datetime.now(tz=timezone.utc) + timedelta(seconds=30)).timetuple())
+  user = userInfo['user']    
+  passwd = userInfo['pass']
 
-        jwt = create_jwt(payload)
-      
-        return create_body({ 'jwt' : jwt }), HTTPStatus.OK
+  if user in users:
+    if users[user]['pass'] == passwd:
+      payload = users[user]['claims']
+      payload['iat'] = datetime.now(tz=timezone.utc)
+      payload['exp'] = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
 
-    return create_body(), HTTPStatus.UNAUTHORIZED
+      jwt = create_jwt(payload)
+    
+      return create_body({ 'jwt' : jwt }), HTTPStatus.OK
+
+  return create_body(), HTTPStatus.UNAUTHORIZED
 
 
 @app.route("/admin", methods = ['GET'])
@@ -74,13 +89,12 @@ def get_admin():
     token = request.headers['Authorization'].replace('Bearer ', '')
     claims = get_claims(token)
 
-    print(f"Hello {claims['nick']}")
-
     if claims['admin'] != True:
-      return create_body({ 'message': 'user do not have this permission' }), HTTPStatus.UNAUTHORIZED    
+      return create_body({ 'message': 'user do not have permission for this role' }), HTTPStatus.UNAUTHORIZED    
     
-    print('Get admin stuff...')
-    return create_body({ 'message': 'admin get are allowed' }), HTTPStatus.OK
+    return create_body({ 
+      'message': f"Hello {claims['nick']}, you are allowed to request this",
+    }), HTTPStatus.OK
 
   except Exception as e:
     return create_body({ 'message': str(e) }), HTTPStatus.UNAUTHORIZED
@@ -92,13 +106,12 @@ def get_query():
     token = request.headers['Authorization'].replace('Bearer ', '')
     claims = get_claims(token)
 
-    print(f"Hello {claims['nick']}")
-
     if claims['query'] != True:
-      return create_body({ 'message': 'user do not have this permission' }), HTTPStatus.UNAUTHORIZED    
+      return create_body({ 'message': 'user do not have permission for this role' }), HTTPStatus.UNAUTHORIZED    
     
-    print('Get query stuff...')
-    return create_body({ 'message': 'query get are allowed' }), HTTPStatus.OK
+    return create_body({ 
+      'message': f"Hello {claims['nick']}, you are allowed to request this",
+    }), HTTPStatus.OK
 
   except Exception as e:
     return create_body({ 'message': str(e) }), HTTPStatus.UNAUTHORIZED

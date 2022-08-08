@@ -1,5 +1,7 @@
 Swagger example file to try get an method restricted to query role 
 ---
+security:
+  - bearerAuth: []  
 parameters:
   - name: Authorization
     in: header
@@ -7,6 +9,7 @@ parameters:
     schema:
       type: string
     required: true
+
 responses:
   200:
     description: JWT validated and this method is allowed

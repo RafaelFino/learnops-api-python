@@ -1,23 +1,13 @@
 Swagger example file to try login with JWT and hardcodes claims
 ---
 parameters:
-  - name: user
+  - name: requestToken
     in: header
-    description: Username to login
+    description: Token to request login token
     schema:
       type: string
     required: true
-    example: "user"
-    default: "usuario1"
-
-  - name: pass
-    in: header
-    description: User password, in a plain text (never do that too!)
-    schema:
-      type: string
-    required: true
-    example: "passwd"
-    default: "senha1"
+    default: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidXN1YXJpbzEiLCJwYXNzIjoic2VuaGExIn0.vkHoFJiIs6BLO20Moi1EJNSeYiJXEg6hThYHXXgq55g
 
 responses:
   200:

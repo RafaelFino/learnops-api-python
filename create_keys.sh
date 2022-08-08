@@ -1,3 +1,4 @@
 #!/bin/bash
-ssh-keygen -t rsa -b 4096 -m PEM -f ./etc/keys/jwtRSA256-private.pem -N ''
-openssl rsa -in ./etc/keys/jwtRSA256-private.pem -pubout -outform PEM -out ./etc/keys/jwtRSA256-public.pem
+mkdir ./keys
+ssh-keygen -t rsa -b 1024 -m PEM -f ./keys/jwtRSA256-private.pem -N ''
+openssl rsa -in ./keys/jwtRSA256-private.pem -pubout -outform PEM -out ./keys/jwtRSA256-public.pem

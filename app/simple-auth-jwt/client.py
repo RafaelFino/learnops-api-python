@@ -4,8 +4,13 @@ from http import HTTPStatus
 import sys
 import requests
 import json
+import time
 from getpass import getpass
 from datetime import datetime
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import serialization
+import base64
+import jwt
 
 # Background Colors to log messages
 class bcolors:
@@ -26,7 +31,7 @@ def LogError(message):
     print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.FAIL}{message}")
 
 def LogOk(message):
-    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")    
+    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")  
 
 def ExecuteRequest(method, url, headers):
     Log(f">>> [{method}] {url} -> {headers}")
@@ -39,10 +44,17 @@ def ExecuteRequest(method, url, headers):
 
     return response.json()
 
+login_key = "My secret login key"
+
+def encryptPass(user, password):
+    return jwt.encode({ 'user': user, 'pass': password }, login_key, algorithm="HS256")
+
 user =  input("User: ")
 password = getpass()
 
-headers={ 'user': user, 'pass': password }
+requestToken = encryptPass(user, password)
+
+headers={ 'requestToken': requestToken }
 url = "http://localhost:5000/login"
 
 response = ExecuteRequest('POST', url, headers)
@@ -55,4 +67,11 @@ ExecuteRequest('GET',"http://localhost:5000/admin", { 'Authorization': f"Bearer 
 # try query get
 ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {jwt}" })
 
+#Timeout test
+time_to_wait = 5
+Log(f"waiting for {time_to_wait}s to test token expiration")
+for i in range(time_to_wait):
+    Log(f"waiting {i}/{time_to_wait} seconds...")
+    time.sleep(1)
+ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {jwt}" })
 
