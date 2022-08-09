@@ -6,7 +6,7 @@ import requests
 import json
 import time
 from getpass import getpass
-from datetime import datetime
+from datetime import datetime, timedelta
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 import base64
@@ -34,13 +34,12 @@ def LogOk(message):
     print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")  
 
 def ExecuteRequest(method, url, headers):
-    Log(f">>> [{method}] {url} -> {headers}")
+    Log(f">>> [{method}] {url} -> Headers: {headers}")
     response = requests.request(method=method, url=url, headers=headers)
     if response.status_code == HTTPStatus.OK:
         LogOk(f"<<< HTTPCode: {response.status_code}:{json.dumps(response.json(), indent=4, sort_keys=True)}")
     else:
         LogError(f"<<< HTTPCode: {response.status_code}:{json.dumps(response.json(), indent=4, sort_keys=True)}")    
-        sys.exit()        
 
     return response.json()
 
@@ -60,18 +59,16 @@ url = "http://localhost:5000/login"
 response = ExecuteRequest('POST', url, headers)
 
 jwt = response['jwt']
-
-# try admin get
-ExecuteRequest('GET',"http://localhost:5000/admin", { 'Authorization': f"Bearer {jwt}" })
-
-# try query get
-ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {jwt}" })
+exp = datetime.fromtimestamp(response['exp'])+timedelta(seconds=2)
 
 #Timeout test
-time_to_wait = 5
-Log(f"waiting for {time_to_wait}s to test token expiration")
-for i in range(time_to_wait):
-    Log(f"waiting {i}/{time_to_wait} seconds...")
+Log(f"Trying util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
+while datetime.now() < exp:    
+    Log(f"{datetime.now()}/{exp} Trying until expire token")        
+    # try admin get
+    ExecuteRequest('GET',"http://localhost:5000/admin", { 'Authorization': f"Bearer {jwt}" })
+
+    # try query get
+    ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {jwt}" })
     time.sleep(1)
-ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {jwt}" })
 

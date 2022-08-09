@@ -16,12 +16,13 @@ import base64
 # Great text to read JWT: 
 #   https://auth0.com/blog/how-to-handle-jwt-in-python/
 #   https://pyjwt.readthedocs.io/en/latest/usage.html
+#   https://www.devmedia.com.br/como-o-jwt-funciona/40265#:~:text=JWT%20(JSON%20Web%20Token)%20%C3%A9,permitem%20a%20autentica%C3%A7%C3%A3o%20da%20requisi%C3%A7%C3%A3o.
 #
 
 app = Flask(__name__)
 swagger = Swagger(app)
 
-# users fake struct
+# fake structfor users - simulates a database
 users = { 
   'usuario1': {
     'pass' : 'senha1',
@@ -41,16 +42,11 @@ users = {
   }
 }
 
-def create_jwt(payload = {}):
-  with open("./keys/jwtRSA256-private.pem", "rb") as key_file:
-    return jwt.encode(payload, key_file.read(), algorithm="RS256")
-
-def get_claims(token):
-  with open("./keys/jwtRSA256-public.pem", "rb") as key_file:
-    data = jwt.decode(token, key_file.read(), algorithms=[ "RS256" ])
-    return data
-
 login_key = "My secret login key"
+toker_key = "My very secret token key"
+
+def create_jwt(payload = {}):
+  return jwt.encode(payload, toker_key, algorithm="HS256")
 
 def get_userinfo(token):
   return jwt.decode(token, login_key, algorithms=[ "HS256" ])  
@@ -59,7 +55,7 @@ def create_body(pars = {}):
   pars['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
   return pars          
 
-time_to_expire = 2
+time_to_expire = 8
 
 @app.route("/login", methods = ['POST'])
 @swag_from("swagger/post_login.yml")
@@ -69,18 +65,23 @@ def post_login():
   user = userInfo['user']    
   passwd = userInfo['pass']
 
-  if user in users:
+  if user in users:    
     if users[user]['pass'] == passwd:
+      exp = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
       payload = users[user]['claims']
+      payload['user'] = user
       payload['iat'] = datetime.now(tz=timezone.utc)
-      payload['exp'] = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
+      payload['exp'] = exp
 
       jwt = create_jwt(payload)
     
-      return create_body({ 'jwt' : jwt }), HTTPStatus.OK
+      return create_body({ 'jwt' : jwt, 'exp': exp.timestamp() }), HTTPStatus.OK
 
   return create_body(), HTTPStatus.UNAUTHORIZED
 
+# get clains inside JWT
+def get_claims(token):
+  return jwt.decode(token, toker_key, algorithms=[ "HS256" ])
 
 @app.route("/admin", methods = ['GET'])
 @swag_from("swagger/get_admin.yml")
