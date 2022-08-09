@@ -30,4 +30,3 @@ Availables APIs:
 | currency | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
 | simple-auth | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
 | simple-auth-jwt | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
-| oauth2 | Api to implement OAUTH2 pattern | &#x2713; | on file per method | in body and header | json body |
