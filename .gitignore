@@ -130,3 +130,7 @@ dmypy.json
 
 .keys/*
 *.pem
+
+bin/
+lib/
+lib64/
