@@ -42,9 +42,12 @@ users = {
   }
 }
 
+# local settings
 login_key = "My secret login key"
 toker_key = "My very secret token key"
+time_to_expire = 10
 
+# helpers methods
 def create_jwt(payload = {}):
   return jwt.encode(payload, toker_key, algorithm="HS256")
 
@@ -53,10 +56,12 @@ def get_userinfo(token):
 
 def create_body(pars = {}):
   pars['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-  return pars          
+  return pars
 
-time_to_expire = 8
+def get_claims(token):
+  return jwt.decode(token, toker_key, algorithms=[ "HS256" ])  
 
+# routes
 @app.route("/login", methods = ['POST'])
 @swag_from("swagger/post_login.yml")
 def post_login():
@@ -69,19 +74,16 @@ def post_login():
     if users[user]['pass'] == passwd:
       exp = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
       payload = users[user]['claims']
-      payload['user'] = user
+      payload['sub'] = user
       payload['iat'] = datetime.now(tz=timezone.utc)
       payload['exp'] = exp
+      payload['iss'] = 'simple-auto-jwt-server'
 
       jwt = create_jwt(payload)
     
       return create_body({ 'jwt' : jwt, 'exp': exp.timestamp() }), HTTPStatus.OK
 
   return create_body(), HTTPStatus.UNAUTHORIZED
-
-# get clains inside JWT
-def get_claims(token):
-  return jwt.decode(token, toker_key, algorithms=[ "HS256" ])
 
 @app.route("/admin", methods = ['GET'])
 @swag_from("swagger/get_admin.yml")
@@ -116,7 +118,3 @@ def get_query():
 
   except Exception as e:
     return create_body({ 'message': str(e) }), HTTPStatus.UNAUTHORIZED
-  
-
-
-

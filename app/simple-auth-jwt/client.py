@@ -43,6 +43,7 @@ def ExecuteRequest(method, url, headers):
 
     return response.json()
 
+
 login_key = "My secret login key"
 
 def encryptPass(user, password):
