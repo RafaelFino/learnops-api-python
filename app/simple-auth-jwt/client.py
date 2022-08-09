@@ -1,15 +1,12 @@
 #!/bin/python3
 
 from http import HTTPStatus
-import sys
 import requests
 import json
 import time
+import sys
 from getpass import getpass
 from datetime import datetime, timedelta
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import serialization
-import base64
 import jwt
 
 # Background Colors to log messages
@@ -35,14 +32,19 @@ def LogOk(message):
 
 def ExecuteRequest(method, url, headers):
     Log(f">>> [{method}] {url} -> Headers: {headers}")
+    
     response = requests.request(method=method, url=url, headers=headers)
+    
+    ret = response.json()
+    ret['status_code'] = response.status_code
+    msg = f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code}\n Headers:\n\t{response.headers}\n Body:\n\t{json.dumps(ret)}"
+    
     if response.status_code == HTTPStatus.OK:
-        LogOk(f"<<< HTTPCode: {response.status_code}:{json.dumps(response.json(), indent=4, sort_keys=True)}")
+        LogOk(msg)
     else:
-        LogError(f"<<< HTTPCode: {response.status_code}:{json.dumps(response.json(), indent=4, sort_keys=True)}")    
-
-    return response.json()
-
+        LogError(msg)
+        
+    return ret
 
 login_key = "My secret login key"
 
@@ -57,19 +59,23 @@ requestToken = encryptPass(user, password)
 headers={ 'requestToken': requestToken }
 url = "http://localhost:5000/login"
 
-response = ExecuteRequest('POST', url, headers)
+result = ExecuteRequest('POST', url, headers)
 
-jwt = response['jwt']
-exp = datetime.fromtimestamp(response['exp'])+timedelta(seconds=2)
+if result['status_code'] != HTTPStatus.OK:
+    LogError("### Auth error")
+    sys.exit()
+
+token = result['jwt']
+exp = datetime.fromtimestamp(result['exp'])+timedelta(seconds=2)
 
 #Timeout test
 Log(f"Trying util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
 while datetime.now() < exp:    
     Log(f"{datetime.now()}/{exp} Trying until expire token")        
     # try admin get
-    ExecuteRequest('GET',"http://localhost:5000/admin", { 'Authorization': f"Bearer {jwt}" })
+    ExecuteRequest('GET',"http://localhost:5000/admin", { 'Authorization': f"Bearer {token}" })
 
     # try query get
-    ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {jwt}" })
+    ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {token}" })
     time.sleep(1)
 

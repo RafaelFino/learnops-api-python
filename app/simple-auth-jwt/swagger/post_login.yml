@@ -26,6 +26,7 @@ responses:
               required: true
               description: JWT token expiration time
             - timestamp:
+              in: header
               type: string
               format: date-time    
               required: true
@@ -37,6 +38,8 @@ responses:
         schema:
           type: object
           properties:
+            - timestamp:
+              in: header
               type: string
               format: date-time    
               required: true          

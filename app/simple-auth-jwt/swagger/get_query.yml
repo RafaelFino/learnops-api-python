@@ -20,6 +20,7 @@ responses:
           description: Valid token
           properties:
             - timestamp:
+              in: header
               type: string
               format: date-time    
               required: true
@@ -36,6 +37,7 @@ responses:
               type: string
               description: Error message 
             - timestamp:
+              in: header
               type: string
               format: date-time    
               required: true          

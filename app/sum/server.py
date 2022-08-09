@@ -1,6 +1,5 @@
 #!/bin/python3
 
-from crypt import methods
 from http import HTTPStatus
 from flask import Flask, jsonify, Response, request
 from datetime import datetime
