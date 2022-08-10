@@ -27,7 +27,7 @@ Availables APIs:
 | hello | Api with one path GET method | &#x2713; | in file | in path | json body |
 | body | Api with one POST method, passing args in body | &#x2713; | in file | in body | json body |
 | sum | Api with methods, with args | &#x2713; | in file | in body | json body |
-| crud | Simple REST CRUD example, to show REST Methods | &#x2713; | in file | in body and path | json body |
+| crud | Simple REST CRUD example, to show REST Methods | &#x2713; | on file per method | in body and path | json body |
 | currency | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
 | simple-auth | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
 | simple-auth-jwt | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
