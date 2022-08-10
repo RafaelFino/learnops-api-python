@@ -1,0 +1,21 @@
+Swagger example file to get one item using id on path
+---
+parameters:
+  - name: id
+    description: Item id to try get
+    in: path
+    type: string
+    required: true
+
+responses:
+  200:
+    description: Item from ID
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            - item:
+              type: object
+  404:
+    description: Items not found   

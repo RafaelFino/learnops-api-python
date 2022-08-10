@@ -1,0 +1,15 @@
+Swagger example file to delete an item
+---
+parameters:
+  - name: id
+    description: Item id to try delete
+    in: path
+    type: string
+    required: true
+    
+responses:
+  200:
+    description: Item removed
+
+  404:
+    description: Item not found

@@ -1,0 +1,24 @@
+Swagger example file to insert one item using id on path and data on body
+---
+parameters:
+  - name: id
+    description: Item id
+    in: path
+    type: string
+
+  - name: item
+    in: body
+    description: Item to insert
+    required: true
+    example: { "item": { "key1": "value" } }
+    content:
+      application/json:
+        type: object
+        additionalProperties: true 
+        
+responses:
+  201:
+    description: Item created
+
+  200:
+    description: Item already exists, updated

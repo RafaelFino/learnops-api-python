@@ -40,6 +40,8 @@ responses:
             - lastUpdate:
               type: string
               format: date-time
+            - elapsedTime:
+              type: float
             - notFound:
               type: array
               items:

@@ -1,0 +1,28 @@
+Swagger example file to update one item using id on path and data on body
+---
+parameters:
+  - name: id
+    description: Item id
+    in: path
+    type: string
+
+  - name: item
+    in: body
+    description: Item to insert
+    required: true    
+    example: { "item": { "new_key1": "new_value" } }
+    content:
+      application/json:
+        type: object
+        additionalProperties: true 
+        
+
+responses:
+  200:
+    description: Item updated
+
+  404:
+    description: Item not found
+
+  422:
+    description: Body must have "item" key    

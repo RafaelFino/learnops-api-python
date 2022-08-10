@@ -12,13 +12,9 @@ swagger = Swagger(app)
 @app.route("/", methods = ['POST'])
 @swag_from("swagger.yml")
 def post_sum():
-    numbers = request.json['numbers']
-    result = 0
-
-    for i in numbers:
-      result += i    
+    name = request.json['name']
 
     return { 
-      "result" : result,
+      "hello" : name,
       "timestamp:" : datetime.now()
     }, HTTPStatus.OK

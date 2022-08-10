@@ -1,0 +1,14 @@
+Swagger example file to get all items
+---
+responses:
+  200:
+    description: Return hello to name
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            - result:
+              type: object
+  404:
+    description: Items not found   
