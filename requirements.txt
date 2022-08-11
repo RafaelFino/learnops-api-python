@@ -3,11 +3,5 @@ flasgger
 setuptools
 python-ulid
 requests
-SQLAlchemy
-Flask-SQLAlchemy
-authlib
 cryptography
-pycryptodome
 pyjwt
-ipython
-

@@ -10,6 +10,7 @@ from ulid import ULID
 app = Flask(__name__)
 swagger = Swagger(app)
 
+header = { 'Content-Type': 'application/json' }
 users = { 'usuario1': 'senha1', 'usuario2': 'senha2' }
 tokens = {}
 timeToExpire = 1
@@ -29,9 +30,9 @@ def post_login():
         token = str(ULID.from_datetime(datetime.now()))
         tokens[token] = datetime.now()
         
-        return create_body({ 'token' : token }), HTTPStatus.OK
+        return create_body({ 'token' : token }), HTTPStatus.OK, header
 
-    return create_body, HTTPStatus.UNAUTHORIZED
+    return create_body(), HTTPStatus.UNAUTHORIZED, header
 
 @app.route("/validate", methods = ['POST'])
 @swag_from("swagger/post_validate.yml")
@@ -39,11 +40,11 @@ def post_validate():
   token = request.headers['token']
   if token in tokens:
     if datetime.now() - tokens[token] <= timedelta(minutes=timeToExpire):
-      return create_body(), HTTPStatus.OK
+      return create_body(), HTTPStatus.OK, header
     
     else:
-      return create_body({ 'message' : 'expired' }), HTTPStatus.UNAUTHORIZED
+      return create_body({ 'message' : 'expired' }), HTTPStatus.UNAUTHORIZED, header
 
-  return create_body(), HTTPStatus.UNAUTHORIZED
+  return create_body(), HTTPStatus.UNAUTHORIZED, header
 
 

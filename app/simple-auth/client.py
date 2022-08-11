@@ -1,27 +1,54 @@
 #!/bin/python3
 
 from http import HTTPStatus
-import sys
-import requests
-import json
 from getpass import getpass
+import requests
+from datetime import datetime
+import json
+
+
+# Background Colors to log messages
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def Log(message):
+    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKCYAN}{message}")
+
+def LogError(message):
+    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.FAIL}{message}")
+
+def LogOk(message):
+    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}") 
+
+def ExecuteRequest(method, url, headers):
+    Log(f">>> [{method}] {url} -> Headers: {headers}")
+    
+    response = requests.request(method=method, url=url, headers=headers)
+    
+    msg = f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code}\n Headers:\n\t{response.headers}\n\n Body:\n\t{json.dumps(response.json())}"
+    
+    if response.status_code == HTTPStatus.OK:
+        LogOk(msg)
+    else:
+        LogError(msg)
+
+    return response      
 
 user =  input("User: ")
 password = getpass()
 
-headers={ 'user': user, 'pass': password }
-
-print(f"trying to get a token from user {user} -> header={headers}")
-response = requests.post(f"http://localhost:5000/login", headers)
-print(f"Return:\nReturn code: {response.status_code}\nBody:{json.dumps(response.json(), indent=4, sort_keys=True)}")
-
-if response.status_code != HTTPStatus.OK:    
-    print("Fail to try login")
-    sys.exit()
+response = ExecuteRequest('POST', f"http://localhost:5000/login", { 'user': user, 'pass': password })
 
 token = response.json()['token']
-print(f"Authenticated, validating token {token}")
 
-response = requests.post(f"http://localhost:5000/validate", headers={ 'token': token })
-print(f"####\nReturn:\nReturn code: {response.status_code}\nBody:{json.dumps(response.json(), indent=4, sort_keys=True)}")
+Log(f"\n##\n##\n## Authenticated, validating token {token}\n##\n##")
 
+response = ExecuteRequest('POST', f"http://localhost:5000/validate", headers={ 'token': token })
