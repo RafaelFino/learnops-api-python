@@ -68,16 +68,19 @@ token = result['jwt']
 claims = get_claims(token)
 exp = datetime.fromtimestamp(result['exp'])+timedelta(seconds=2)
 
+Log(f"\n##\n##\n##\tRoutes allowed for this user: {claims['routes']}\n##\n##")
+
 #Timeout test
 Log(f"Trying all routes {claims['routes']} util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
 while datetime.now() < exp:
     timeOut = (datetime.fromtimestamp(result['exp']) - datetime.now()).total_seconds()
     if timeOut < 0:
-        timeOut = 0
-        Log("Next request will be the last...")
+        Log("Token time out, next requests will be the last...")
         time.sleep(1)
+    else:
+        Log(f"Time to expire: {timeOut} seconds, continue trying until expire token")        
 
-    Log(f"Time to expire: {timeOut} seconds, continue trying until expire token")        
+    
     for r in claims['routes']:
         ExecuteRequest('GET', f"http://localhost:5000/{r}", { 'Authorization': f"Bearer {token}" })
 
