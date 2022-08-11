@@ -22,3 +22,6 @@ responses:
 
   200:
     description: Item already exists, updated
+
+  422:
+    description: Body must have "item" key

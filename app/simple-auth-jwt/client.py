@@ -31,7 +31,7 @@ def LogError(message):
 def LogOk(message):
     print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")  
 
-def ExecuteRequest(method, url, headers):
+def ExecuteRequest(method, url, headers={}):
     Log(f">>> [{method}] {url} -> Headers: {headers}")
     
     response = requests.request(method=method, url=url, headers=headers)

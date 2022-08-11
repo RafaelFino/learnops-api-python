@@ -86,7 +86,7 @@ else:
 updatedItem = {}
 
 for k in items:
-    updatedItem['item'] = { "updated_key": "updated_value" }
+    updatedItem['item'] = { f"updated_key_{k}": f"updated_value_{k}" }
     Log(f"Trying to update a item (key={k}) -> new value: {updatedItem}, expecting HTTP 200")
     response = ExecuteRequest('PUT', f"{url}/{k}", updatedItem)
     if response.status_code == HTTPStatus.OK:
@@ -95,7 +95,7 @@ for k in items:
         LogError("Fail!")
 
 Log(f"Trying to update a item with non existent key (key=XPTO) new value: {updatedItem}, expecting HTTP 200")
-response = ExecuteRequest('PUT', f"{url}/XPTO", )
+response = ExecuteRequest('PUT', f"{url}/XPTO", updatedItem)
 if response.status_code == HTTPStatus.NOT_FOUND:
     LogOk("Ok!")
 else:
@@ -110,21 +110,21 @@ for k in items:
         LogError("Fail!")
 
 for k in items:
-    Log(f"Trying to delete item (key = {k}) HTTP 200")
+    Log(f"Trying to delete item (key = {k}) expecting HTTP 200")
     response = ExecuteRequest('DELETE', f"{url}/{k}")
     if response.status_code == HTTPStatus.OK:
         LogOk("Ok!")
     else:
         LogError("Fail!")
 
-    Log(f"Trying to delete item again (key = {k}) HTTP 404")
+    Log(f"Trying to delete item again (key = {k}) expecting HTTP 404")
     response = ExecuteRequest('DELETE', f"{url}/{k}")
     if response.status_code == HTTPStatus.NOT_FOUND:
         LogOk("Ok!")
     else:
         LogError("Fail!")    
 
-Log("Trying to get all items, by ID, expecting 404")
+Log("Trying to get all items, by ID, expecting HTTP 404")
 for k in items:    
     response = ExecuteRequest('GET', f"{url}/{k}")
     if response.status_code == HTTPStatus.NOT_FOUND:
