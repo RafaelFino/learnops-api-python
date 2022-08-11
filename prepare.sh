@@ -46,6 +46,8 @@ git clone https://github.com/RafaelFino/learnops-api-python.git
 
 #install python3 dependencies
 cd ~/learnops-api-python
+python3 -m venv .
+source bin/activate
 pip3 install -r requirements.txt
 
 echo 'Done!'
