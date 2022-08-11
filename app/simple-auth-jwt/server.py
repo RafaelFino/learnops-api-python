@@ -56,6 +56,7 @@ def get_userinfo(token):
 
 def create_headers(headers = {}):
 	headers['Timestamp'] = datetime.now(tz=timezone.utc).timestamp()
+	headers['Content-Type'] = 'application/json'
 
 	return headers
 	
