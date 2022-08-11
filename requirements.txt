@@ -7,5 +7,6 @@ SQLAlchemy
 Flask-SQLAlchemy
 authlib
 cryptography
+pycryptodome
 pyjwt
 

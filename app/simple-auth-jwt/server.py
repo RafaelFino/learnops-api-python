@@ -3,7 +3,9 @@ from http import HTTPStatus
 from flask import Flask, request
 from datetime import datetime, timedelta, timezone
 from flasgger import Swagger, swag_from
+from cripto import CriptoServer
 import jwt
+import json
 
 #
 # Great text to read JWT: 
@@ -37,16 +39,18 @@ users = {
 }
 
 # local settings
-login_key = "My secret login key"
 token_key = "My very secret token key"
 time_to_expire = 10
+
+cripto = CriptoServer()
 
 # helpers methods
 def create_jwt(payload = {}):
 	return jwt.encode(payload, token_key, algorithm="HS256")
 
 def get_userinfo(token):
-	return jwt.decode(token, login_key, algorithms=[ "HS256" ])	
+	j = cripto.Decript(token)
+	return json.loads(j)
 
 def create_headers(headers = {}):
 	headers['Timestamp'] = datetime.now(tz=timezone.utc).timestamp()

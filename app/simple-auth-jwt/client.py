@@ -7,6 +7,7 @@ import time
 import sys
 from getpass import getpass
 from datetime import datetime, timedelta
+from cripto import CriptoClient
 import jwt
 
 # Background Colors to log messages
@@ -46,17 +47,20 @@ def ExecuteRequest(method, url, headers):
         
     return ret
 
-login_key = "My secret login key"
 
-def encryptPass(user, password):
-    return jwt.encode({ 'user': user, 'pass': password }, login_key, algorithm="HS256")
 
 user =  input("User: ")
 password = getpass()
 
-requestToken = encryptPass(user, password)
+cripto = CriptoClient()
 
-headers={ 'requestToken': requestToken }
+headers={ 'requestToken': cripto.Encript(json.dumps({ 
+                                                        'user': user, 
+                                                        'pass' : password 
+                                                    }
+                                                )
+                                        ) 
+        }
 url = "http://localhost:5000/login"
 
 result = ExecuteRequest('POST', url, headers)
