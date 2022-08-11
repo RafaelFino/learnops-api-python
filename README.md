@@ -11,7 +11,7 @@ curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepa
 
 3. To execute server, on application path (~/learnops-api-python):
 ```
-cd learnops-api-python
+cd ~/learnops-api-python
 source bin/activate
 pip3 install -r requirements.txt
 
@@ -20,7 +20,7 @@ pip3 install -r requirements.txt
 
 4. To execute clients, on application path (~/learnops-api-python):
 ```
-cd learnops-api-python
+cd ~/learnops-api-python
 source bin/activate
 
 ./run-client.sh {api-name}
