@@ -9,4 +9,5 @@ authlib
 cryptography
 pycryptodome
 pyjwt
+ipython
 

@@ -4,11 +4,12 @@ from flask import Flask, request
 from datetime import datetime, timedelta, timezone
 from flasgger import Swagger, swag_from
 from cripto import CriptoServer
+from cryptography.hazmat.primitives import serialization
 import jwt
 import json
 
 #
-# Great text to read JWT: 
+# References about JWT:
 #	 https://auth0.com/blog/how-to-handle-jwt-in-python/
 #	 https://pyjwt.readthedocs.io/en/latest/usage.html
 #	 https://www.devmedia.com.br/como-o-jwt-funciona/40265#:~:text=JWT%20(JSON%20Web%20Token)%20%C3%A9,permitem%20a%20autentica%C3%A7%C3%A3o%20da%20requisi%C3%A7%C3%A3o.
@@ -23,30 +24,31 @@ users = {
 	'usuario1': {
 		'pass' : 'senha1',
 		'claims': {
-			'admin': True,
-			'query': True,
+			'routes' : [
+				"query", "admin"
+			],
 			'nick': 'Fulano'
 		}
 	}, 
 	'usuario2': {
 		'pass' : 'senha2',
 		'claims': {
-			'admin': False,
-			'query': True,
+			'routes' : [
+				"query"
+			],
 			'nick': 'Beltrano'		 
 		}
 	}
 }
 
 # local settings
-token_key = "My very secret token key"
 time_to_expire = 10
 
 cripto = CriptoServer()
 
 # helpers methods
 def create_jwt(payload = {}):
-	return jwt.encode(payload, token_key, algorithm="HS256")
+	return jwt.encode(payload, key=cripto.GetPrivateKey(), algorithm='RS256')
 
 def get_userinfo(token):
 	j = cripto.Decript(token)
@@ -64,7 +66,7 @@ def create_body(body = {}, message = None):
 	return body
 
 def get_claims(token):
-	return jwt.decode(token, token_key, algorithms=[ "HS256" ])	
+	return jwt.decode(token, key=cripto.GetPublicKey(), algorithms=[ 'RS256', ], options={"verify_signature": True, "verify_exp": True})	
 
 # routes
 @app.route("/login", methods = ['POST'])
@@ -97,12 +99,12 @@ def get_admin():
 	try:
 		token = request.headers['Authorization'].replace('Bearer ', '')
 		claims = get_claims(token)
-
-		if claims['admin'] != True:
-			return create_body({}, 'user do not have permission for this role') , HTTPStatus.UNAUTHORIZED, create_headers()
 		
-		return create_body({}, f"Hello {claims['nick']}, you are allowed to request this") , HTTPStatus.OK, create_headers()
 
+		if 'admin' in claims['routes']:
+			return create_body({}, f"Hello {claims['nick']}, you are allowed to request ADMIN route") , HTTPStatus.OK, create_headers()	
+		
+		return create_body({}, 'user do not have permission for this role') , HTTPStatus.UNAUTHORIZED, create_headers()		
 	except Exception as e:
 		return create_body({}, str(e)) , HTTPStatus.UNAUTHORIZED, create_headers()
 	
@@ -113,10 +115,9 @@ def get_query():
 		token = request.headers['Authorization'].replace('Bearer ', '')
 		claims = get_claims(token)
 
-		if claims['query'] != True:
-			return create_body({}, 'user do not have permission for this role') , HTTPStatus.UNAUTHORIZED, create_headers()
-		
-		return create_body({}, f"Hello {claims['nick']}, you are allowed to request this") , HTTPStatus.OK, create_headers()
-
+		if 'query' in claims['routes']:
+			return create_body({}, f"Hello {claims['nick']}, you are allowed to request QUERY route") , HTTPStatus.OK, create_headers()
+			
+		return create_body({}, 'user do not have permission for this role') , HTTPStatus.UNAUTHORIZED, create_headers()				
 	except Exception as e:
 		return create_body({}, str(e)) , HTTPStatus.UNAUTHORIZED, create_headers()

@@ -47,20 +47,15 @@ def ExecuteRequest(method, url, headers):
         
     return ret
 
+cripto = CriptoClient()
 
+def get_claims(token):
+	return jwt.decode(token, key=cripto.GetPublicKey(), algorithms=[ 'RS256', ], options={"verify_signature": True, "verify_exp": True})
 
 user =  input("User: ")
 password = getpass()
 
-cripto = CriptoClient()
-
-headers={ 'requestToken': cripto.Encript(json.dumps({ 
-                                                        'user': user, 
-                                                        'pass' : password 
-                                                    }
-                                                )
-                                        ) 
-        }
+headers={ 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }))}
 url = "http://localhost:5000/login"
 
 result = ExecuteRequest('POST', url, headers)
@@ -70,16 +65,21 @@ if result['status_code'] != HTTPStatus.OK:
     sys.exit()
 
 token = result['jwt']
+claims = get_claims(token)
 exp = datetime.fromtimestamp(result['exp'])+timedelta(seconds=2)
 
 #Timeout test
-Log(f"Trying util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
-while datetime.now() < exp:    
-    Log(f"{datetime.now()}/{exp} Trying until expire token")        
-    # try admin get
-    ExecuteRequest('GET',"http://localhost:5000/admin", { 'Authorization': f"Bearer {token}" })
+Log(f"Trying all routes {claims['routes']} util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
+while datetime.now() < exp:
+    timeOut = (datetime.fromtimestamp(result['exp']) - datetime.now()).total_seconds()
+    if timeOut < 0:
+        timeOut = 0
+        Log("Next request will be the last...")
+        time.sleep(1)
 
-    # try query get
-    ExecuteRequest('GET',"http://localhost:5000/query", { 'Authorization': f"Bearer {token}" })
+    Log(f"Time to expire: {timeOut} seconds, continue trying until expire token")        
+    for r in claims['routes']:
+        ExecuteRequest('GET', f"http://localhost:5000/{r}", { 'Authorization': f"Bearer {token}" })
+
     time.sleep(1)
 
