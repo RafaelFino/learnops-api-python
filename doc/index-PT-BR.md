@@ -42,10 +42,26 @@ Transparência — um ponto central pode acessar os serviços se comunicar com o
 #### Serviços (SOA)
 
 ## API: Oq são?
+### HTTP
+#### Códigos de retorno
+### REST
+#### Verbos REST
+
 ## Quais as vantagens das APIs -> Orientação  serviços
+
 ## Qual a relação entre as APIs e os microserviços?
+
 ## Autenticações
+### O que é um token
+### Criptografias
+#### Com chaves simétrica
+#### Com chaves assimétrica (publica e privada)
+### JWT
+
 ## Mitigação de riscos
+
 ## Modelos de autenticação e de segurança
+
 ## Swagger
+
 ## Outras ferramentas de desenvolvimento de APIs
