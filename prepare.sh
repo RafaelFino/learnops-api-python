@@ -12,7 +12,8 @@
 
 #update
 apt update -y
-apt install -y git vim zsh curl wget unzip jq telnet htop python3 python3-pip python3-venv
+apt install -y git vim zsh curl wget unzip jq telnet htop python3 python3-pip 
+apt install -y python3-venv
 
 #install vim
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
