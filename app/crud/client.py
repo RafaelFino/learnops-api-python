@@ -32,7 +32,7 @@ def LogOk(message):
 def ExecuteRequest(method, url, body={}):
     Log(f">>> [{method}] {url}: Body: {body}")    
     response = requests.request(method=method, url=url, json=body, headers={'Content-Type': 'application/json'})   
-    Log(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code}")
+    Log(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(response.json())}")
 
     return response
 
