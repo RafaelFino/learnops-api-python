@@ -49,7 +49,7 @@ password = getpass()
 response = ExecuteRequest('POST', f"http://localhost:5000/login", { 'user': user, 'pass': password })
 
 if response.status_code != HTTPStatus.OK:
-    LogError("Log fail")
+    LogError(f"Login request fail -> {response.status_code}")
     sys.exit()
 
 token = response.json()['token']

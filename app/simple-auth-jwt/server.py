@@ -59,8 +59,8 @@ def create_headers(headers = {}):
 
 	return headers
 	
-def create_body(body = {}, message = None):
-	if message != None:
+def create_body(body = {}, message = ""):
+	if len(message) > 0:
 		body['message'] = message 
 
 	return body
@@ -91,7 +91,7 @@ def post_login():
 	 
 			return create_body({ 'jwt' : jwt, 'exp': exp.timestamp() }), HTTPStatus.OK, create_headers()
 
-	return create_body(), HTTPStatus.UNAUTHORIZED, create_headers()
+	return create_body({}), HTTPStatus.UNAUTHORIZED, create_headers()
 
 @app.route("/admin", methods = ['GET'])
 @swag_from("swagger/get_admin.yml")
