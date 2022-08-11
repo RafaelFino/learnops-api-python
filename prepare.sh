@@ -45,7 +45,7 @@ cd
 git clone https://github.com/RafaelFino/learnops-api-python.git
 
 #install python3 dependencies
-cd learnops-api-python
+cd ~/learnops-api-python
 pip3 install -r requirements.txt
 
 echo 'Done!'

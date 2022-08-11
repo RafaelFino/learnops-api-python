@@ -5,6 +5,7 @@ from getpass import getpass
 import requests
 from datetime import datetime
 import json
+import sys
 
 
 # Background Colors to log messages
@@ -46,6 +47,10 @@ user =  input("User: ")
 password = getpass()
 
 response = ExecuteRequest('POST', f"http://localhost:5000/login", { 'user': user, 'pass': password })
+
+if response.status_code != HTTPStatus.OK:
+    LogError("Log fail")
+    sys.exit()
 
 token = response.json()['token']
 
