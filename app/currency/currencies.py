@@ -17,7 +17,7 @@ class CurrenciesService:
                 "pctChange": 0, 
                 "bid": 1, 
                 "ask": 1,
-                "createDate": 'datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                "createDate": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
 
         self.Load()

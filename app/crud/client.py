@@ -7,43 +7,27 @@ import requests
 import json
 import sys
 from datetime import datetime
-
-# Background Colors to log messages
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-def Log(message):
-    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKCYAN}{message}")
-
-def LogError(message):
-    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.FAIL}{message}")
-
-def LogOk(message):
-    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")  
+from logger import Logger
 
 def ExecuteRequest(method, url, body={}):
-    Log(f">>> [{method}] {url}: Body: {body}")    
+    Logger.Info(f">>> [{method}] {url}: Body: {body}")    
     response = requests.request(method=method, url=url, json=body, headers={'Content-Type': 'application/json'})   
-    Log(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(response.json())}")
+    Logger.Info(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(response.json())}")
 
     return response
 
+def TestRequest(method, url, body={}, message="", expected=[ HTTPStatus.OK ]):
+    Logger.Info(f">>> {message} -> expecting HTTP {expected}" )
+    response = ExecuteRequest(method, url, body)
+   
+    if response.status_code in expected:
+        Logger.Success(f"<<< OK!\n\tAccepted values:\t{expected}\n\tReceived value:\t\tHTTP {response.status_code}")
+    else:
+        Logger.Error(f"<<< FAIL!\n\tAccepted values:\t{expected}\n\tReceived value:\t\tHTTP {response.status_code}")
+
 url = "http://localhost:5000/items"
 
-Log("Trying to get all items")
-response = ExecuteRequest('GET', url)
-if response.status_code == HTTPStatus.OK:
-    LogOk(f"Ok! -> result:\n{json.dumps(response.json())}")
-if response.status_code == HTTPStatus.NOT_FOUND:
-    LogOk(f"No items yet")
+TestRequest('GET', url, {}, "Trying to get all items", [ HTTPStatus.OK, HTTPStatus.NOT_FOUND])
 
 items = {}
 qty = 10
@@ -53,81 +37,24 @@ for i in range(qty):
     items[id] = {} 
     items[id]['item'] = { f"key{i}" : f"value{i}"  }
 
-    Log(f"Trying to insert items for first time, expecting HTTP 201" )
-    response = ExecuteRequest('POST', f"{url}/{id}", items[id])
-    if response.status_code == HTTPStatus.CREATED:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")
+    TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert items for first time", [ HTTPStatus.CREATED ])
+    TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert an item that already exists", [ HTTPStatus.OK ])
+    TestRequest('GET', f"{url}/{id}", {}, f"Trying to get all item, by ID (key = {id})", [ HTTPStatus.OK ])
 
-    Log(f"Trying to insert an item that already exists, expecting HTTP 200" )
-    response = ExecuteRequest('POST', f"{url}/{id}", items[id])
-    if response.status_code == HTTPStatus.OK:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")
-
-Log("Trying to get all items, by ID")
-for k in items:    
-    response = ExecuteRequest('GET', f"{url}/{k}")
-    if response.status_code == HTTPStatus.OK:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")    
-
-
-Log("Trying to get a not found item (key = XPTO), expecting HTTP 404")
-response = ExecuteRequest('GET', f"{url}/XPTO")
-if response.status_code == HTTPStatus.NOT_FOUND:
-    LogOk("Ok!")
-else:
-    LogError("Fail!")
+TestRequest('GET', f"{url}/XPTO", {}, "Trying to get a not found item (key = XPTO)", [ HTTPStatus.NOT_FOUND ])
 
 updatedItem = {}
 
 for k in items:
     updatedItem['item'] = { f"updated_key_{k}": f"updated_value_{k}" }
-    Log(f"Trying to update a item (key={k}) -> new value: {updatedItem}, expecting HTTP 200")
-    response = ExecuteRequest('PUT', f"{url}/{k}", updatedItem)
-    if response.status_code == HTTPStatus.OK:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")
+    TestRequest('PUT', f"{url}/{k}", updatedItem, f"Trying to update a item (key={k}) -> new value: {updatedItem}", [ HTTPStatus.OK ])
 
-Log(f"Trying to update a item with non existent key (key=XPTO) new value: {updatedItem}, expecting HTTP 200")
-response = ExecuteRequest('PUT', f"{url}/XPTO", updatedItem)
-if response.status_code == HTTPStatus.NOT_FOUND:
-    LogOk("Ok!")
-else:
-    LogError("Fail!")
+TestRequest('PUT', f"{url}/XPTO", updatedItem, f"Trying to update a item with non existent key (key = XPTO) new value: {updatedItem}", [ HTTPStatus.NOT_FOUND ])
 
 for k in items:
-    Log(f"Trying to get an updated item (key = {k}), expecting HTTP 200 and value={updatedItem}")
-    response = ExecuteRequest('GET', f"{url}/{k}")
-    if response.status_code == HTTPStatus.OK:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")
+    TestRequest('GET', f"{url}/{k}", {}, f"Trying to get an updated item (key = {k}) expecting value={updatedItem}", [ HTTPStatus.OK ])
 
 for k in items:
-    Log(f"Trying to delete item (key = {k}) expecting HTTP 200")
-    response = ExecuteRequest('DELETE', f"{url}/{k}")
-    if response.status_code == HTTPStatus.OK:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")
-
-    Log(f"Trying to delete item again (key = {k}) expecting HTTP 404")
-    response = ExecuteRequest('DELETE', f"{url}/{k}")
-    if response.status_code == HTTPStatus.NOT_FOUND:
-        LogOk("Ok!")
-    else:
-        LogError("Fail!")    
-
-Log("Trying to get all items, by ID, expecting HTTP 404")
-for k in items:    
-    response = ExecuteRequest('GET', f"{url}/{k}")
-    if response.status_code == HTTPStatus.NOT_FOUND:
-        LogOk(f"Ok!")
-    else:
-        LogError("Fail!")
+    TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item (key = {k})", [ HTTPStatus.OK ])
+    TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item AGAIN (key = {k})", [ HTTPStatus.NOT_FOUND ])
+    TestRequest('GET', f"{url}/{k}", {}, f"Trying to get item, by ID (key = {k})", [ HTTPStatus.NOT_FOUND ])
