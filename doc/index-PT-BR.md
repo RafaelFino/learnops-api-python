@@ -7,8 +7,8 @@ Um sistema centralizado pode ser definido como um processo onde apenas um ator c
 
 Em um sistema distribuído, cada etapa é dividida em pedaços menores e realizados por diferentes operadores, diminuindo a complexidade de cada etapa e aumentando a produtividade em escala. Porém com essa abordagem uma série de novas desafios aparecem:
 
- - Como cada parte se comunica? 
- - Como é feita a gestão dos processos?
+- Como cada parte se comunica? 
+- Como é feita a gestão dos processos?
 
 Um exemplo prático para comparar as duas diferentes abordagens é uma produção de um artesão comparada a produção em uma linha de produção. 
 
@@ -26,15 +26,15 @@ Em sistemas computacionais distrbuídos, ganhamos em escala, independência, res
 
 ### Características de um sistema distribuído
 
-Compartilhamento de recursos — um sistema distribuído pode compartilhar hardware, software ou dados
+- Compartilhamento de recursos — um sistema distribuído pode compartilhar hardware, software ou dados
 
-Processamento simultâneo — várias máquinas podem processar dados ao mesmo tempo
+- Processamento simultâneo — várias máquinas podem processar dados ao mesmo tempo
 
-Escalonamento — a capacidade de computação e processamento pode evoluir conforme necessário quando estendida para máquinas adicionais
+- Escalonamento — a capacidade de computação e processamento pode evoluir conforme necessário quando estendida para máquinas adicionais
 
-Detecção de erros e resiliência — as falhas podem ser detectadas com mais facilidade, uma vez que cada parte do sistema faz uma etapa específica do processo
+- Detecção de erros e resiliência — as falhas podem ser detectadas com mais facilidade, uma vez que cada parte do sistema faz uma etapa específica do processo
 
-Transparência — um ponto central pode acessar os serviços se comunicar com outros pontos no sistema, abstraindo essa segregação do ponto de vista do usuário
+- Transparência — um ponto central pode acessar os serviços se comunicar com outros pontos no sistema, abstraindo essa segregação do ponto de vista do usuário
 
 ### Exemplos de arquiteturas de sistemas distribuídos
 #### Cliente Servidor
@@ -103,6 +103,7 @@ JSON é basicamente um formato leve de troca de informações/dados entre sistem
 O JSON além de ser um formato leve para troca de dados é também muito simples de ler. Mas quando dizemos que algo é simples, é interessante compará-lo com algo mais complexo para entendermos tal simplicidade não é? Neste caso podemos comparar o JSON com o formato XML.
 
 Vamos visualizar esta diferença?
+
 **XML**
 ``` XML
 <note>
