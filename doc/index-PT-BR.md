@@ -266,6 +266,7 @@ A primeira diferença entre os dois modelos é a forma de fazer a notação dos 
 
 Outra característica da notação XML é que o seu conteúdo não precisa ser delimitado com aspas, como acontece com os textos no formato JSON. Nele, o que indica o início e o fim das informações são as tags de abertura e fechamento. Confira o exemplo, a seguir.
 
+``` XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <estados>
     <estado>
@@ -281,6 +282,7 @@ Outra característica da notação XML é que o seu conteúdo não precisa ser d
         <sigla>RJ</sigla>
     </estado>
 </estados>
+```
 
 ###### Tipos de dados
 O formato XML suporta diferentes tipos de dados, entre eles: imagens e gráficos, o que não é possível transmitir no formato JSON, pois ele só oferece suporte a números e textos. Em contrapartida, o XML não oferece suporte a arrays.
