@@ -60,7 +60,7 @@ Os sistemas operacionais também possuem suas APIs com as mesmas funções descr
 - https://blog.idwall.co/o-que-e-uma-api-e-quais-seus-beneficios
 
 
-### Como as APIs funcionam?
+## Como as APIs funcionam?
 Muitas vezes, o cliente precisa ter acesso a determinados dados disponibilizados por um banco de informações, serviço ou dispositivo, por exemplo. É nesse momento que entram as APIs.
 
 Para acessar essas informações específicas, o cliente faz uma solicitação — nomeada de requisição — à API. Assim, ela consegue fazer uma busca no servidor e devolver as respostas solicitadas em formato de dados, que são entregues em seu estado mais puro.
@@ -90,13 +90,13 @@ O HTTP é um protocolo de comunicação. Através dele o cliente e o servidor co
 
 Veja a especificação completa da [RFC HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) para maiores detalhes
 
-#### O que é [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5)?
+### O que é [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5)?
 A Request ou requisição traduzindo diretamente para português, é o pedido que um cliente realiza a nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa. Vamos pensar que um cliente precisa cadastrar um novo produto, ele deve passar todos os dados necessários para o cadastro acontecer de maneira correta, inclusive os dados que foram digitados pelo usuário em um formulário, no caso de uma aplicação web. No navegador toda vez que trocamos de página ou apertamos enter na barra de endereço uma nova request é feita. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou excluindo.
 
-#### O que é [Response](https://datatracker.ietf.org/doc/html/rfc8246)?
+### O que é [Response](https://datatracker.ietf.org/doc/html/rfc8246)?
 Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A Response (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
 
-#### O que é 200, 404, 301 e outros números? Esses são os [HTTP Status Code](https://datatracker.ietf.org/doc/html/rfc6585)?
+### O que é 200, 404, 301 e outros números? Esses são os [HTTP Status Code](https://datatracker.ietf.org/doc/html/rfc6585)?
 Esses números são os chamados códigos HTTP. Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
 
 Os códigos estão entre 100 e 500, sendo que cada centena indica uma categoria:
@@ -119,7 +119,7 @@ Existem vários sites que especificam todos os códigos HTTP. Esse usa cachorrin
 
 O HTTP é o protocolo que define as regras para a comunicação entre o cliente o servidor. No fluxo básico o cliente realiza uma requisição para o servidor, nessa requisição é enviada além de várias outras informações um método que indica a ação que ele deseja. O servidor devolve uma resposta, nessa resposta, além de outras informações, existe um código que indica ao cliente o que aconteceu. Caso você queira se aprofundar no assunto também abordamos no blog sobre o protocolo HTTP/2, que é a evolução do HTTP.
 
-##### Fontes e links uteis:
+### Fontes e links uteis:
 - https://www.w3.org/Protocols/rfc2616/rfc2616.html
 - https://datatracker.ietf.org/doc/html/rfc6585
 - https://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol
@@ -129,7 +129,7 @@ O HTTP é o protocolo que define as regras para a comunicação entre o cliente 
 - https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-2-os-esquecidos-3eee
 - https://dev.to/_staticvoid/status-http-fantasticos-e-onde-habitam-3-conclusao-7bg
 
-#### Lista com os principais códigos de retorno
+### Lista com os principais códigos de retorno
 | Código | Description |
 |:-:|:-|
 | **100**  | Continue |
@@ -173,15 +173,15 @@ O HTTP é o protocolo que define as regras para a comunicação entre o cliente 
 | **504**  | Gateway Time-out |
 | **505**  | HTTP Version not supported |
 
-##### Fontes e links uteis:
+### Fontes e links uteis:
 - https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html
 - https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1
 
-##### Estrutura
-###### Header
-###### Body
+### Estrutura
+#### Header
+#### Body
 
-##### Mas o que é  [Json](https://jsonapi.org/)?
+## Mas o que é  [Json](https://jsonapi.org/)?
 JSON é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation, ou seja, só posso usar com JavaScript correto? Na verdade não e alguns ainda caem nesta armadilha.
 
 O JSON além de ser um formato leve para troca de dados é também muito simples de ler. Mas quando dizemos que algo é simples, é interessante compará-lo com algo mais complexo para entendermos tal simplicidade não é? Neste caso podemos comparar o JSON com o formato XML.
@@ -210,13 +210,13 @@ Vamos visualizar esta diferença?
 Bom, é notável a diferença. Visualmente o segundo trecho (em JSON) é mais fácil de ler. Mas só existe essa diferença entre os dois? Na verdade não. Podemos listar algumas outras 
 vantagens
 
-###### Quais as principais características desse formato?
+### Quais as principais características desse formato?
 Os arquivos no formato .json contêm algumas características específicas que tornam essa especificação mais atraente para a utilização em aplicações que consomem dados de outros sistemas. Confira as principais, a seguir.
 
-###### Linguagem independente
+### Linguagem independente
 A simplicidade com que os dados são estruturados no formato JSON permite que ele seja utilizado em qualquer tipo de linguagem de programação. Além disso, ele pode ser manipulado em diferentes plataformas, como Windows, macOS, Linux, e em vários tipos de sistemas, como em aplicações web e aplicativos móveis.
 
-###### Formatação do arquivo
+### Formatação do arquivo
 Além da terminação .json em todos os arquivos que utilizam esse formato, os dados armazenados devem seguir uma notação específica, ou seja, precisam ser organizados com os seguintes elementos básicos:
 
 - chaves { } para delimitar os objetos e obrigatórias para iniciar e encerrar o conteúdo;
@@ -246,7 +246,7 @@ Veja, a seguir, alguns exemplos de como os dados devem ser relacionados em um ar
   }
 }
 ``` 
-Lista de objetos
+**Lista de objetos**
 Confira como fazer a notação para indicar uma lista de objetos:
 
 ``` JSON 
@@ -258,10 +258,10 @@ Confira como fazer a notação para indicar uma lista de objetos:
 }
 ``` 
 
-###### Quais as diferenças entre .json e .xml?
+### Quais as diferenças entre .json e .xml?
 Outro formato utilizado para a troca de dados entre aplicações é o XML — eXtensible Markup Language. Apesar de também ser um arquivo de texto, existem algumas diferenças entre os dois modelos. Confira as principais.
 
-###### Notação
+### Notação
 A primeira diferença entre os dois modelos é a forma de fazer a notação dos dados. Conforme mencionamos, o JSON utiliza uma notação simples, enquanto o XML utiliza uma estrutura de tags personalizadas para representar os objetos. Além disso, elas devem conter o par, ou seja, a tag de abertura e a de fechamento.
 
 Outra característica da notação XML é que o seu conteúdo não precisa ser delimitado com aspas, como acontece com os textos no formato JSON. Nele, o que indica o início e o fim das informações são as tags de abertura e fechamento. Confira o exemplo, a seguir.
@@ -284,25 +284,25 @@ Outra característica da notação XML é que o seu conteúdo não precisa ser d
 </estados>
 ```
 
-###### Tipos de dados
+### Tipos de dados
 O formato XML suporta diferentes tipos de dados, entre eles: imagens e gráficos, o que não é possível transmitir no formato JSON, pois ele só oferece suporte a números e textos. Em contrapartida, o XML não oferece suporte a arrays.
 
-###### Codificação
+### Codificação
 A codificação representa as formas de conversão para o formato binário suportadas pelo modelo. O JSON utiliza o formato UTF-8, enquanto o XML oferece essa e outras opções. É importante dizer que o UTF-8 é o formato mais utilizado em sites na internet, como o WordPress e muitos outros.
 
-##### Quais os benefícios do formato JSON?
+## Quais os benefícios do formato JSON?
 Existem diversas vantagens em optar pela utilização do formato JSON para diversos tipos de aplicações. Confira as principais delas.
 
-###### Leitura mais simples
+### Leitura mais simples
 O formato JSON é fácil de utilizar, pois sua notação permite, inclusive, o entendimento visual da organização dos dados. Isso significa que se alguém abrir um arquivo .json, provavelmente, conseguirá compreender as suas informações. A mesma facilidade é com relação ao processamento desse arquivo, especialmente, por ser em formato texto.
 
-###### Mais agilidade na execução e transporte de dados
+### Mais agilidade na execução e transporte de dados
 Armazenar os dados em formato texto, aliás, permite que o arquivo .json ocupe pouco espaço em memória. Essa característica oferece ótima performance, pois como ele é pequeno, ocupa poucos bytes, o que oferece mais agilidade para a transferência e carregamento durante o processamento.
 
-###### Arquivos mais leves
+### Arquivos mais leves
 A forma com que os dados são estruturados no modelo JSON é extremamente compacta. Isso permite armazenar muitas informações com menos delimitadores que o modelo XML. Conforme mencionamos, os arquivos gerados são leves e mais rápidos para transmitir e fazer o processamento pela aplicação.
 
-###### Parsing mais fácil
+### Parsing mais fácil
 Como os dados armazenados em um arquivo JSON são em formato de texto, é preciso realizar a interpretação de seu conteúdo para que ele seja consumido pela aplicação. Isso pode ser feito facilmente por diferentes tipos de linguagens, como JavaScript, jQuery e muitas outras.
 
 **Resumindo:**
@@ -313,13 +313,13 @@ Como os dados armazenados em um arquivo JSON são em formato de texto, é precis
 - Arquivo com tamanho reduzido
 - Quem utiliza? Google, Facebook, Yahoo!, Twitter...
 
-###### Fontes e links uteis:
+### Fontes e links uteis:
 - https://dicasdeprogramacao.com.br/o-que-e-json/
 
 
 
-#### [REST](https://standards.rest/)
-##### O que são os [verbos](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)? GET, POST e etc?
+## [REST](https://standards.rest/)
+### O que são os [verbos](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)? GET, POST e etc?
 Tanto GET como POST na verdade são métodos HTTP. Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
 
  - **[GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get)** – é usado quando o cliente deseja obter recursos do servidor
@@ -329,11 +329,10 @@ Tanto GET como POST na verdade são métodos HTTP. Eles indicam para o servidor 
 
 Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados, principalmente em aplicações web. Quando o usuário digita um endereço e aperta enter na barra de endereço do navegador, ele realiza uma requisição do tipo GET. Já quando preenchemos um formulário e clicamos em enviar geralmente o método usado é o POST.
 
-#### Fontes e links uteis:
+### Fontes e links uteis:
 - https://www.treinaweb.com.br/blog/o-que-e-http-request-get-post-response-200-404
 
 ## Qual a relação entre as APIs e os microserviços?
-
 ## Autenticações e Segurança
 ### O que é um token
 ### [Criptografias](https://en.wikipedia.org/wiki/Cryptography)
@@ -469,21 +468,21 @@ Podemos notar que a escolha dos números primos envolvidos é fundamental para o
 - Alguns esquemas de propagação de confiança são centralizados. Este é um ponto importante de falha que pode resultar em adulteração de certificado se a estrutura estiver comprometida.
 
 
-#### Afinal, qual é a diferença entre a criptografia simétrica e assimétrica?
+### Afinal, qual é a diferença entre a criptografia simétrica e assimétrica?
 A criptografia simétrica usa uma chave privada para criptografar e descriptografar um e-mail criptografado.
 A criptografia assimétrica usa a chave pública do destinatário para criptografar a mensagem. Então, se o destinatário quiser descriptografar a mensagem, ele terá que usar sua chave privada para descriptografar. Se as chaves corresponderem, então a mensagem é descriptografada.
 
-#### Qual encriptação é mais segura?
+### Qual encriptação é mais segura?
 A criptografia assimétrica é considerada mais segura, pois você não precisa compartilhar chaves, a chave pública já está disponível publicamente. Com a criptografia simétrica, você tem que compartilhar a frase-chave de uma forma ou de outra, portanto corre o risco de vazar a frase-chave e comprometer potencialmente a mensagem criptografada.
 
-#### Fontes e links uteis:
+### Fontes e links uteis:
 - https://academy.bit2me.com/pt/que-es-criptografia-simetrica/
 - https://www.devmedia.com.br/criptografia-assimetrica-criptografando-e-descriptografando-dados-em-java/31213
 - https://academy.bit2me.com/pt/o-que-%C3%A9-curva-el%C3%ADptica-ecdsa/
 - https://en.wikipedia.org/wiki/PKCS
 
-### [JWT](https://jwt.io/)
-#### Fontes e links uteis:
+## [JWT](https://jwt.io/)
+### Fontes e links uteis:
 - https://jwt.io/
 - https://www.rfc-editor.org/rfc/rfc7519
 - https://www.devmedia.com.br/como-o-jwt-funciona/40265
