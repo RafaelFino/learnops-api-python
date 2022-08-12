@@ -332,7 +332,7 @@ Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados
 
 ## Qual a relação entre as APIs e os microserviços?
 
-## Autenticações
+## Autenticações e Segurança
 ### O que é um token
 ### Criptografias
 Através da criptografia obtemos diversas propriedades importantes como a confidencialidade (sigilo da informação), integridade (garantia que a mensagem não foi alterada), autenticidade (quem foi a autor da mensagem) e irretratabilidade ou não repúdio (capacidade de não negar a construção da mensagem). Temos ainda que a criptografia Simétrica garante a confidencialidade e a integridade, enquanto que a criptografia Assimétrica garante a confidencialidade, integridade, autenticidade e a irretratabilidade ou não repúdio.
@@ -346,10 +346,57 @@ Nessa importante área de segurança da informação ainda temos duas ciências 
 A criptografia através de cifras ocorre com a cifração da mensagem original através de operações de transposição e substituição de seus caracteres, resultando numa mensagem cifrada. Para decifração basta aplicar o processo inverso. Temos dois tipos de cifras, as cifras mono alfabéticas e as cifras poli alfabéticas. As cifras mono alfabéticas são compostas pela mais famosa de todas que é conhecida como Cifra de César onde basicamente cada letra do alfabeto é deslocada da sua posição um número fixo de lugares k, tal que 1<=k<=25 (número de letras que compõem o alfabeto). Originalmente a cifra anda três posições. Portanto, por exemplo, a palavra "senha" seria cifrada como "vhqkd", assim "s" andou três posições e foi para o "v", “e” andou mais três posições e foi para o “h” e assim por diante. A Cifra de César ainda é utilizada em algumas aplicações mais simples que necessitam de alguma criptografia. Por sua vez, as cifras poli alfabéticas são compostas pela cifra de Vigenère que consiste no uso de várias cifras de César em sequencia, com diferentes valores de deslocamento ditados por uma palavra-chave.
 
 Os sistemas criptográficos são compostos por dois tipos: Simétricos e Assimétricos. Na próxima seção veremos mais sobre a criptografia Assimétrica estudando seus conceitos, funcionamento, algoritmos e como podemos aplica-los na prática utilizando a linguagem de programação Java que suporta amplamente a criptografia Assimétrica.
-#### Chaves simétricas
-#### Chaves assimétricas (uso de chaves publica e privada)
-https://www.devmedia.com.br/criptografia-assimetrica-criptografando-e-descriptografando-dados-em-java/31213
 
+#### [Chaves simétricas](https://academy.bit2me.com/pt/que-es-criptografia-simetrica/)
+O ciframento de uma mensagem (processo em que um conteúdo é criptografado) é baseado em 2 componentes:
+
+- um algoritmo;
+- uma chave de segurança.
+
+##### Algoritmo
+O algoritmo trabalha junto com a chave, de forma que eles tornam um conteúdo sigiloso com um conjunto único de regras.
+
+##### A Chave (senha)
+A criptografia simétrica faz uso de uma única chave, que é compartilhada entre o emissor e o destinatário de um conteúdo. Essa chave é uma cadeia própria de bits, que vai definir a forma como o algoritmo vai cifrar um conteúdo.
+
+Como vantagem, a criptografia tem uma boa performance e a possibilidade de manter uma comunicação contínua entre várias pessoas simultaneamente. Caso a chave seja comprometida, basta efetuar a troca por uma nova, mantendo o algoritmo inicial.
+
+A segurança de um sistema de criptografia vai variar conforme o tamanho da chave utilizada. Um algoritmo baseado no data encryption standart (DES ou padrão de criptografia de dados, em tradução livre) tem 56 bits, o que permite a criação de 72 quadrilhões de chaves diferentes. Pode parecer muito, mas esse padrão já é considerado inseguro diante da capacidade de processamento dos dispositivos atuais.
+
+Por outro lado, sistemas como o RC2, que utiliza o protocolo S/MIME, tem uma chave de tamanho variável. Ela pode ter entre 8 e 1.024 bits. Assim, as chances de alguém conseguir decifrar um conteúdo criptografado por meio de algoritmos de força bruta diminui consideravelmente.
+
+Apesar do seu alto desempenho, a criptografia simétrica possui falhas graves de segurança. A gestão de chaves, por exemplo, torna-se mais complexa conforme o número de pessoas que se comunica aumenta. Para cada N usuários, são necessárias N2 chaves.
+
+A criptografia simétrica também não possui meios que permitem a verificação da identidade de quem envia ou recebe um conteúdo. Além disso, não há como garantir o armazenamento em ambientes confiáveis das chaves de segurança.
+
+Na criptografia simétrica, toda a segurança é centrada na chave. Portanto, deve ser secreto e não fácil para uma terceira pessoa adivinhar. No entanto, com a tecnologia que temos hoje, o principal processo de comunicação ou distribuição se tornou o ponto fraco desse método. Como ao se comunicar (remetente e destinatário) para definir e concordar com a senha, um terceiro pode interceptar a referida comunicação, obter a senha e acessar as informações contidas na mensagem.
+
+##### Padrão de Criptografia de Dados (DES)
+Foi o primeiro método de criptografia de computador desenvolvido pela empresa IBM em 1975. Esse algoritmo funciona em blocos e emprega uma chave simétrica de 64 bits que passa por 16 interações. Dos 64 bits, 56 bits são usados ​​para criptografia. E os 8 bits restantes são usados ​​para paridade e detecção de erros e são descartados. Portanto, o comprimento real da chave é 56 bits.
+
+Para executar criptografia, esse algoritmo aplica uma série de permutações e substituições. Com o qual modifica inicialmente a sequência dos bits e grava o resultado em diferentes blocos de um determinado tamanho. Que são então criptografados independentemente. O processo consiste em 16 rodadas de criptografia e, uma vez concluídos, os resultados são agrupados em um bloco de tamanho de 64 bits que também está sujeito a outra permutação. O texto final que resulta de todo esse processo é a mensagem criptografada.
+
+O DES possui 4 modos de operação: o Modo de livro de códigos eletrônico (BCE) que é usado para mensagens curtas de comprimento menor que 64 bits. O Modo de encadeamento de blocos de criptografia (CBC) usado para mensagens longas. O Feedback do bloco de criptografia (CFB)) usado para criptografar bit por bit ou byte a byte. E finalmente o Modo de Feedback de Saída (OFB) que tem o mesmo uso, mas também impede a propagação de erros.
+
+No entanto, embora esse algoritmo no momento de sua criação tenha sido um avanço e estabeleceu as bases para a criptografia moderna que conhecemos hoje. Hoje, ele não é mais usado porque sua senha é muito curta e não é mais segura contra ataques de força bruta. Como demonstrado em 1999, quando foi quebrado.
+
+##### Padrão de criptografia de dados triplo (3DES)
+O algoritmo 3DES é o mesmo que o algoritmo DES, apenas como o nome indica, é aplicado 3 vezes. Dependendo das chaves utilizadas, um sistema mais robusto pode ser gerado. Por exemplo, se três chaves forem usadas, uma chave de 3 bits poderá ser gerada; se apenas duas chaves forem usadas, uma chave de 168 bits poderá ser gerada.
+
+##### Padrão avançado de criptografia (AES)
+Esse novo algoritmo foi o substituto do DES e é o atualmente usado porque seu método de criptografia é melhor adaptado às necessidades do século XXI. A criptografia AES pode ser usada tanto em software quanto em hardware, e o tamanho do bloco fixo é de 128 bits. Enquanto as teclas podem ser escolhidas à vontade entre 128, 192 e 256 bits. Comprimento de 128 bits, sendo um padrão. E, como seu antecessor, aplica criptografia de bloco.
+
+O resultado da criptografia com esse método gera uma matriz de 4 linhas por 4 colunas. À qual, em seguida, são aplicadas uma série de rodadas de criptografia baseadas em operações matemáticas de acordo com o comprimento de suas chaves. Para uma chave de 128 bits, são aplicadas 10 rodadas de criptografia, para uma chave de 192 bits, 12 rodadas e, para uma chave de 256 bits, são necessárias 14 rodadas.
+
+E, embora hoje seja um algoritmo amplamente usado, muitos criptografadores começam a duvidar de sua segurança. Como a possibilidade de ataques foi registrada em várias rodadas de criptografia, muito perto do número de rodadas necessário para a criptografia.
+
+##### Quão segura é a criptografia simétrica?
+Em termos de segurança, a criptografia simétrica não é tão confiável devido ao fato de que a chave privada deve ser compartilhada para descriptografá-la. Nesse tipo de criptografia, toda a segurança é refletida na chave. Portanto, compartilhá-lo representa uma grande vulnerabilidade se os sistemas de comunicação adequados não forem usados. No entanto, quando esse método é usado, dois parâmetros essenciais devem ser atendidos para que seja considerado seguro, que são:
+
+- Após a criptografia das informações, a chave usada para criptografia e descriptografia não pode ser obtida. Nem as informações contidas na mensagem criptografada.
+- O custo da descriptografia de informações deve ser maior que as mesmas informações contidas na mensagem criptografada.
+
+#### [Chaves assimétricas](https://academy.bit2me.com/pt/o-que-%C3%A9-criptografia-assim%C3%A9trica/) (uso de chaves publica e privada)
 Na criptografia Assimétrica (ou criptografia de chave pública) temos que a chave de cifração é diferente da chave de decifração e uma não pode ser facilmente gerada a partir da outra. Basicamente temos que no processo de encriptação utilizaremos uma chave “k1” em cima da mensagem em texto puro que então irá gerar um texto cifrado. Após isso, no processo de descriptografia usaremos outra chave “k2” em cima do texto cifrado e teremos como resposta de volta o texto claro.
 
 Basicamente na criptografia assimétrica temos que a chave pública pode ser conhecida por todos e é utilizada para cifrar o texto claro. Por sua vez, a chave privada deve permanecer secreta e é utilizada para decifrar o texto cifrado. Esse processo nos garante a confidencialidade da informação. Porém, também é possível utilizar a chave privada para cifrar o texto claro e a respectiva chave pública para decifrar a mensagem criptografada. Neste caso, busca-se garantir a autenticidade. É caso típico de assinaturas digitais.
@@ -362,7 +409,7 @@ Portanto, uma chave pública é disponibilizada gratuitamente a qualquer pessoa 
 
 Existem diferentes algoritmos assimétricos sendo uns dos mais conhecidos o RSA que tem esse nome devido aos seus desenvolvedores Rivest, Shamir, e Adleman. Este algoritmo é amplamente utilizado nos navegadores, para sites seguros e para criptografar e-mails.
 
-##### RSA
+##### [RSA](https://www.rfc-editor.org/rfc/rfc8017.html)
 O RSA é o método de criptografia mais utilizado no mundo. No RSA utilizamos duas chaves, uma chave para encriptação e outra para decriptação. Ele resolve o problema de distribuição de chaves da criptografia simétrica usando envelopamento digital e a segurança é baseada na fatoração de números extensos. Quanto maior a chave maior a segurança, porém o processamento também é maior.
 
 A construção de chaves é feita através da multiplicação de dois números primos relativamente grandes que gera um número que será elevado a um expoente que é um número público, e após isso ele é novamente elevado a outro expoente que é um número privado. Assim teremos um número público e um número privado. O processo de descriptografia (em que os números primos são novamente gerados) será revertido através de fatoração, que é o inverso da multiplicação.
@@ -408,14 +455,28 @@ Para descriptografar destinatário recebe o texto “64”. Recebido o texto cri
 Podemos notar que a escolha dos números primos envolvidos é fundamental para o algoritmo, por isso escolhe-se números primos gigantes para garantir que a chave seja inquebrável.
 
 #### Prós e contras da criptografia assimétrica
-A vantagem da Criptografia assimétrica é que ela não força o usuário a compartilhar chaves (secretas) como a criptografia simétrica, removendo, portanto, a necessidade de distribuição de chaves. A criptografia assimétrica oferece suporte à assinatura digital, que autentica a identidade do destinatário e garante que a mensagem não seja violada em trânsito.
+##### Vantagens
+- Este sistema oferece uma alta taxa de segurança, pois o esquema de criptografia é altamente complexo. A análise criptográfica desses sistemas é complicada e os ataques de força bruta para quebrá-lo são ineficientes e impraticáveis.
+- Permite proteger canais de comunicação abertos e públicos, graças ao esquema de chaves públicas e privadas. Isso permite que remetente e destinatário compartilhem informações com segurança.
+- O sistema também permite a autenticação das informações criptografadas, graças a um processo de assinatura digital.
+- Oferece um alto nível de confidencialidade, integridade e garante o não repúdio às informações.
+##### Desvantagens
+- Comparado ao sistema de criptografia simétrica, é computacionalmente mais caro.
+- O sistema de criptografia é suscetível a elementos além da programação do sistema de criptografia. Por exemplo, um gerador de números aleatórios com defeito comprometeria completamente o sistema de criptografia.
+- A complexidade dos algoritmos resulta em dificuldades na análise de sua operação e segurança. Isso torna a detecção de falhas ou bugs mais complexa e difícil nesses sistemas.
+- Alguns esquemas de propagação de confiança são centralizados. Este é um ponto importante de falha que pode resultar em adulteração de certificado se a estrutura estiver comprometida.
 
-#### Qual é a diferença entre a criptografia simétrica e assimétrica?
+
+#### Afinal, qual é a diferença entre a criptografia simétrica e assimétrica?
 A criptografia simétrica usa uma chave privada para criptografar e descriptografar um e-mail criptografado.
 A criptografia assimétrica usa a chave pública do destinatário para criptografar a mensagem. Então, se o destinatário quiser descriptografar a mensagem, ele terá que usar sua chave privada para descriptografar. Se as chaves corresponderem, então a mensagem é descriptografada.
 
 #### Qual encriptação é mais segura?
 A criptografia assimétrica é considerada mais segura, pois você não precisa compartilhar chaves, a chave pública já está disponível publicamente. Com a criptografia simétrica, você tem que compartilhar a frase-chave de uma forma ou de outra, portanto corre o risco de vazar a frase-chave e comprometer potencialmente a mensagem criptografada.
+
+#### Fontes e links uteis:
+- https://academy.bit2me.com/pt/que-es-criptografia-simetrica/
+- https://www.devmedia.com.br/criptografia-assimetrica-criptografando-e-descriptografando-dados-em-java/31213
 
 ### JWT
 - https://www.rfc-editor.org/rfc/rfc7519
@@ -425,8 +486,6 @@ A criptografia assimétrica é considerada mais segura, pois você não precisa 
 - https://imasters.com.br/desenvolvimento/json-web-token-conhecendo-o-jwt-na-teoria-e-na-pratica
 
 ## Mitigação de riscos
-
-## Modelos de autenticação e de segurança
 
 ## Swagger
 
