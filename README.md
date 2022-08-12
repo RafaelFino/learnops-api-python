@@ -1,7 +1,7 @@
 # Learnops API with Python
 APIs with Python - Intro with KillerCoda
 
-# Quick Start
+## Quick Start
 1. Create an Ubuntu instance in [KillerCoda](https://killercoda.com/playgrounds/scenario/ubuntu)
 
 2. Run This command on VM Terminal:
@@ -26,7 +26,7 @@ source bin/activate
 ./run-client.sh {api-name}
 ```
 
-Availables APIs:
+## Availables APIs:
 | Name | Description | HTTP return | Swaggger | Args | Return type |
 |-|-|:-:|:-:|:-:|:-:|
 | ping | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text |
@@ -38,3 +38,6 @@ Availables APIs:
 | currency | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
 | auth | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
 | auth-jwt | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
+
+## More info
+[PT-BR Documentation](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
