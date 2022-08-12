@@ -85,19 +85,103 @@ Cobrando um determinado custo, muitas empresas disponibilizam suas APIs para que
 Uma das infinitas possibilidades oferecidas pela API é a automatização da extração de determinados dados. Assim, diminuem a necessidade do trabalho manual no momento de exportar informações.
 
 ## Entendendo APIs
-### O que é HTTP
+### O que é [HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html)?
 O HTTP é um protocolo de comunicação. Através dele o cliente e o servidor conseguem se comunicar, seguindo um conjunto de regras bem definidas (por isso chamamos de protocolo). Por exemplo, se estivermos falando de uma aplicação web, o cliente é o navegador, ele envia um pedido para o servidor web usando o protocolo HTTP, com base nesse pedido, se tudo estiver correto, o servidor responde também usando o mesmo protocolo o conteúdo solicitado.
 
 Veja a especificação completa da [RFC HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) para maiores detalhes
 
-#### O que é Request
+#### O que é [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5)?
 A Request ou requisição traduzindo diretamente para português, é o pedido que um cliente realiza a nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa. Vamos pensar que um cliente precisa cadastrar um novo produto, ele deve passar todos os dados necessários para o cadastro acontecer de maneira correta, inclusive os dados que foram digitados pelo usuário em um formulário, no caso de uma aplicação web. No navegador toda vez que trocamos de página ou apertamos enter na barra de endereço uma nova request é feita. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou excluindo.
+
+#### O que é [Response](https://datatracker.ietf.org/doc/html/rfc8246)?
+Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A Response (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
+
+#### O que é 200, 404, 301 e outros números? Esses são os [HTTP Status Code](https://datatracker.ietf.org/doc/html/rfc6585)?
+Esses números são os chamados códigos HTTP. Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
+
+Os códigos estão entre 100 e 500, sendo que cada centena indica uma categoria:
+| Grupos de Código | Descrição |
+| :-: | :- |
+| **1xx** |  Informativos | 
+| **2xx** |  Indicativos de sucesso | 
+| **3xx** |  Redirecionamentos | 
+| **4xx** |  Erros do cliente na hora de fazer a solicitação | 
+| **5xx** |  Erros no lado do servidor | 
+
+Dentro de cada centena temos os códigos específicos, por exemplo:
+
+- **200** – Tudo ocorreu corretamente
+- **301** – Indica redirecionamento permanente
+- **401** – Não autorizado
+- **404** – O recurso solicitado não foi encontrado no servidor
+
+Existem vários sites que especificam todos os códigos HTTP. Esse usa cachorrinhos como exemplo , mas se você gosta mais dos gatinhos também existe.
+
+O HTTP é o protocolo que define as regras para a comunicação entre o cliente o servidor. No fluxo básico o cliente realiza uma requisição para o servidor, nessa requisição é enviada além de várias outras informações um método que indica a ação que ele deseja. O servidor devolve uma resposta, nessa resposta, além de outras informações, existe um código que indica ao cliente o que aconteceu. Caso você queira se aprofundar no assunto também abordamos no blog sobre o protocolo HTTP/2, que é a evolução do HTTP.
+
+##### Fontes e links uteis:
+- https://www.w3.org/Protocols/rfc2616/rfc2616.html
+- https://datatracker.ietf.org/doc/html/rfc6585
+- https://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+- https://datatracker.ietf.org/doc/html/rfc8246
+- https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-1-entendendo-os-codigos-4eik
+- https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-2-os-esquecidos-3eee
+- https://dev.to/_staticvoid/status-http-fantasticos-e-onde-habitam-3-conclusao-7bg
+
+#### Lista com os principais códigos de retorno
+| Código | Description |
+|:-:|:-|
+| **100**  | Continue |
+| **101**  | Switching Protocols |
+| **200**  | OK |
+| **201**  | Created |
+| **202**  | Accepted |
+| **203**  | Non-Authoritative Information |
+| **204**  | No Content |
+| **205**  | Reset Content |
+| **206**  | Partial Content |
+| **300**  | Multiple Choices |
+| **301**  | Moved Permanently |
+| **302**  | Found |
+| **303**  | See Other |
+| **304**  | Not Modified |
+| **305**  | Use Proxy |
+| **307**  | Temporary Redirect |
+| **400**  | Bad Request |
+| **401**  | Unauthorized |
+| **402**  | Payment Required |
+| **403**  | Forbidden |
+| **404**  | Not Found |
+| **405**  | Method Not Allowed |
+| **406**  | Not Acceptable |
+| **407**  | Proxy Authentication Required |
+| **408**  | Request Time-out |
+| **409**  | Conflict |
+| **410**  | Gone |
+| **411**  | Length Required |
+| **412**  | Precondition Failed |
+| **413**  | Request Entity Too Large |
+| **414**  | Request-URI Too Large |
+| **415**  | Unsupported Media Type |
+| **416**  | Requested range not satisfiable |
+| **417**  | Expectation Failed |
+| **500**  | Internal Server Error |
+| **501**  | Not Implemented |
+| **502**  | Bad Gateway |
+| **503**  | Service Unavailable |
+| **504**  | Gateway Time-out |
+| **505**  | HTTP Version not supported |
+
+##### Fontes e links uteis:
+- https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html
+- https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1
 
 ##### Estrutura
 ###### Header
 ###### Body
 
-##### Mas o que é  [Json](https://jsonapi.org/)
+##### Mas o que é  [Json](https://jsonapi.org/)?
 JSON é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation, ou seja, só posso usar com JavaScript correto? Na verdade não e alguns ainda caem nesta armadilha.
 
 O JSON além de ser um formato leve para troca de dados é também muito simples de ler. Mas quando dizemos que algo é simples, é interessante compará-lo com algo mais complexo para entendermos tal simplicidade não é? Neste caso podemos comparar o JSON com o formato XML.
@@ -241,94 +325,8 @@ Tanto GET como POST na verdade são métodos HTTP. Eles indicam para o servidor 
 
 Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados, principalmente em aplicações web. Quando o usuário digita um endereço e aperta enter na barra de endereço do navegador, ele realiza uma requisição do tipo GET. Já quando preenchemos um formulário e clicamos em enviar geralmente o método usado é o POST.
 
-#### O que é [Response](https://datatracker.ietf.org/doc/html/rfc8246)
-Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A Response (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
-
-#### O que é 200, 404, 301 e outros números? Esses são os [HTTP Status Code](https://datatracker.ietf.org/doc/html/rfc6585)?
-Esses números são os chamados códigos HTTP. Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
-
-Os códigos estão entre 100 e 500, sendo que cada centena indica uma categoria:
-| Grupos de Código | Descrição |
-| :-: | :- |
-| **1xx** |  Informativos | 
-| **2xx** |  Indicativos de sucesso | 
-| **3xx** |  Redirecionamentos | 
-| **4xx** |  Erros do cliente na hora de fazer a solicitação | 
-| **5xx** |  Erros no lado do servidor | 
-
-Dentro de cada centena temos os códigos específicos, por exemplo:
-
-- **200** – Tudo ocorreu corretamente
-- **301** – Indica redirecionamento permanente
-- **401** – Não autorizado
-- **404** – O recurso solicitado não foi encontrado no servidor
-
-Existem vários sites que especificam todos os códigos HTTP. Esse usa cachorrinhos como exemplo , mas se você gosta mais dos gatinhos também existe.
-
-O HTTP é o protocolo que define as regras para a comunicação entre o cliente o servidor. No fluxo básico o cliente realiza uma requisição para o servidor, nessa requisição é enviada além de várias outras informações um método que indica a ação que ele deseja. O servidor devolve uma resposta, nessa resposta, além de outras informações, existe um código que indica ao cliente o que aconteceu. Caso você queira se aprofundar no assunto também abordamos no blog sobre o protocolo HTTP/2, que é a evolução do HTTP.
-
-##### Fontes e links uteis:
-- https://www.w3.org/Protocols/rfc2616/rfc2616.html
-- https://datatracker.ietf.org/doc/html/rfc6585
-- https://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol
-- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-- https://datatracker.ietf.org/doc/html/rfc8246
-- https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-1-entendendo-os-codigos-4eik
-- https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-2-os-esquecidos-3eee
-- https://dev.to/_staticvoid/status-http-fantasticos-e-onde-habitam-3-conclusao-7bg
-
-#### Lista com os principais códigos de retorno
-| Código | Description |
-|:-:|:-|
-| **100**  | Continue |
-| **101**  | Switching Protocols |
-| **200**  | OK |
-| **201**  | Created |
-| **202**  | Accepted |
-| **203**  | Non-Authoritative Information |
-| **204**  | No Content |
-| **205**  | Reset Content |
-| **206**  | Partial Content |
-| **300**  | Multiple Choices |
-| **301**  | Moved Permanently |
-| **302**  | Found |
-| **303**  | See Other |
-| **304**  | Not Modified |
-| **305**  | Use Proxy |
-| **307**  | Temporary Redirect |
-| **400**  | Bad Request |
-| **401**  | Unauthorized |
-| **402**  | Payment Required |
-| **403**  | Forbidden |
-| **404**  | Not Found |
-| **405**  | Method Not Allowed |
-| **406**  | Not Acceptable |
-| **407**  | Proxy Authentication Required |
-| **408**  | Request Time-out |
-| **409**  | Conflict |
-| **410**  | Gone |
-| **411**  | Length Required |
-| **412**  | Precondition Failed |
-| **413**  | Request Entity Too Large |
-| **414**  | Request-URI Too Large |
-| **415**  | Unsupported Media Type |
-| **416**  | Requested range not satisfiable |
-| **417**  | Expectation Failed |
-| **500**  | Internal Server Error |
-| **501**  | Not Implemented |
-| **502**  | Bad Gateway |
-| **503**  | Service Unavailable |
-| **504**  | Gateway Time-out |
-| **505**  | HTTP Version not supported |
-
-##### Fontes e links uteis:
-- https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html
-- https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1
-
 ### Fontes e links uteis:
 - https://www.treinaweb.com.br/blog/o-que-e-http-request-get-post-response-200-404
-
-## Quais as vantagens das APIs -> Orientação  serviços
 
 ## Qual a relação entre as APIs e os microserviços?
 
