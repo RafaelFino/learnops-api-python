@@ -165,12 +165,14 @@ Veja, a seguir, alguns exemplos de como os dados devem ser relacionados em um ar
 Lista de objetos
 Confira como fazer a notação para indicar uma lista de objetos:
 
+``` JSON 
 {   "estados":[
     {"estado": "São Paulo", "sigla": "SP"},
     {"estado": "Minas Gerais", "sigla": "MG"},
     {"estado": "Rio de Janeiro", "sigla": "RJ"}
     ]
 }
+``` 
 
 ###### Quais as diferenças entre .json e .xml?
 Outro formato utilizado para a troca de dados entre aplicações é o XML — eXtensible Markup Language. Apesar de também ser um arquivo de texto, existem algumas diferenças entre os dois modelos. Confira as principais.
@@ -202,24 +204,7 @@ O formato XML suporta diferentes tipos de dados, entre eles: imagens e gráficos
 ###### Codificação
 A codificação representa as formas de conversão para o formato binário suportadas pelo modelo. O JSON utiliza o formato UTF-8, enquanto o XML oferece essa e outras opções. É importante dizer que o UTF-8 é o formato mais utilizado em sites na internet, como o WordPress e muitos outros.
 
-###### Facilidade de leitura e comentários
-Os arquivos JSON são fáceis de entender, pois sua estrutura e notação são bem simples. Já o XML é mais estruturado e, portanto, com a interpretação mais complexa. Outra diferença é com relação aos comentários no arquivo, que são permitidos apenas no modelo XML.
-
-###### Por que o .json tem sido cada vez mais utilizado?
-A simplicidade do formato JSON é uma das principais razões pelas quais ele é bastante utilizado. Isso porque as requisições AJAX, que permitem a atualização da página sem a necessidade de recarregá-la completamente, precisam ser executadas com muita rapidez para que essas atualizações sejam transparentes para o usuário.
-
-Por ser leve e compacto, o formato JSON atende a essa necessidade. Portanto, os dados podem ser trafegados de forma rápida e interpretados com facilidade pela aplicação.
-
-Vale dizer que o formato XML também pode ser utilizado em requisições AJAX. Entretanto, é um arquivo maior, por conter mais informações em razão do grande número de tags de abertura e fechamento, o que torna a sua transferência e processamento mais lentos que o modelo JSON.
-
-Outra razão importante para utilizar esse formato é para resolver o problema de domínio cruzado, que é a impossibilidade de executar requisições AJAX em domínios que não estejam hospedados no mesmo servidor. Existe um recurso chamado JSONP que elimina essa situação com facilidade e permitir a recuperação de informações com essa característica.
-
-###### Onde posso utilizar .json?
-O arquivo .json pode ser utilizado em diferentes finalidades. Uma delas é para serializar e transmitir dados estruturados. Ele também é indicado para a utilização em aplicativos móveis, em que é preciso requisitar dados em um servidor e utilizá-los rapidamente na aplicação.
-
-Conforme mencionamos, o JSON é muito utilizado em requisições AJAX para aplicações web e para resolver o problema de domínio cruzado. Além disso, ele também é utilizado como arquivo de configuração para armazenar dados que são verificados em tempo de utilização da aplicação.
-
-###### Quais os benefícios do formato JSON?
+##### Quais os benefícios do formato JSON?
 Existem diversas vantagens em optar pela utilização do formato JSON para diversos tipos de aplicações. Confira as principais delas.
 
 ###### Leitura mais simples
@@ -249,10 +234,10 @@ Como os dados armazenados em um arquivo JSON são em formato de texto, é precis
 ##### O que são os [verbos](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)? GET, POST e etc?
 Tanto GET como POST na verdade são métodos HTTP. Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
 
- - [GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get) – é usado quando o cliente deseja obter recursos do servidor
- - [POST](https://www.rfc-editor.org/rfc/rfc9110.html#name-post) – é usado quando o cliente deseja enviar dados para processamento ao servidor, como os dados de um formulário, por exemplo.
- - [PUT](https://www.rfc-editor.org/rfc/rfc9110.html#name-put) – é usado quando o cliente deseja atualizar um dado de um recurso que está no servidor
- - [DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#name-delete) – é usado quando uo cliente deseja apagar um dado dew um recurso que está no servidor
+ - **[GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get)** – é usado quando o cliente deseja obter recursos do servidor
+ - **[POST](https://www.rfc-editor.org/rfc/rfc9110.html#name-post)** – é usado quando o cliente deseja enviar dados para processamento ao servidor, como os dados de um formulário, por exemplo.
+ - **[PUT](https://www.rfc-editor.org/rfc/rfc9110.html#name-put)** – é usado quando o cliente deseja atualizar um dado de um recurso que está no servidor
+ - **[DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#name-delete)** – é usado quando uo cliente deseja apagar um dado dew um recurso que está no servidor
 
 Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados, principalmente em aplicações web. Quando o usuário digita um endereço e aperta enter na barra de endereço do navegador, ele realiza uma requisição do tipo GET. Já quando preenchemos um formulário e clicamos em enviar geralmente o método usado é o POST.
 
