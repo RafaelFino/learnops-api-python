@@ -29,22 +29,22 @@ def LogError(message):
     print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.FAIL}{message}")
 
 def LogOk(message):
-    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")  
+    print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.OKGREEN}{message}")
 
 def ExecuteRequest(method, url, headers={}):
     Log(f">>> [{method}] {url} -> Headers: {headers}")
-    
+
     response = requests.request(method=method, url=url, headers=headers)
-    
+
     ret = response.json()
     ret['status_code'] = response.status_code
     msg = f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code}\n Headers:\n\t{response.headers}\n Body:\n\t{json.dumps(ret)}"
-    
+
     if response.status_code == HTTPStatus.OK:
         LogOk(msg)
     else:
         LogError(msg)
-        
+
     return ret
 
 cripto = CriptoClient()
@@ -55,7 +55,7 @@ def get_claims(token):
 user =  input("User: ")
 password = getpass()
 
-headers={ 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }, 'app': 'auth-jwt-client'))}
+headers={ 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }))}
 url = "http://localhost:5000/login"
 
 result = ExecuteRequest('POST', url, headers)
@@ -78,9 +78,9 @@ while datetime.now() < exp:
         Log("Token time out, next requests will be the last...")
         time.sleep(1)
     else:
-        Log(f"Time to expire: {timeOut} seconds, continue trying until expire token")        
+        Log(f"Time to expire: {timeOut} seconds, continue trying until expire token")
 
-    
+
     for r in claims['routes']:
         ExecuteRequest('GET', f"http://localhost:5000/{r}", { 'Authorization': f"Bearer {token}" })
 

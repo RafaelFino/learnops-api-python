@@ -78,7 +78,6 @@ def post_login():
 
 	user = userInfo['user']		
 	passwd = userInfo['pass']
-	app = userInfo['app']
 
 	if user in users:		
 		if users[user]['pass'] == passwd:
@@ -88,7 +87,6 @@ def post_login():
 			payload['iat'] = datetime.now(tz=timezone.utc)
 			payload['exp'] = exp
 			payload['iss'] = 'simple-auto-jwt-server'
-			payload['aud'] = app
 
 			jwt = create_jwt(payload)
 	 
