@@ -55,9 +55,9 @@ Recentemente, a utilização das APIs tem se espalhado nos plugins, que compleme
 Os sistemas operacionais também possuem suas APIs com as mesmas funções descritas acima. Por exemplo, o Windows possui APIs como a Telephony API, Win16 API e Win32 API. Quando um usuário executa um programa que envolva algum processo do sistema operacional, é bem provável que o Windows faça uma conexão entre o software e alguma de suas APIs.
 
 ##### Fontes e links uteis:
-- https://canaltech.com.br/software/o-que-e-api/#:~:text=API%20%C3%A9%20um%20conjunto%20de,Interface%20de%20Programa%C3%A7%C3%A3o%20de%20Aplicativos%22.
+- https://canaltech.com.br/software/o-que-e-api
 - https://www.take.net/blog/tecnologia/api-conceito-e-exemplos/
-- https://blog.idwall.co/o-que-e-uma-api-e-quais-seus-beneficios/?utm_term=&utm_campaign=%5BID1%5D+GoogleAds_PMax_Geral&utm_source=adwords&utm_medium=ppc&hsa_acc=4544575733&hsa_cam=16810657142&hsa_grp=&hsa_ad=&hsa_src=x&hsa_tgt=&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjw9NeXBhAMEiwAbaY4lqnJqVcubFbJmkL7bWGC506gw3UUAsu3I5jg-VPhwR80mCniNBIa5RoCRKQQAvD_BwE
+- https://blog.idwall.co/o-que-e-uma-api-e-quais-seus-beneficios
 
 
 ### Como as APIs funcionam?
@@ -334,7 +334,7 @@ Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados
 
 ## Autenticações e Segurança
 ### O que é um token
-### Criptografias
+### [Criptografias](https://en.wikipedia.org/wiki/Cryptography)
 Através da criptografia obtemos diversas propriedades importantes como a confidencialidade (sigilo da informação), integridade (garantia que a mensagem não foi alterada), autenticidade (quem foi a autor da mensagem) e irretratabilidade ou não repúdio (capacidade de não negar a construção da mensagem). Temos ainda que a criptografia Simétrica garante a confidencialidade e a integridade, enquanto que a criptografia Assimétrica garante a confidencialidade, integridade, autenticidade e a irretratabilidade ou não repúdio.
 
 Assim sendo, podemos classificar os algoritmos através do número de chaves (simétrico ou assimétrico). Nos algoritmos simétricos uma chave é usada tanto para criptografar quanto para descriptografar (podemos ter mais que uma se a segunda for facilmente derivada da primeira), enquanto que nos algoritmos assimétricos temos mais que uma chave e ambas são completamente independentes uma das outras.
@@ -477,8 +477,12 @@ A criptografia assimétrica é considerada mais segura, pois você não precisa 
 #### Fontes e links uteis:
 - https://academy.bit2me.com/pt/que-es-criptografia-simetrica/
 - https://www.devmedia.com.br/criptografia-assimetrica-criptografando-e-descriptografando-dados-em-java/31213
+- https://academy.bit2me.com/pt/o-que-%C3%A9-curva-el%C3%ADptica-ecdsa/
+- https://en.wikipedia.org/wiki/PKCS
 
-### JWT
+### [JWT](https://jwt.io/)
+#### Fontes e links uteis:
+- https://jwt.io/
 - https://www.rfc-editor.org/rfc/rfc7519
 - https://www.devmedia.com.br/como-o-jwt-funciona/40265
 - https://auth0.com/blog/how-to-handle-jwt-in-python/
@@ -487,6 +491,10 @@ A criptografia assimétrica é considerada mais segura, pois você não precisa 
 
 ## Mitigação de riscos
 
-## Swagger
+## [Swagger e OpenAPI](https://swagger.io/docs/specification/about/)
+#### Fontes e links uteis:
+- https://swagger.io/docs/specification/about/
+- https://gr1d.io/2022/04/15/swagger/
+- https://medium.com/@ronilsonribeiro/como-interpretar-um-swagger-cdc331b68804
 
 ## Outras ferramentas de desenvolvimento de APIs
