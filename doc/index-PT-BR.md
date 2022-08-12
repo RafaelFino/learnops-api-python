@@ -41,7 +41,7 @@ Em sistemas computacionais distrbuídos, ganhamos em escala, independência, res
 #### Pareado (HA)
 #### Serviços (SOA)
 
-## API: O que são?
+## APIs: O que são?
 API é um conjunto de rotinas e padrões de programação para acesso a um aplicativo de software ou plataforma baseado na Web. A sigla API refere-se ao termo em inglês "Application Programming Interface" que significa em tradução para o português "Interface de Programação de Aplicativos"
 
 Uma API é criada quando uma empresa de software tem a intenção de que outros criadores de software desenvolvam produtos associados ao seu serviço. Existem vários deles que disponibilizam seus códigos e instruções para serem usados em outros sites da maneira mais conveniente para seus usuários. O Google Maps é um dos grandes exemplos na área de APIs. Por meio de seu código original, muitos outros sites e aplicações utilizam os dados do Google Maps adaptando-o da melhor forma a fim de utilizar esse serviço.
@@ -490,7 +490,13 @@ A criptografia assimétrica é considerada mais segura, pois você não precisa 
 - https://pyjwt.readthedocs.io/en/latest/usage.html
 - https://imasters.com.br/desenvolvimento/json-web-token-conhecendo-o-jwt-na-teoria-e-na-pratica
 
-## Mitigação de riscos
+## Mitigação de riscos e boas práticas
+### Healthcheck
+### CircuitBrake
+### Caches
+### API Gateways/ BFF
+### SQL Injections
+### DDOS
 
 ## [Swagger e OpenAPI](https://swagger.io/docs/specification/about/)
 #### Fontes e links uteis:
