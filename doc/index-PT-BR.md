@@ -88,6 +88,8 @@ Uma das infinitas possibilidades oferecidas pela API é a automatização da ext
 ### O que é HTTP
 O HTTP é um protocolo de comunicação. Através dele o cliente e o servidor conseguem se comunicar, seguindo um conjunto de regras bem definidas (por isso chamamos de protocolo). Por exemplo, se estivermos falando de uma aplicação web, o cliente é o navegador, ele envia um pedido para o servidor web usando o protocolo HTTP, com base nesse pedido, se tudo estiver correto, o servidor responde também usando o mesmo protocolo o conteúdo solicitado.
 
+Veja a especificação completa da [RFC HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) para maiores detalhes
+
 #### O que é Request
 A Request ou requisição traduzindo diretamente para português, é o pedido que um cliente realiza a nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa. Vamos pensar que um cliente precisa cadastrar um novo produto, ele deve passar todos os dados necessários para o cadastro acontecer de maneira correta, inclusive os dados que foram digitados pelo usuário em um formulário, no caso de uma aplicação web. No navegador toda vez que trocamos de página ou apertamos enter na barra de endereço uma nova request é feita. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou excluindo.
 
@@ -95,38 +97,185 @@ A Request ou requisição traduzindo diretamente para português, é o pedido qu
 ###### Header
 ###### Body
 
-#### REST
-##### O que são os verbos? GET, POST e etc?
+##### Mas o que é  [Json](https://jsonapi.org/)
+JSON é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation, ou seja, só posso usar com JavaScript correto? Na verdade não e alguns ainda caem nesta armadilha.
+
+O JSON além de ser um formato leve para troca de dados é também muito simples de ler. Mas quando dizemos que algo é simples, é interessante compará-lo com algo mais complexo para entendermos tal simplicidade não é? Neste caso podemos comparar o JSON com o formato XML.
+
+Vamos visualizar esta diferença?
+**XML**
+``` XML
+<note>
+<to>Tove</to>
+<from>Jani</from>
+<heading>Reminder</heading>
+<body>Don't forget me this weekend!</body>
+</note>
+```
+
+**JSON**
+``` JSON
+{
+   "id":1,
+   "nome":"Alexandre Gama",
+   "endereco":"R. Qualquer"
+}
+```
+
+Bom, é notável a diferença. Visualmente o segundo trecho (em JSON) é mais fácil de ler. Mas só existe essa diferença entre os dois? Na verdade não. Podemos listar algumas outras 
+vantagens
+
+###### Quais as principais características desse formato?
+Os arquivos no formato .json contêm algumas características específicas que tornam essa especificação mais atraente para a utilização em aplicações que consomem dados de outros sistemas. Confira as principais, a seguir.
+
+###### Linguagem independente
+A simplicidade com que os dados são estruturados no formato JSON permite que ele seja utilizado em qualquer tipo de linguagem de programação. Além disso, ele pode ser manipulado em diferentes plataformas, como Windows, macOS, Linux, e em vários tipos de sistemas, como em aplicações web e aplicativos móveis.
+
+###### Formatação do arquivo
+Além da terminação .json em todos os arquivos que utilizam esse formato, os dados armazenados devem seguir uma notação específica, ou seja, precisam ser organizados com os seguintes elementos básicos:
+
+- chaves { } para delimitar os objetos e obrigatórias para iniciar e encerrar o conteúdo;
+- colchetes [ ] para indicar um array;
+- dois pontos : para separar a chave e seu valor correspondente;
+- vírgula , para indicar a separação entre os elementos.
+
+Veja, a seguir, alguns exemplos de como os dados devem ser relacionados em um arquivo .json.
+
+**String**
+``` JSON 
+{ "estado": "São Paulo"}
+``` 
+
+**Array**
+``` JSON 
+{
+    "estados": ["São Paulo", "Minas Gerais", "Rio de Janeiro"]
+}
+``` 
+
+**Objeto**
+``` JSON 
+{ "estado": {
+       "estado": "São Paulo",
+       "sigla": "SP"
+  }
+}
+``` 
+Lista de objetos
+Confira como fazer a notação para indicar uma lista de objetos:
+
+{   "estados":[
+    {"estado": "São Paulo", "sigla": "SP"},
+    {"estado": "Minas Gerais", "sigla": "MG"},
+    {"estado": "Rio de Janeiro", "sigla": "RJ"}
+    ]
+}
+
+###### Quais as diferenças entre .json e .xml?
+Outro formato utilizado para a troca de dados entre aplicações é o XML — eXtensible Markup Language. Apesar de também ser um arquivo de texto, existem algumas diferenças entre os dois modelos. Confira as principais.
+
+###### Notação
+A primeira diferença entre os dois modelos é a forma de fazer a notação dos dados. Conforme mencionamos, o JSON utiliza uma notação simples, enquanto o XML utiliza uma estrutura de tags personalizadas para representar os objetos. Além disso, elas devem conter o par, ou seja, a tag de abertura e a de fechamento.
+
+Outra característica da notação XML é que o seu conteúdo não precisa ser delimitado com aspas, como acontece com os textos no formato JSON. Nele, o que indica o início e o fim das informações são as tags de abertura e fechamento. Confira o exemplo, a seguir.
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<estados>
+    <estado>
+        <nomeEstado>São Paulo</nomeEstado>
+        <sigla>SP</sigla>
+    </estado>
+    <estado>
+        <nomeEstado>Minas Gerais</nomeEstado>
+        <sigla>MG</sigla>
+    </estado>
+    <estado>
+        <nomeEstado>Rio de Janeiro</nomeEstado>
+        <sigla>RJ</sigla>
+    </estado>
+</estados>
+
+###### Tipos de dados
+O formato XML suporta diferentes tipos de dados, entre eles: imagens e gráficos, o que não é possível transmitir no formato JSON, pois ele só oferece suporte a números e textos. Em contrapartida, o XML não oferece suporte a arrays.
+
+###### Codificação
+A codificação representa as formas de conversão para o formato binário suportadas pelo modelo. O JSON utiliza o formato UTF-8, enquanto o XML oferece essa e outras opções. É importante dizer que o UTF-8 é o formato mais utilizado em sites na internet, como o WordPress e muitos outros.
+
+###### Facilidade de leitura e comentários
+Os arquivos JSON são fáceis de entender, pois sua estrutura e notação são bem simples. Já o XML é mais estruturado e, portanto, com a interpretação mais complexa. Outra diferença é com relação aos comentários no arquivo, que são permitidos apenas no modelo XML.
+
+###### Por que o .json tem sido cada vez mais utilizado?
+A simplicidade do formato JSON é uma das principais razões pelas quais ele é bastante utilizado. Isso porque as requisições AJAX, que permitem a atualização da página sem a necessidade de recarregá-la completamente, precisam ser executadas com muita rapidez para que essas atualizações sejam transparentes para o usuário.
+
+Por ser leve e compacto, o formato JSON atende a essa necessidade. Portanto, os dados podem ser trafegados de forma rápida e interpretados com facilidade pela aplicação.
+
+Vale dizer que o formato XML também pode ser utilizado em requisições AJAX. Entretanto, é um arquivo maior, por conter mais informações em razão do grande número de tags de abertura e fechamento, o que torna a sua transferência e processamento mais lentos que o modelo JSON.
+
+Outra razão importante para utilizar esse formato é para resolver o problema de domínio cruzado, que é a impossibilidade de executar requisições AJAX em domínios que não estejam hospedados no mesmo servidor. Existe um recurso chamado JSONP que elimina essa situação com facilidade e permitir a recuperação de informações com essa característica.
+
+###### Onde posso utilizar .json?
+O arquivo .json pode ser utilizado em diferentes finalidades. Uma delas é para serializar e transmitir dados estruturados. Ele também é indicado para a utilização em aplicativos móveis, em que é preciso requisitar dados em um servidor e utilizá-los rapidamente na aplicação.
+
+Conforme mencionamos, o JSON é muito utilizado em requisições AJAX para aplicações web e para resolver o problema de domínio cruzado. Além disso, ele também é utilizado como arquivo de configuração para armazenar dados que são verificados em tempo de utilização da aplicação.
+
+###### Quais os benefícios do formato JSON?
+Existem diversas vantagens em optar pela utilização do formato JSON para diversos tipos de aplicações. Confira as principais delas.
+
+###### Leitura mais simples
+O formato JSON é fácil de utilizar, pois sua notação permite, inclusive, o entendimento visual da organização dos dados. Isso significa que se alguém abrir um arquivo .json, provavelmente, conseguirá compreender as suas informações. A mesma facilidade é com relação ao processamento desse arquivo, especialmente, por ser em formato texto.
+
+###### Mais agilidade na execução e transporte de dados
+Armazenar os dados em formato texto, aliás, permite que o arquivo .json ocupe pouco espaço em memória. Essa característica oferece ótima performance, pois como ele é pequeno, ocupa poucos bytes, o que oferece mais agilidade para a transferência e carregamento durante o processamento.
+
+###### Arquivos mais leves
+A forma com que os dados são estruturados no modelo JSON é extremamente compacta. Isso permite armazenar muitas informações com menos delimitadores que o modelo XML. Conforme mencionamos, os arquivos gerados são leves e mais rápidos para transmitir e fazer o processamento pela aplicação.
+
+###### Parsing mais fácil
+Como os dados armazenados em um arquivo JSON são em formato de texto, é preciso realizar a interpretação de seu conteúdo para que ele seja consumido pela aplicação. Isso pode ser feito facilmente por diferentes tipos de linguagens, como JavaScript, jQuery e muitas outras.
+
+**Resumindo:**
+- Leitura mais simples
+- Analisador(parsing) mais fácil
+- JSON suporta objetos! Sim, ele é tipado!
+- Velocidade maior na execução e transporte de dados
+- Arquivo com tamanho reduzido
+- Quem utiliza? Google, Facebook, Yahoo!, Twitter...
+
+
+
+
+#### [REST](https://standards.rest/)
+##### O que são os [verbos](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)? GET, POST e etc?
 Tanto GET como POST na verdade são métodos HTTP. Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
 
- - GET – é usado quando o cliente deseja obter recursos do servidor
- - POST – é usado quando o cliente deseja enviar dados para processamento ao servidor, como os dados de um formulário, por exemplo.
- - PUT –
- - DELETE –
+ - [GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get) – é usado quando o cliente deseja obter recursos do servidor
+ - [POST](https://www.rfc-editor.org/rfc/rfc9110.html#name-post) – é usado quando o cliente deseja enviar dados para processamento ao servidor, como os dados de um formulário, por exemplo.
+ - [PUT](https://www.rfc-editor.org/rfc/rfc9110.html#name-put) – é usado quando o cliente deseja atualizar um dado de um recurso que está no servidor
+ - [DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#name-delete) – é usado quando uo cliente deseja apagar um dado dew um recurso que está no servidor
 
 Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados, principalmente em aplicações web. Quando o usuário digita um endereço e aperta enter na barra de endereço do navegador, ele realiza uma requisição do tipo GET. Já quando preenchemos um formulário e clicamos em enviar geralmente o método usado é o POST.
 
-#### O que é Response
+#### O que é [Response](https://datatracker.ietf.org/doc/html/rfc8246)
 Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A Response (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
 
-#### O que é 200, 404, 301 e outros números? Esses são os HTTP Status Code?
+#### O que é 200, 404, 301 e outros números? Esses são os [HTTP Status Code](https://datatracker.ietf.org/doc/html/rfc6585)?
 Esses números são os chamados códigos HTTP. Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
 
 Os códigos estão entre 100 e 500, sendo que cada centena indica uma categoria:
 | Grupos de Código | Descrição |
 | :-: | :- |
-| 1xx |  Informativos | 
-| 2xx |  Indicativos de sucesso | 
-| 3xx |  Redirecionamentos | 
-| 4xx |  Erros do cliente na hora de fazer a solicitação | 
-| 5xx |  Erros no lado do servidor | 
+| **1xx** |  Informativos | 
+| **2xx** |  Indicativos de sucesso | 
+| **3xx** |  Redirecionamentos | 
+| **4xx** |  Erros do cliente na hora de fazer a solicitação | 
+| **5xx** |  Erros no lado do servidor | 
 
 Dentro de cada centena temos os códigos específicos, por exemplo:
 
-- 200 - Tudo ocorreu corretamente
-- 301 – Indica redirecionamento permanente
-- 401 – Não autorizado
-- 404 – O recurso solicitado não foi encontrado no servidor
+- **200** – Tudo ocorreu corretamente
+- **301** – Indica redirecionamento permanente
+- **401** – Não autorizado
+- **404** – O recurso solicitado não foi encontrado no servidor
 
 Existem vários sites que especificam todos os códigos HTTP. Esse usa cachorrinhos como exemplo , mas se você gosta mais dos gatinhos também existe.
 
@@ -134,8 +283,10 @@ O HTTP é o protocolo que define as regras para a comunicação entre o cliente 
 
 ##### Fontes e links uteis:
 - https://www.w3.org/Protocols/rfc2616/rfc2616.html
+- https://datatracker.ietf.org/doc/html/rfc6585
 - https://pt.wikipedia.org/wiki/Hypertext_Transfer_Protocol
 - https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+- https://datatracker.ietf.org/doc/html/rfc8246
 - https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-1-entendendo-os-codigos-4eik
 - https://dev.to/_staticvoid/deixando-sua-api-rest-mais-expressiva-com-status-codes-http-2-os-esquecidos-3eee
 - https://dev.to/_staticvoid/status-http-fantasticos-e-onde-habitam-3-conclusao-7bg
@@ -143,46 +294,46 @@ O HTTP é o protocolo que define as regras para a comunicação entre o cliente 
 #### Lista com os principais códigos de retorno
 | Código | Description |
 |:-:|:-|
-| 100  | Continue |
-| 101  | Switching Protocols |
-| 200  | OK |
-| 201  | Created |
-| 202  | Accepted |
-| 203  | Non-Authoritative Information |
-| 204  | No Content |
-| 205  | Reset Content |
-| 206  | Partial Content |
-| 300  | Multiple Choices |
-| 301  | Moved Permanently |
-| 302  | Found |
-| 303  | See Other |
-| 304  | Not Modified |
-| 305  | Use Proxy |
-| 307  | Temporary Redirect |
-| 400  | Bad Request |
-| 401  | Unauthorized |
-| 402  | Payment Required |
-| 403  | Forbidden |
-| 404  | Not Found |
-| 405  | Method Not Allowed |
-| 406  | Not Acceptable |
-| 407  | Proxy Authentication Required |
-| 408  | Request Time-out |
-| 409  | Conflict |
-| 410  | Gone |
-| 411  | Length Required |
-| 412  | Precondition Failed |
-| 413  | Request Entity Too Large |
-| 414  | Request-URI Too Large |
-| 415  | Unsupported Media Type |
-| 416  | Requested range not satisfiable |
-| 417  | Expectation Failed |
-| 500  | Internal Server Error |
-| 501  | Not Implemented |
-| 502  | Bad Gateway |
-| 503  | Service Unavailable |
-| 504  | Gateway Time-out |
-| 505  | HTTP Version not supported |
+| **100**  | Continue |
+| **101**  | Switching Protocols |
+| **200**  | OK |
+| **201**  | Created |
+| **202**  | Accepted |
+| **203**  | Non-Authoritative Information |
+| **204**  | No Content |
+| **205**  | Reset Content |
+| **206**  | Partial Content |
+| **300**  | Multiple Choices |
+| **301**  | Moved Permanently |
+| **302**  | Found |
+| **303**  | See Other |
+| **304**  | Not Modified |
+| **305**  | Use Proxy |
+| **307**  | Temporary Redirect |
+| **400**  | Bad Request |
+| **401**  | Unauthorized |
+| **402**  | Payment Required |
+| **403**  | Forbidden |
+| **404**  | Not Found |
+| **405**  | Method Not Allowed |
+| **406**  | Not Acceptable |
+| **407**  | Proxy Authentication Required |
+| **408**  | Request Time-out |
+| **409**  | Conflict |
+| **410**  | Gone |
+| **411**  | Length Required |
+| **412**  | Precondition Failed |
+| **413**  | Request Entity Too Large |
+| **414**  | Request-URI Too Large |
+| **415**  | Unsupported Media Type |
+| **416**  | Requested range not satisfiable |
+| **417**  | Expectation Failed |
+| **500**  | Internal Server Error |
+| **501**  | Not Implemented |
+| **502**  | Bad Gateway |
+| **503**  | Service Unavailable |
+| **504**  | Gateway Time-out |
+| **505**  | HTTP Version not supported |
 
 ##### Fontes e links uteis:
 - https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html
