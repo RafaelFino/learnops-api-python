@@ -7,6 +7,7 @@ from datetime import datetime
 import json
 import sys
 from logger import Logger
+from users import UserStorage
 
 def ExecuteRequest(method, url, headers):
     Logger.Info(f">>> [{method}] {url} -> Headers: {headers}")
@@ -20,6 +21,8 @@ def ExecuteRequest(method, url, headers):
 
     return response      
 
+
+print(f"Knowed users: { json.dumps(UserStorage.Users, indent=4, sort_keys=True) }")
 user =  input("User: ")
 password = getpass()
 

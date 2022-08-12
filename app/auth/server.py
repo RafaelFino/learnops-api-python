@@ -5,12 +5,12 @@ from flask import Flask, request
 from datetime import datetime, timedelta
 from flasgger import Swagger, swag_from
 from ulid import ULID
+from users import UserStorage
 
 app = Flask(__name__)
 swagger = Swagger(app)
 
 header = { 'Content-Type': 'application/json' }
-users = { 'usuario1': 'senha1', 'usuario2': 'senha2' }
 tokens = {}
 timeToExpire = 1
 
@@ -24,8 +24,8 @@ def post_login():
     user = request.headers['user']
     passwd = request.headers['pass']
 
-    if user in users:
-      if users[user] == passwd:
+    if user in UserStorage.Users:
+      if UserStorage.Users[user] == passwd:
         token = str(ULID.from_datetime(datetime.now()))
         tokens[token] = datetime.now()
         

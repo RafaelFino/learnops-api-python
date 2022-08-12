@@ -4,6 +4,7 @@ from flask import Flask, request
 from datetime import datetime, timedelta, timezone
 from flasgger import Swagger, swag_from
 from cripto import CriptoServer
+from users import UserStorage
 from cryptography.hazmat.primitives import serialization
 import jwt
 import json
@@ -19,31 +20,10 @@ import json
 app = Flask(__name__)
 swagger = Swagger(app)
 
-# fake struct for users - simulates a database
-users = { 
-	'usuario1': {
-		'pass' : 'senha1',
-		'claims': {
-			'routes' : [
-				"query", "admin"
-			],
-			'nick': 'Fulano'
-		}
-	}, 
-	'usuario2': {
-		'pass' : 'senha2',
-		'claims': {
-			'routes' : [
-				"query"
-			],
-			'nick': 'Beltrano'		 
-		}
-	}
-}
-
 # local settings
 time_to_expire = 10
 
+# class to handle with asymmetric keys, in server side
 cripto = CriptoServer()
 
 # helpers methods
@@ -77,12 +57,12 @@ def post_login():
 	userInfo = get_userinfo(request.headers['requestToken'])
 
 	user = userInfo['user']		
-	passwd = userInfo['pass']
+	passwd = userInfo['pass']	
 
-	if user in users:		
-		if users[user]['pass'] == passwd:
+	if user in UserStorage.Users:		
+		if UserStorage.Users[user] == passwd:
 			exp = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
-			payload = users[user]['claims']
+			payload = UserStorage.ServerInfoUsers[user]['claims']
 			payload['sub'] = user
 			payload['iat'] = datetime.now(tz=timezone.utc)
 			payload['exp'] = exp

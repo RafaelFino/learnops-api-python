@@ -1,7 +1,6 @@
 #!/bin/python3
 
 from http import HTTPStatus
-import requests
 import json
 import time
 import sys
@@ -10,48 +9,32 @@ from datetime import datetime, timedelta
 from cripto import CriptoClient
 import jwt
 from logger import Logger
+from requester import Requester
+from users import UserStorage
 
-
-def ExecuteRequest(method, url, headers={}):
-    Logger.Info(f">>> [{method}] {url} -> Headers: {headers}")
-
-    response = requests.request(method=method, url=url, headers=headers)
-
-    ret = response.json()
-    ret['status_code'] = response.status_code
-    msg = f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code}\n Headers:\n\t{response.headers}\n Body:\n\t{json.dumps(ret)}"
-
-    if response.status_code == HTTPStatus.OK:
-        Logger.Success(msg)
-    else:
-        Logger.Error(msg)
-
-    return ret
-
+# class to handle with asymmetric keys, in client side
 cripto = CriptoClient()
 
-def get_claims(token):
-	return jwt.decode(token, key=cripto.GetPublicKey(), algorithms=[ 'RS256', ], options={"verify_signature": True, "verify_exp": True})
-
+print(f"Knowed users: { json.dumps(UserStorage.Users, indent=4, sort_keys=True) }")
 user =  input("User: ")
 password = getpass()
 
-headers={ 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }))}
 url = "http://localhost:5000/login"
 
-result = ExecuteRequest('POST', url, headers)
+# Try login
+result = Requester.Execute('POST', url, { 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }))})
 
 if result['status_code'] != HTTPStatus.OK:
     Logger.Error("### Auth error")
     sys.exit()
 
 token = result['jwt']
-claims = get_claims(token)
+claims = jwt.decode(token, key=cripto.GetPublicKey(), algorithms=[ 'RS256', ], options={"verify_signature": True, "verify_exp": True})
 exp = datetime.fromtimestamp(result['exp'])+timedelta(seconds=2)
 
 Logger.Info(f"\n##\n##\n##\tRoutes allowed for this user: {claims['routes']}\n##\n##")
 
-#Timeout test
+#Timeout/Expire Token test
 Logger.Info(f"Trying all routes {claims['routes']} util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
 while datetime.now() < exp:
     timeOut = (datetime.fromtimestamp(result['exp']) - datetime.now()).total_seconds()
@@ -63,7 +46,7 @@ while datetime.now() < exp:
 
 
     for r in claims['routes']:
-        ExecuteRequest('GET', f"http://localhost:5000/{r}", { 'Authorization': f"Bearer {token}" })
+        Requester.Execute('GET', f"http://localhost:5000/{r}", { 'Authorization': f"Bearer {token}" })
 
     time.sleep(1)
 
