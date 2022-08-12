@@ -7,7 +7,7 @@ class CurrenciesService:
     _url = 'https://economia.awesomeapi.com.br/all'
     _timeToExpire = None
 
-    def __init__(self, timeToExpire=10):
+    def __init__(self, timeToExpire=1):
         self._timeToExpire = int(timeToExpire)
         self._currencies['BRL'] = { 
                 "name": "Real Brasileiro",
