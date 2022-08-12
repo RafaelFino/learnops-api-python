@@ -55,7 +55,7 @@ def get_claims(token):
 user =  input("User: ")
 password = getpass()
 
-headers={ 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }))}
+headers={ 'requestToken': cripto.Encript(json.dumps({ 'user': user, 'pass' : password }, 'app': 'auth-jwt-client'))}
 url = "http://localhost:5000/login"
 
 result = ExecuteRequest('POST', url, headers)

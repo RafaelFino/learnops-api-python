@@ -1,8 +1,7 @@
 #!/bin/python3
 
-from crypt import methods
 from http import HTTPStatus
-from flask import Flask, jsonify, Response, request
+from flask import Flask, request
 from datetime import datetime, timedelta
 from flasgger import Swagger, swag_from
 from ulid import ULID
@@ -41,7 +40,6 @@ def post_validate():
   if token in tokens:
     if datetime.now() - tokens[token] <= timedelta(minutes=timeToExpire):
       return create_body(), HTTPStatus.OK, header
-    
     else:
       return create_body({ 'message' : 'expired' }), HTTPStatus.UNAUTHORIZED, header
 

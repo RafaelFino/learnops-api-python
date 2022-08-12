@@ -31,9 +31,7 @@ def LogOk(message):
 
 def ExecuteRequest(method, url, headers):
     Log(f">>> [{method}] {url} -> Headers: {headers}")
-    
     response = requests.request(method=method, url=url, headers=headers)
-    
     msg = f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code}\n Headers:\n\t{response.headers}\n\n Body:\n\t{json.dumps(response.json())}"
     
     if response.status_code == HTTPStatus.OK:

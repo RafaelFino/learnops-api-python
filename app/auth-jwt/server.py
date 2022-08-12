@@ -19,7 +19,7 @@ import json
 app = Flask(__name__)
 swagger = Swagger(app)
 
-# fake structfor users - simulates a database
+# fake struct for users - simulates a database
 users = { 
 	'usuario1': {
 		'pass' : 'senha1',
@@ -78,6 +78,7 @@ def post_login():
 
 	user = userInfo['user']		
 	passwd = userInfo['pass']
+	app = userInfo['app']
 
 	if user in users:		
 		if users[user]['pass'] == passwd:
@@ -87,6 +88,7 @@ def post_login():
 			payload['iat'] = datetime.now(tz=timezone.utc)
 			payload['exp'] = exp
 			payload['iss'] = 'simple-auto-jwt-server'
+			payload['aud'] = app
 
 			jwt = create_jwt(payload)
 	 
@@ -100,11 +102,15 @@ def get_admin():
 	try:
 		token = request.headers['Authorization'].replace('Bearer ', '')
 		claims = get_claims(token)
-		
 
-		if 'admin' in claims['routes']:
-			return create_body({}, f"Hello {claims['nick']}, you are allowed to request ADMIN route") , HTTPStatus.OK, create_headers()	
-		
+		if 'routes' in claims:
+			if 'admin' in claims['routes']:
+				return create_body({}, f"Hello {claims['nick']}, you are allowed to request ADMIN route") , HTTPStatus.OK, create_headers()
+			else:
+				return create_body({}, 'Route not allowed'), HTTPStatus.UNAUTHORIZED, create_headers()
+		else:
+			return create_body({}, 'No routes in JWT claims'), HTTPStatus.UNAUTHORIZED, create_headers()
+
 		return create_body({}, 'user do not have permission for this role') , HTTPStatus.UNAUTHORIZED, create_headers()		
 	except Exception as e:
 		return create_body({}, str(e)) , HTTPStatus.UNAUTHORIZED, create_headers()
@@ -116,9 +122,14 @@ def get_query():
 		token = request.headers['Authorization'].replace('Bearer ', '')
 		claims = get_claims(token)
 
-		if 'query' in claims['routes']:
-			return create_body({}, f"Hello {claims['nick']}, you are allowed to request QUERY route") , HTTPStatus.OK, create_headers()
-			
+		if 'routes' in claims:
+			if 'query' in claims['routes']:
+				return create_body({}, f"Hello {claims['nick']}, you are allowed to request QUERY route") , HTTPStatus.OK, create_headers()
+			else:
+				return create_body({}, 'Route not allowed'), HTTPStatus.UNAUTHORIZED, create_headers()
+		else:
+			return create_body({}, 'No routes in JWT claims'), HTTPStatus.UNAUTHORIZED, create_headers()
+
 		return create_body({}, 'user do not have permission for this role') , HTTPStatus.UNAUTHORIZED, create_headers()				
 	except Exception as e:
 		return create_body({}, str(e)) , HTTPStatus.UNAUTHORIZED, create_headers()
