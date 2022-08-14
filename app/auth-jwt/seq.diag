@@ -6,9 +6,11 @@ diagram {
     server => userDataProvider [label = "get user data (claims)", return = "claims"];
     server => server [label = "encript claims and generate jw", return = "signed jwt"];
   }
-  === Authenticated, trying some requests ===
-  client => client [label = "get claims from jwt", return = "routes"];
-  client => client [label = "get exp from response body", return = "expiration time"];
+  === Authenticated, trying some requests ===  
+  client => clientCripto [label = "get public key", return = "public key"];
+  client => client [label = "decode jwt and validate sign", return = "claims"];  
+  client => client [label = "get routes from claims", return = "routes"];  
+  client => client [label = "get exp from claims", return = "expiration time"];
   === Loop route requests until expire time ===
   client => server [label = "header\n{ jwt }", note = "request\nGET /{claim route}", return = "HTTP status code and body message"] {
     server => serverCripto [label = "get private key", return = "private key"];

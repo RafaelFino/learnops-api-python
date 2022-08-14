@@ -30,14 +30,15 @@ if result['status_code'] != HTTPStatus.OK:
 
 token = result['jwt']
 claims = jwt.decode(token, key=cripto.GetPublicKey(), algorithms=[ 'RS256', ], options={"verify_signature": True, "verify_exp": True})
-exp = datetime.fromtimestamp(result['exp'])+timedelta(seconds=2)
+exp = datetime.fromtimestamp(claims['exp'])+timedelta(seconds=2)
+Logger.Info(exp)
 
 Logger.Info(f"\n##\n##\n##\tRoutes allowed for this user: {claims['routes']}\n##\n##")
 
 #Timeout/Expire Token test
 Logger.Info(f"Trying all routes {claims['routes']} util {datetime.now()}/{exp} time out not arrive -> to test token expiration")
 while datetime.now() < exp:
-    timeOut = (datetime.fromtimestamp(result['exp']) - datetime.now()).total_seconds()
+    timeOut = (exp - datetime.now()).total_seconds()
     if timeOut < 0:
         Logger.Info("Token time out, next requests will be the last...")
         time.sleep(1)

@@ -61,16 +61,15 @@ def post_login():
 
 	if user in UserStorage.Users:		
 		if UserStorage.Users[user] == passwd:
-			exp = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
 			payload = UserStorage.ServerInfoUsers[user]['claims']
 			payload['sub'] = user
 			payload['iat'] = datetime.now(tz=timezone.utc)
-			payload['exp'] = exp
+			payload['exp'] = datetime.now(tz=timezone.utc) + timedelta(seconds=time_to_expire)
 			payload['iss'] = 'simple-auto-jwt-server'
 
 			jwt = create_jwt(payload)
 	 
-			return create_body({ 'jwt' : jwt, 'exp': exp.timestamp() }), HTTPStatus.OK, create_headers()
+			return create_body({ 'jwt' : jwt }), HTTPStatus.OK, create_headers()
 
 	return create_body({}), HTTPStatus.UNAUTHORIZED, create_headers()
 

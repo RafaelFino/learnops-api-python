@@ -21,10 +21,6 @@ responses:
               type: string          
               required: true
               description: JWT token
-            - exp:
-              type: number
-              required: true
-              description: JWT token expiration time
             - timestamp:
               in: header
               type: string
