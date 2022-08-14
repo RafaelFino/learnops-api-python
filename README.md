@@ -27,7 +27,7 @@ source bin/activate
 ```
 
 ## Availables APIs:
-| Name | Description | HTTP return | Swaggger | Args | Return type |
+| Name | Description | HTTP return | Swaggger | Args | Return type | Sequence Diagram | 
 |-|-|:-:|:-:|:-:|:-:|:-:| 
 | [ping](https://github.com/RafaelFino/learnops-api-python/tree/main/app/ping) | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/ping.png)|
 | [example](https://github.com/RafaelFino/learnops-api-python/tree/main/app/example) | Simple api, using swagger | &#x2713; | in code | &#x10102; | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/ping.png)|
