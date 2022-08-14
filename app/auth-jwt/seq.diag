@@ -1,4 +1,17 @@
 diagram {
-  client  -> server [label = "GET http://localhost:5000/"];
-  client <- server [label = "{ \"hello\" : \"you\" }"];
+  client => client [label = "get public key", return = "public key"];
+  client => client [label = "encript user and pass", return = "requestToken"];
+  client => server [label = "header\n{ requestToken }", note = "request\nPOST /login", return = "body\n{ jwt }"] {
+    server => server [label = "get private key", return = "private key"];
+    server => server [label = "get user data (claims)", return = "claims"];
+    server => server [label = "encript claims and generate jw", return = "signed jwt"];
+  }
+  === Authenticated, trying some requests ===
+  client => client [label = "get claims from jwt", return = "routes"];
+  client => client [label = "get exp from response body", return = "expiration time"];  
+  client => server [label = "header\n{ jwt }", note = "request\nGET /{claim route}", return = "HTTP status code and body message"] {
+    server => server [label = "get private key", return = "private key"];
+    server => server [label = "validate jwt sign with private key"];
+    server => server [label = "check route permissions", return = "allowed server message"];
+  }
 }

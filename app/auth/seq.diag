@@ -1,4 +1,5 @@
 diagram {
-  client  -> server [label = "GET http://localhost:5000/"];
-  client <- server [label = "{ \"hello\" : \"you\" }"];
+  client => server [label = "header\n{ user, pass }", note = "request\nPOST /login", return = "body\n{ token }"];
+  === Authenticated ===
+  client => server [label = "header\n{ token }", note = "request\nPOST /validated", return = "HTTP status code"];
 }

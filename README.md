@@ -46,6 +46,5 @@ source bin/activate
 - API managed with [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 - Sequence diagrams automated by [Seqdiag](https://pypi.org/project/seqdiag/)
 - Currency data from [economia.awesomeapi](https://economia.awesomeapi.com.br/all)
-
-- Awesome explanations about [JWT with Python](https://auth0.com/blog/how-to-handle-jwt-in-python/) by [Jessica Temporal](https://auth0.com/blog/authors/jessica-temporal/) and [Wellington Nascimento](https://tableless.com.br/entendendo-tokens-jwt/)
+- Awesome texts about [JWT and how to handle it with Python](https://auth0.com/blog/how-to-handle-jwt-in-python/) by [Jessica Temporal](https://auth0.com/blog/authors/jessica-temporal/) and [Wellington Nascimento](https://tableless.com.br/entendendo-tokens-jwt/)
 **Tanks!**
