@@ -26,7 +26,7 @@ source bin/activate
 ./run-client.sh {api-name}
 ```
 
-## Availables APIs:
+## Available APIs:
 | Name | Description | HTTP return | Swaggger | Args | Return type |
 |-|-|:-:|:-:|:-:|:-:|
 | [ping](https://github.com/RafaelFino/learnops-api-python/tree/main/app/ping) | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text |
@@ -61,11 +61,12 @@ source bin/activate
 
 
 ## More info
-[PT-BR Documentation](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
+[Full documentation about APIs (PT-BR)](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
 
-## Special Tanks!
+## Special Thanks!
 - API managed with [Flask](https://flask.palletsprojects.com/en/2.2.x/)
-- Sequence diagrams automated by [Seqdiag](https://pypi.org/project/seqdiag/)
+- Sequence diagrams automated by [seqdiag](https://pypi.org/project/seqdiag/)
 - Currency data from [economia.awesomeapi](https://economia.awesomeapi.com.br/all)
-- Awesome texts about [JWT and how to handle it with Python](https://auth0.com/blog/how-to-handle-jwt-in-python/) by [Jessica Temporal](https://auth0.com/blog/authors/jessica-temporal/) and [Wellington Nascimento](https://tableless.com.br/entendendo-tokens-jwt/)
-**Tanks!**
+- Awesome texts about [JWT](https://tableless.com.br/entendendo-tokens-jwt/) and [how to handle it with Python](https://auth0.com/blog/how-to-handle-jwt-in-python/) by [Jessica Temporal](https://auth0.com/blog/authors/jessica-temporal/) and [Wellington Nascimento](https://tableless.com.br/authors/wellington-nascimento/)
+
+**Thanks!**
