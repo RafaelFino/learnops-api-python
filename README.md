@@ -41,3 +41,5 @@ source bin/activate
 
 ## More info
 [PT-BR Documentation](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
+
+## Sequence diagrams automated by [seqdiag](https://pypi.org/project/seqdiag/), thanks!
