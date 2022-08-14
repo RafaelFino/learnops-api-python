@@ -29,15 +29,15 @@ source bin/activate
 ## Availables APIs:
 | Name | Description | HTTP return | Swaggger | Args | Return type |
 |-|-|:-:|:-:|:-:|:-:|
-| ping | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text |
-| example | Simple api, using swagger | &#x2713; | in code | &#x10102; | json body |
-| hello | Api with one path GET method | &#x2713; | in file | in path | json body |
-| body | Api with one POST method, passing args in body | &#x2713; | in file | in body | json body |
-| sum | Api with methods, with args | &#x2713; | in file | in body | json body |
-| crud | Simple REST CRUD example, to show REST Methods | &#x2713; | on file per method | in body and path | json body |
-| currency | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
-| auth | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
-| auth-jwt | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
+| [ping](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/ping.png) | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text |
+| [example](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/example.png) | Simple api, using swagger | &#x2713; | in code | &#x10102; | json body |
+| [hello](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/hello.png) | Api with one path GET method | &#x2713; | in file | in path | json body |
+| [body](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/body.png) | Api with one POST method, passing args in body | &#x2713; | in file | in body | json body |
+| [sum](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/sum.png) | Api with methods, with args | &#x2713; | in file | in body | json body |
+| [crud](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/crud.png) | Simple REST CRUD example, to show REST Methods | &#x2713; | on file per method | in body and path | json body |
+| [currency](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/currency.png) | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
+| [auth](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/auth.png) | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
+| [auth-jwt](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/images/auth-jwt.png) | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
 
 ## More info
 [PT-BR Documentation](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
