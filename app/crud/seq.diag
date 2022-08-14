@@ -1,4 +1,56 @@
 diagram {
-  client  -> server [label = "GET http://localhost:5000/"];
-  client <- server [label = "{ \"hello\" : \"you\" }"];
+  === Trying get all loaded items ===
+  client => server [label = "body\n{}", note = "request\nGET /items", return = "body\n{ items[] }"] {
+    server => DataStorgage [label = "load all items", return= "items[]"];
+  }
+
+  === Trying insert some new items ===
+  client => server [label = "body\n{ item: { key1: value1, key2:value2 } }", note = "request\nPOST /items/<id>", return = "\nCode:201"] {
+    server => DataStorgage [label = "insert an item", return = "OK"];
+  }
+
+  === Trying insert some items that already exists (replace) ===
+  client => server [label = "body\n{ item: { key1: value1, key2:value2 } }", note = "request\nPOST /items/<id>", return = "\nCode:200"] {
+    server => DataStorgage [label = "replace an item", return = "OK"];
+  }  
+  
+  === Trying to get specifc item with a valid ID ===
+  client => server [label = "body\n{}", note = "request\nGET /items/<id>", return = "body\n{ item: { key1:value1, key2:value2 } }\nCode:200"] {
+    server => DataStorgage [label = "load item with <id>", return= "{ key1:value1, key2:value2 }"];
+  }
+
+  === Trying to get specifc item with an invalid ID ===
+  client => server [label = "body\n{}", note = "request\nGET /items/XPTO", return = "body\n{}\nCode:404"] {
+    server => DataStorgage [label = "load item with <id>", return= "{}"];
+  }
+
+  === Trying update some items ===
+  client => server [label = "body\n{ item: { key1: new_value1, key2:new_value2 } }", note = "request\nPUT /items/<id>", return = "\nCode:200"] {
+    server => DataStorgage [label = "update an item", return = "OK"];
+  }
+
+  === Trying update some items with a non existent ID ===
+  client => server [label = "body\n{ item: { key1: new_value1, key2:new_value2 } }", note = "request\nPUT /items/XPTO", return = "\nCode:404"] {
+    server => DataStorgage [label = "update an item", return = "NOT FOUND"];
+  }
+
+  === Trying to get specifc updated item with a valid ID ===
+  client => server [label = "body\n{}", note = "request\nGET /items/<id>", return = "body\n{ item: { key1:new_value1, key2:new_value2 } }\nCode:200"] {
+    server => DataStorgage [label = "load updated item with <id>", return= "{ key1:value1, key2:value2 }"];
+  }
+
+  === Trying remove some new items ===
+  client => server [label = "body\n{}", note = "request\nDELETE /items/<id>", return = "\nCode:200"] {
+    server => DataStorgage [label = "remove an item", return = "OK"];
+  }
+
+  === Trying remove some new items, AGAIN ===
+  client => server [label = "body\n{}", note = "request\nDELETE /items/<id>", return = "\nCode:200"] {
+    server => DataStorgage [label = "remove an item", return = "NOT FOUND"];
+  }
+
+  === Trying to get specifc item with a removed ID ===
+  client => server [label = "body\n{}", note = "request\nGET /items/<id>", return = "body\n{ item: { key1:value1, key2:value2 } }\nCode:404"] {
+    server => DataStorgage [label = "load item with <id>", return= "NOT FOUND"];
+  }  
 }

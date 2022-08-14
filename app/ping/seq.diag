@@ -1,4 +1,4 @@
 diagram {
-  client  -> server [label = "GET http://localhost:5000/"];
-  client <- server [label = "{ \"hello\" : \"you\" }"];
+  client  -> server [label = "GET http://localhost:5000/ping"];
+  client <- server [label = "pong"];
 }

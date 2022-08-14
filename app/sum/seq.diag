@@ -1,4 +1,3 @@
 diagram {
-  client  -> server [label = "GET http://localhost:5000/"];
-  client <- server [label = "{ \"hello\" : \"you\" }"];
+  client => server [label = "body\n{ n1, n2, ... }", note = "request\nPOST /sum", return = "body\n{ result }"];
 }

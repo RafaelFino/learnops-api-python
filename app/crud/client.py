@@ -35,7 +35,7 @@ qty = 10
 for i in range(qty):
     id = f"item{i}"        
     items[id] = {} 
-    items[id]['item'] = { f"key{i}" : f"value{i}"  }
+    items[id]['item'] = { f"key{i}" : f"value_{i}"  }
 
     TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert items for first time", [ HTTPStatus.CREATED ])
     TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert an item that already exists", [ HTTPStatus.OK ])
@@ -46,7 +46,7 @@ TestRequest('GET', f"{url}/XPTO", {}, "Trying to get a not found item (key = XPT
 updatedItem = {}
 
 for k in items:
-    updatedItem['item'] = { f"updated_key_{k}": f"updated_value_{k}" }
+    updatedItem['item'] = { f"key{k}": f"updated_value_{k}" }
     TestRequest('PUT', f"{url}/{k}", updatedItem, f"Trying to update a item (key={k}) -> new value: {updatedItem}", [ HTTPStatus.OK ])
 
 TestRequest('PUT', f"{url}/XPTO", updatedItem, f"Trying to update a item with non existent key (key = XPTO) new value: {updatedItem}", [ HTTPStatus.NOT_FOUND ])

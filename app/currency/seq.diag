@@ -1,4 +1,6 @@
 diagram {
-  client  -> server [label = "GET http://localhost:5000/"];
-  client <- server [label = "{ \"hello\" : \"you\" }"];
+  client => server [label = "body\n{ code, value }", note = "request\nPOST /convert", return = "body\n{ result: { code:value } }"] {
+    server => CurrencyService [label = "load currency values", return= "{ code:quote }}"];
+    server => server [label = "calculate values", return= "{ code:eval }}"];
+  }
 }
