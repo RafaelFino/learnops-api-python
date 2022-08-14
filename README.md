@@ -27,17 +27,39 @@ source bin/activate
 ```
 
 ## Availables APIs:
-| Name | Description | HTTP return | Swaggger | Args | Return type | Sequence Diagram | 
-|-|-|:-:|:-:|:-:|:-:|:-:| 
-| [ping](https://github.com/RafaelFino/learnops-api-python/tree/main/app/ping) | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/ping.png)|
-| [example](https://github.com/RafaelFino/learnops-api-python/tree/main/app/example) | Simple api, using swagger | &#x2713; | in code | &#x10102; | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/example.png)|
-| [hello](https://github.com/RafaelFino/learnops-api-python/tree/main/app/hello) | Api with one path GET method | &#x2713; | in file | in path | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/hello.png)|
-| [body](https://github.com/RafaelFino/learnops-api-python/tree/main/app/body) | Api with one POST method, passing args in body | &#x2713; | in file | in body | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/body.png)|
-| [sum](https://github.com/RafaelFino/learnops-api-python/tree/main/app/sum) | Api with methods, with args | &#x2713; | in file | in body | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/sum.png)|
-| [crud](https://github.com/RafaelFino/learnops-api-python/tree/main/app/crud) | Simple REST CRUD example, to show REST Methods | &#x2713; | on file per method | in body and path | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/crud.png)|
-| [currency](https://github.com/RafaelFino/learnops-api-python/tree/main/app/currency) | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/currency.png) |
-| [auth](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth) | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth.png)|
-| [auth-jwt](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth-jwt) | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body | ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth-jwt.png)|
+| Name | Description | HTTP return | Swaggger | Args | Return type |
+|-|-|:-:|:-:|:-:|:-:|
+| [ping](https://github.com/RafaelFino/learnops-api-python/tree/main/app/ping) | A ping pong example API | &#x10102; | &#x10102; | &#x10102; | text |
+| [example](https://github.com/RafaelFino/learnops-api-python/tree/main/app/example) | Simple api, using swagger | &#x2713; | in code | &#x10102; | json body |
+| [hello](https://github.com/RafaelFino/learnops-api-python/tree/main/app/hello) | Api with one path GET method | &#x2713; | in file | in path | json body |
+| [body](https://github.com/RafaelFino/learnops-api-python/tree/main/app/body) | Api with one POST method, passing args in body | &#x2713; | in file | in body | json body |
+| [sum](https://github.com/RafaelFino/learnops-api-python/tree/main/app/sum) | Api with methods, with args | &#x2713; | in file | in body | json body |
+| [crud](https://github.com/RafaelFino/learnops-api-python/tree/main/app/crud) | Simple REST CRUD example, to show REST Methods | &#x2713; | on file per method | in body and path | json body |
+| [currency](https://github.com/RafaelFino/learnops-api-python/tree/main/app/currency) | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |
+| [auth](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth) | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |
+| [auth-jwt](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth-jwt) | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
+
+### Diagrams
+
+#### Ping
+![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/ping.png)
+#### Example
+![example](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/example.png)
+#### Hello]
+![hello](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/hello.png)
+#### Body
+![body](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/body.png)
+#### Sum 
+![sum](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/sum.png)
+#### CRUD
+![crud](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/crud.png)
+#### Currency
+![currency](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/currency.png)
+#### Auth 
+![auth](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth.png)
+#### Auth-JWT
+![auth-jwt](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth-jwt.png)
+
 
 ## More info
 [PT-BR Documentation](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
