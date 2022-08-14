@@ -8,7 +8,7 @@ diagram {
   }
   === Authenticated, trying some requests ===  
   client => clientCripto [label = "get public key", return = "public key"];
-  client => client [label = "decode jwt and validate sign", return = "claims"];  
+  client => client [label = "decode jwt and validate sign with public key", return = "claims"];  
   client => client [label = "get routes from claims", return = "routes"];  
   client => client [label = "get exp from claims", return = "expiration time"];
   === Loop route requests until expire time ===
