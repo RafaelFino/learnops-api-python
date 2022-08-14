@@ -40,12 +40,11 @@ source bin/activate
 | [auth-jwt](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth-jwt) | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |
 
 ### Diagrams
-
 #### Ping
 ![ping](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/ping.png)
 #### Example
 ![example](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/example.png)
-#### Hello]
+#### Hello
 ![hello](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/hello.png)
 #### Body
 ![body](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/body.png)
