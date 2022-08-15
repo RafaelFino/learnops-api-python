@@ -7,12 +7,12 @@ Content aggregated and developed for the study about APIs
 1. Create an Ubuntu instance in [KillerCoda](https://killercoda.com/playgrounds/scenario/ubuntu)
 
 2. Run This command on VM Terminal:
-```console 
+``` bash 
 curl https://raw.githubusercontent.com/RafaelFino/learnops-api-python/main/prepare.sh | bash && zsh
 ```
 
 3. To execute server, on application path (~/learnops-api-python):
-```console 
+``` bash 
 cd ~/learnops-api-python
 source bin/activate
 pip3 install -r requirements.txt
@@ -21,7 +21,7 @@ pip3 install -r requirements.txt
 ```
 
 4. To execute clients, on application path (~/learnops-api-python):
-```console 
+``` bash 
 cd ~/learnops-api-python
 source bin/activate
 
