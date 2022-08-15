@@ -1,12 +1,12 @@
 # Table of Contents
 1. [REST](#rest)
-		1. [O que são os verbos? GET, POST e etc?](#o-que-so-os-verbos-get-post-e-etc)
-		2. [Cuidado com a Semântica de seus serviços](#cuidado-com-a-semntica-de-seus-servios)
-		3. [Aplique corretamente o HTTP Status Code](#aplique-corretamente-o-http-status-code)
-		4. [Respostas de erros padrões](#respostas-de-erros-padres)
-		5. [Versionamento de API](#versionamento-de-api)
-		6. [Algumas dicas de segurança na construção de APIs](#algumas-dicas-de-segurana-na-construo-de-apis)
-		7. [Fontes e links uteis:](#fontes-e-links-uteis)
+	1. [Os Verbos](#os-verbos)
+		1. [Cuidado com a Semântica de seus serviços](#cuidado-com-a-semntica-de-seus-servios)
+		2. [Aplique corretamente o HTTP Status Code](#aplique-corretamente-o-http-status-code)
+		3. [Respostas de erros padrões](#respostas-de-erros-padres)
+		4. [Versionamento de API](#versionamento-de-api)
+		5. [Algumas dicas de segurança na construção de APIs](#algumas-dicas-de-segurana-na-construo-de-apis)
+		6. [Fontes e links uteis:](#fontes-e-links-uteis)
 
 # REST
 O protocolo HTTP define um conjunto de métodos de requisição responsáveis por indicar a ação a ser executada para um dado recurso. Embora esses métodos possam ser descritos como substantivos, eles também são comumente referenciados como HTTP Verbs (Verbos HTTP). Cada um deles implementa uma semântica diferente, mas alguns recursos são compartilhados por um grupo deles, como por exemplo, qualquer método de requisição pode ser do tipo safe, idempotent ou cacheable.
@@ -17,7 +17,7 @@ O protocolo HTTP define um conjunto de métodos de requisição responsáveis po
 
 Veja mais no [site do padrão](https://standards.rest/)
 
-### O que são os verbos? GET, POST e etc?
+## Os Verbos
 Tanto GET como POST na verdade são [métodos HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods), definidos pela [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods). Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
 
  - **[GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get)** – é usado quando o cliente deseja obter recursos do servidor
