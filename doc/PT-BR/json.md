@@ -1,3 +1,20 @@
+# Table of Contents
+1. [Json](#json)
+	1. [Mas o que é Json](#mas-o-que-json)
+		1. [Quais as principais características desse formato?](#quais-as-principais-caractersticas-desse-formato)
+		2. [Linguagem independente](#linguagem-independente)
+		3. [Formatação do arquivo](#formatao-do-arquivo)
+		4. [Quais as diferenças entre .json e .xml?](#quais-as-diferenas-entre-json-e-xml)
+		5. [Notação](#notao)
+		6. [Tipos de dados](#tipos-de-dados)
+		7. [Codificação](#codificao)
+	2. [Quais os benefícios do formato JSON?](#quais-os-benefcios-do-formato-json)
+		1. [Leitura mais simples](#leitura-mais-simples)
+		2. [Mais agilidade na execução e transporte de dados](#mais-agilidade-na-execuo-e-transporte-de-dados)
+		3. [Arquivos mais leves](#arquivos-mais-leves)
+		4. [Parsing mais fácil](#parsing-mais-fcil)
+		5. [Fontes e links uteis:](#fontes-e-links-uteis)
+
 # Json
 ## Mas o que é Json
 [JSON]((https://jsonapi.org/)?) é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation, ou seja, só posso usar com JavaScript correto? Na verdade não e alguns ainda caem nesta armadilha.

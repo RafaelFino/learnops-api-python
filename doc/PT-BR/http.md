@@ -1,3 +1,13 @@
+# Table of Contents
+1. [HTTP](#http)
+	1. [Entendendo APIs](#entendendo-apis)
+		1. [O que é HTTP?](#o-que-http)
+		2. [O que é Request?](#o-que-request)
+		3. [O que é Response?](#o-que-response)
+		4. [O que é 200, 404, 301 e outros números? Esses são os HTTP Status Code?](#o-que-200-404-301-e-outros-nmeros-esses-so-os-http-status-code)
+		5. [Lista com os principais códigos de retorno](#lista-com-os-principais-cdigos-de-retorno)
+		6. [Estrutura](#estrutura)
+
 # HTTP
 ## Entendendo APIs
 ### O que é HTTP?

@@ -1,3 +1,10 @@
+# Table of Contents
+1. [JWT](#jwt)
+		1. [Header](#header)
+		2. [Payload (Claims)](#payload-claims)
+		3. [Signature](#signature)
+		4. [Fontes e links uteis:](#fontes-e-links-uteis)
+
 # JWT
 
 O [JWT (JSON Web Token)](https://jwt.io/) é definido no site oficial na seguinte forma http://jwt.io: "JWT é um padrão aberto que define uma forma compacta e auto-contida para transmitir de forma segura, informações entre duas partes como objeto JSON".

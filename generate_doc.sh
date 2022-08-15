@@ -10,17 +10,9 @@ for dir in ./app/*; do
     fi
 done
 
-for f in ./doc/PT-BR/*-toc.md; do
-    if [ -f "$f" ]; then
-        echo "Creating .doc/images/${dir##*/}.png"
-        rm "${f%.*}-toc.md"
-    fi
-done
-
 for f in ./doc/PT-BR/*.md; do
     if [ -f "$f" ]; then
-        echo "Creating .doc/images/${dir##*/}.png"
-        rm "${f%.*}-toc.md"
-        extracttoc "$f" -s
+        echo "Creating ${f%.*}-toc.md"
+        extracttoc "$f" -i
     fi
 done

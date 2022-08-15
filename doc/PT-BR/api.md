@@ -1,3 +1,12 @@
+# Table of Contents
+1. [APIs](#apis)
+	1. [APIs: O que são?](#apis-o-que-so)
+		1. [Componentes de uma API](#componentes-de-uma-api)
+		2. [Tipos de APIs](#tipos-de-apis)
+		3. [Fontes e links uteis:](#fontes-e-links-uteis)
+	2. [Como as APIs funcionam?](#como-as-apis-funcionam)
+		1. [Vantagens](#vantagens)
+
 # APIs
 ## APIs: O que são?
 API é um conjunto de rotinas e padrões de programação para acesso a um aplicativo de software ou plataforma baseado na Web. A sigla API refere-se ao termo em inglês "Application Programming Interface" que significa em tradução para o português "Interface de Programação de Aplicativos"

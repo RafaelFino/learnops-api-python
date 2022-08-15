@@ -1,3 +1,12 @@
+# Table of Contents
+1. [Segurança](#segurana)
+	1. [Autenticações](#autenticaes)
+		1. [O que é um token de autenticação](#o-que-um-token-de-autenticao)
+		2. [Criptografias](#criptografias)
+		3. [Afinal, qual é a diferença entre a criptografia simétrica e assimétrica?](#afinal-qual-a-diferena-entre-a-criptografia-simtrica-e-assimtrica)
+		4. [Qual encriptação é mais segura?](#qual-encriptao-mais-segura)
+		5. [Fontes e links uteis:](#fontes-e-links-uteis)
+
 # Segurança
 ## Autenticações
 ### O que é um token de autenticação

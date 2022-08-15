@@ -1,3 +1,16 @@
+# Table of Contents
+1. [Mitigação de riscos e boas práticas](#mitigao-de-riscos-e-boas-prticas)
+	1. [Fontes e links uteis:](#fontes-e-links-uteis)
+	2. [APIs de Healthcheck](#apis-de-healthcheck)
+		1. [Fontes e links uteis:](#fontes-e-links-uteis)
+	3. [Arquitetura de CircuitBraker](#arquitetura-de-circuitbraker)
+		1. [Problemas ocorrem](#problemas-ocorrem)
+		2. [Implementações](#implementaes)
+		3. [Fontes e links uteis:](#fontes-e-links-uteis)
+	4. [Cache](#cache)
+		1. [Fontes e links uteis:](#fontes-e-links-uteis)
+	5. [Swagger e OpenAPI](#swagger-e-openapi)
+
 # Mitigação de riscos e boas práticas
 Existem muitas [boas práticas](https://www.crummy.com/writing/speaking/2008-QCon/act3.html) envolvidas ao se construir sistemas que irão expor APIs, algumas relacionadas a arquitetura e outras a segurança
 
