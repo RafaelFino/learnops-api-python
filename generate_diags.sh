@@ -9,10 +9,3 @@ for dir in ./app/*; do
         done
     fi
 done
-
-for f in ./doc/PT-BR/*.md; do
-    if [ -f "$f" ]; then
-        echo "Creating ${f%.*}-toc.md"
-        extracttoc "$f" -i
-    fi
-done

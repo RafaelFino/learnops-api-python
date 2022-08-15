@@ -13,7 +13,7 @@
 		2. [Mais agilidade na execução e transporte de dados](#mais-agilidade-na-execuo-e-transporte-de-dados)
 		3. [Arquivos mais leves](#arquivos-mais-leves)
 		4. [Parsing mais fácil](#parsing-mais-fcil)
-		5. [Fontes e links uteis:](#fontes-e-links-uteis)
+		5. [Fontes e links uteis](#fontes-e-links-uteis)
 
 # Json
 ## Mas o que é Json
@@ -148,6 +148,6 @@ Como os dados armazenados em um arquivo JSON são em formato de texto, é precis
 - Arquivo com tamanho reduzido
 - Quem utiliza? Google, Facebook, Yahoo!, Twitter...
 
-### Fontes e links uteis:
+### Fontes e links uteis
 - https://dicasdeprogramacao.com.br/o-que-e-json/
 
