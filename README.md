@@ -1,6 +1,8 @@
 # Learnops API with Python
 APIs with Python - Intro with KillerCoda
 
+Content aggregated and developed for the study about APIs
+
 ## Quick Start
 1. Create an Ubuntu instance in [KillerCoda](https://killercoda.com/playgrounds/scenario/ubuntu)
 
@@ -52,8 +54,13 @@ source bin/activate
 
 ## Special Thanks!
 - API managed with [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+- OpenAPI automated interface and Swagger with [flasgger](https://github.com/flasgger/flasgger)
 - Sequence diagrams automated by [seqdiag](https://pypi.org/project/seqdiag/)
 - Currency data from [economia.awesomeapi](https://economia.awesomeapi.com.br/all)
 - Awesome texts about [JWT](https://tableless.com.br/entendendo-tokens-jwt/) and [how to handle it with Python](https://auth0.com/blog/how-to-handle-jwt-in-python/) by [Jessica Temporal](https://auth0.com/blog/authors/jessica-temporal/) and [Wellington Nascimento](https://tableless.com.br/authors/wellington-nascimento/)
+- Table of contents made with [extracttoc](https://pypi.org/project/extracttoc/)
+- Python JWT examples mande with [pyjwt](https://pyjwt.readthedocs.io/en/stable/)
+- Python Criptografy examples made with [cryptography](https://cryptography.io/en/latest/)
+- An excelent and very complete [article](https://kinsta.com/pt/blog/microservicos-vs-api/) comparing APIs and Microservices from [Durga Prasad Acharya](https://kinsta.com/pt/blog/author/durga/)
 
 **Thanks!**
