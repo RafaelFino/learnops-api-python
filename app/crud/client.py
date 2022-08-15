@@ -31,16 +31,19 @@ def TestRequest(method, url, body={}, message="", expected=[ HTTPStatus.OK ]):
 
 url = "http://localhost:5000/items"
 
+Logger.Ask(f"### Let's try to load all items, are there any there? (press any key to continue)")
 TestRequest('GET', url, {}, "Trying to get all items", [ HTTPStatus.OK, HTTPStatus.NOT_FOUND])
 
 items = {}
-qty = 10
+qty = 5
+
+Logger.Ask(f"### Let's try to insert some items now, {qty} in total (press any key to continue)")
 
 for i in range(qty):
     id = f"item{i}"        
     items[id] = {} 
     items[id]['item'] = { f"key{i}" : f"value_{i}"  }
-
+    
     TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert items for first time", [ HTTPStatus.CREATED ])
     TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert an item that already exists", [ HTTPStatus.OK ])
     TestRequest('GET', f"{url}/{id}", {}, f"Trying to get all item, by ID (key = {id})", [ HTTPStatus.OK ])
@@ -48,6 +51,8 @@ for i in range(qty):
 TestRequest('GET', f"{url}/XPTO", {}, "Trying to get a not found item (key = XPTO)", [ HTTPStatus.NOT_FOUND ])
 
 updatedItem = {}
+
+Logger.Ask(f"### Now we will try to update those items... (press any key to continue)")
 
 for k in items:
     updatedItem['item'] = { f"key{k}": f"updated_value_{k}" }
@@ -58,6 +63,7 @@ TestRequest('PUT', f"{url}/XPTO", updatedItem, f"Trying to update a item with no
 for k in items:
     TestRequest('GET', f"{url}/{k}", {}, f"Trying to get an updated item (key = {k}) expecting value={updatedItem}", [ HTTPStatus.OK ])
 
+Logger.Ask(f"### To finish, we will try to delete those items... (press any key to continue)")
 for k in items:
     TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item (key = {k})", [ HTTPStatus.NO_CONTENT ])
     TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item AGAIN (key = {k})", [ HTTPStatus.NOT_FOUND ])

@@ -24,3 +24,6 @@ class Logger:
 
     def Warning(message):
         print(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.WARNING}{message}")     
+
+    def Ask(message):
+        return input(f"{bcolors.BOLD}{bcolors.OKBLUE}[{datetime.now()}] {bcolors.HEADER}{message}")
