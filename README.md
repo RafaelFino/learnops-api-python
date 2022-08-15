@@ -48,7 +48,7 @@ source bin/activate
 6. [Auth and Sec](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/sec.md)
 6. [JWT - Json Web Token](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/jwt.md)
 7. [Micro Services and APIs](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/micro-services.md)
-8. [Arch and good pratices](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/best-pratices.md)
+8. [Arch and best pratices](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/best-pratices.md)
 
 ## Special Thanks!
 - API managed with [Flask](https://flask.palletsprojects.com/en/2.2.x/)
