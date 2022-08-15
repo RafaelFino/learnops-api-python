@@ -764,7 +764,7 @@ Parece custoso e pouco seguro, certo? Nesses casos podemos ter um serviço respo
 Nesse caso, na autenticação por token, o usuário insere login e senha na plataforma, o que gera um token (que podemos também chamar de certificado digital) que o permite navegar pelos recursos do seu interesse, dentro de um prazo determinado, sem a necessidade de utilizar os dados do login novamente.
 
 #### Fontes e links uteis:
-- (https://pt.wikipedia.org/wiki/Token_(inform%C3%A1tica)
+- https://pt.wikipedia.org/wiki/Token_(inform%C3%A1tica)
 - https://blog.engdb.com.br/autenticacao-por-token/
 - https://www.linkedin.com/pulse/autentica%C3%A7%C3%A3o-baseada-em-token-uma-aplica%C3%A7%C3%A3o-rest-tarcisio-carvalho/?originalSubdomain=pt
 
