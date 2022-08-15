@@ -8,7 +8,7 @@ parameters:
     required: true
     
 responses:
-  200:
+  204:
     description: Item removed
 
   404:

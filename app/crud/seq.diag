@@ -40,12 +40,12 @@ diagram {
   }
 
   === Trying remove some new items ===
-  client => server [label = "body\n{}", note = "request\nDELETE /items/<id>", return = "\nCode:200"] {
+  client => server [label = "body\n{}", note = "request\nDELETE /items/<id>", return = "\nCode:204"] {
     server => DataStorgage [label = "remove an item", return = "OK"];
   }
 
   === Trying remove some new items, AGAIN ===
-  client => server [label = "body\n{}", note = "request\nDELETE /items/<id>", return = "\nCode:200"] {
+  client => server [label = "body\n{}", note = "request\nDELETE /items/<id>", return = "\nCode:404"] {
     server => DataStorgage [label = "remove an item", return = "NOT FOUND"];
   }
 

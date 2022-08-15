@@ -69,6 +69,6 @@ def put_from_id(id):
 def delete_from_id(id):
 	if id in items:
 		del items[id]
-		return {}, HTTPStatus.OK
+		return {}, HTTPStatus.NO_CONTENT
 
 	return {}, HTTPStatus.NOT_FOUND

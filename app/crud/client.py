@@ -11,8 +11,12 @@ from logger import Logger
 
 def ExecuteRequest(method, url, body={}):
     Logger.Info(f">>> [{method}] {url}: Body: {body}")    
-    response = requests.request(method=method, url=url, json=body, headers={'Content-Type': 'application/json'})   
-    Logger.Info(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(response.json())}")
+    response = requests.request(method=method, url=url, json=body, headers={'Content-Type': 'application/json'})
+    try:
+        responseBody = response.json()
+    except:
+        responseBody = {}
+    Logger.Info(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(responseBody)}")
 
     return response
 
@@ -55,6 +59,6 @@ for k in items:
     TestRequest('GET', f"{url}/{k}", {}, f"Trying to get an updated item (key = {k}) expecting value={updatedItem}", [ HTTPStatus.OK ])
 
 for k in items:
-    TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item (key = {k})", [ HTTPStatus.OK ])
+    TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item (key = {k})", [ HTTPStatus.NO_CONTENT ])
     TestRequest('DELETE', f"{url}/{k}", {}, f"Trying to delete item AGAIN (key = {k})", [ HTTPStatus.NOT_FOUND ])
     TestRequest('GET', f"{url}/{k}", {}, f"Trying to get item, by ID (key = {k})", [ HTTPStatus.NOT_FOUND ])

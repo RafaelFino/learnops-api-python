@@ -451,6 +451,10 @@ Como os dados armazenados em um arquivo JSON são em formato de texto, é precis
 ## [REST](https://standards.rest/)
 O protocolo HTTP define um conjunto de métodos de requisição responsáveis por indicar a ação a ser executada para um dado recurso. Embora esses métodos possam ser descritos como substantivos, eles também são comumente referenciados como HTTP Verbs (Verbos HTTP). Cada um deles implementa uma semântica diferente, mas alguns recursos são compartilhados por um grupo deles, como por exemplo, qualquer método de requisição pode ser do tipo safe, idempotent ou cacheable.
 
+- API REST são projetadas para recursos, que tratam de qualquer tipo de objeto, dados ou serviço que possa ser acessado pelo cliente;
+- Um recurso tem um identificador, o qual se trata de um URI que identifica exclusivamente esse recurso;
+- Os clientes interagem com um serviço por meio da troca de representações de recursos (JSON ou XML)
+
 ### O que são os [verbos](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)? GET, POST e etc?
 Tanto GET como POST na verdade são [métodos HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods). Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
 
@@ -460,6 +464,38 @@ Tanto GET como POST na verdade são [métodos HTTP](https://developer.mozilla.or
  - **[DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#name-delete)** – é usado quando uo cliente deseja apagar um dado dew um recurso que está no servidor
 
 Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados, principalmente em aplicações web. Quando o usuário digita um endereço e aperta enter na barra de endereço do navegador, ele realiza uma requisição do tipo GET. Já quando preenchemos um formulário e clicamos em enviar geralmente o método usado é o POST.
+
+### Cuidado com a Semântica de seus serviços
+Devemos tomar cuidados na organização da semântica do nossos serviços. Uma boa semântica dos serviços farão eles serem de fácil leitura e compreensão.
+
+Veja algumas dicas para a construção de uma boa semântica:
+
+- Organize sua API em torno de recurso;
+- Concentre-se nas entidades comerciais que sua API expõe;
+- O caminho de sua API ou URI (UNIFORM RESOUCE IDENTIFIER) deve ser baseado em substantivos e não em verbos
+
+Veja aqui alguns exemplo:
+| Faça | Evite |
+|:-:|:-|
+| GET /items | GET /getItems |
+| GET /items/123 | GET /getItemById |
+| POST /items | POST /createItem |
+
+### Aplique corretamente o HTTP Status Code
+O HTTP Status Code é a forma que seus serviços irão retornar as respostas para seus clientes. É importante aplicar corretamente o HTTP Status Code para cada operação, veja abaixo como podemos retornar corretamente o HTTP Status Code para cada Verbo HTTP.
+
+| Verbo/Método | Tipo de retorno |
+|:-: |:-|
+| **GET** | Retorne 200 (OK) para caso de sucesso |
+| **GET** | Retorne 404 (NOT FOUND) se a entidade não for encontrada |
+| **POST** |Retorne 201 (CREATED) para caso um novo recurso seja criado com sucesso | 
+| **POST** |Retorne 400 (BAD REQUEST) caso a solicitação contenha dados inválidos | 
+| **POST** |Retorne 422 (Unprocessable Entity) caso a solicitação caia em alguma regra de  | negócio
+| **PUT** |Retorne 200 (OK)  se for atualizar um recurso existente | 
+| **PUT** |Retorne 400 (BAD REQUEST) caso a solicitação contenha dados inválidos | 
+| **PUT** |Considere utilizar 409 (CONFLICT) caso não consiga atualizar um recurso existente | 
+| **PUT** |Retorne 204 (No Content) para sucesso | 
+| **PUT** |Retorne 404 (NOT FOUND) se a entidade não for encontrada | 
 
 ### Fontes e links uteis:
 - https://standards.rest/
@@ -712,12 +748,24 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiRnVsYW5vIiwiYWRtaW4iOnRydWV9.IS
 - https://imasters.com.br/desenvolvimento/json-web-token-conhecendo-o-jwt-na-teoria-e-na-pratica
 
 ## Mitigação de riscos e boas práticas
-### Healthcheck
-### CircuitBrake
+Existem muitas [boas práticas](https://www.crummy.com/writing/speaking/2008-QCon/act3.html) envolvidas ao se construir sistemas que irão expor APIs, algumas relacionadas a arquitetura e outras a segurança
+
+### Fontes e links uteis:
+- https://renatogroffe.medium.com/asp-net-core-boas-pr%C3%A1ticas-na-implementa%C3%A7%C3%A3o-de-apis-rest-setembro-2019-1d4f6b6e8352
+- https://imasters.com.br/back-end/6-melhores-praticas-para-arquiteturas-baseadas-em-microservices
+
+### APIs de Healthcheck
+É um tipo de serviço nos sistemas que expõem APIs capaz de informar se esse serviço está funcionando adequadamente, ou seja, se está capacitado a responder requisições a ele feitas
+
+O Health Checks nada mais é que um middleware que nos fornecem um endpoint configurável que nos retorna o estado atual da aplicação.
+
+#### Fontes e links uteis:
+- https://balta.io/blog/aspnet-health-check
+
+### Arquitetura de CircuitBrake
 ### Caches
 ### API Gateways/ BFF
 ### SQL Injections
-### DDOS
 
 ## [Swagger e OpenAPI](https://swagger.io/docs/specification/about/)
 #### Fontes e links uteis:
