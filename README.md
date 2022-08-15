@@ -39,7 +39,7 @@ source bin/activate
 | [crud](https://github.com/RafaelFino/learnops-api-python/tree/main/app/crud) | Simple REST CRUD example, to show REST Methods | &#x2713; | on file per method | in body and path | json body |[crud diagram](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/crud.png)|
 | [currency](https://github.com/RafaelFino/learnops-api-python/tree/main/app/currency) | Api to query and convert currency values, args on path and body | &#x2713; | on file per method | in body and path | json body |[currency diagram](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/currency.png)|
 | [auth](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth) | Api to show a how a login works | &#x2713; | on file per method | in body and header | json body |[auth diagram](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth.png)|
-| [auth-jwt](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth-jwt) | Login Api example with JWT | &#x2713; | on file per method | in body and header | json body |[auth-jwt diagram](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth-jwt.png)|
+| [auth-jwt](https://github.com/RafaelFino/learnops-api-python/tree/main/app/auth-jwt) | Login Api example with JWT | &#x2713; | on file per method | in body, header and path | json body |[auth-jwt diagram](https://github.com/RafaelFino/learnops-api-python/raw/main/doc/images/auth-jwt.png)|
 
 ## More info
 1. [Distributed Systems](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/distributed-systems.md)
