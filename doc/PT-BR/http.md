@@ -17,10 +17,25 @@ O [HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) é um protocolo de comuni
 Veja a especificação completa da [RFC HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) para maiores detalhes
 
 ## O que é Request?
-A [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5) ou requisição traduzindo diretamente para português, é o pedido que um cliente realiza a nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa. Vamos pensar que um cliente precisa cadastrar um novo produto, ele deve passar todos os dados necessários para o cadastro acontecer de maneira correta, inclusive os dados que foram digitados pelo usuário em um formulário, no caso de uma aplicação web. No navegador toda vez que trocamos de página ou apertamos enter na barra de endereço uma nova request é feita. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou excluindo.
+A [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5) ou requisição, é o pedido que um cliente realiza ao nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa.
+ 
+No navegador toda vez que trocamos de página uma nova requisição é feita para o servidor. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou até excluindo algum dado.
+
 
 ## O que é Response?
 Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A [Response](https://datatracker.ietf.org/doc/html/rfc8246) (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
+
+## Estrutura
+### Header
+[Header](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers) é um conjunto de informações que cada requisição HTTP contém e podem ser lidas antes mesmo do conteúdo da mensagem ser processado, esse cabeçalho é uma coleção de dados que chamamos de dicionários, ou seja, uma lista de chave e valor.
+
+Na [RFC que define o modelo HTTP](https://www.rfc-editor.org/rfc/rfc7231.txt), esses campos são descritos e tem grande importância para a integração via APIs ou até mesmo para um browser ser capaz de abrir uma página web.
+
+### Body
+Chamamos de Body o corpo de dados de uma transação HTTP, é a mensagem propriamente dita e ela pode variar totalmente no formato de conteúdo, de acordo com o especificado em alguns campos do Header.
+
+Os campos [Content-Type](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Content-Type), [Content-Length](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Content-Length) e [Content-Encoding](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Content-Encoding) se referem diretamente o formato e tamanho do conteúdo do Body.
+
 
 ## O que é 200, 404, 301 e outros números? Esses são os HTTP Status Code?
 Esses números são os chamados [códigos HTTP](https://datatracker.ietf.org/doc/html/rfc6585). Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
@@ -89,16 +104,6 @@ O HTTP é o protocolo que define as regras para a comunicação entre o cliente 
 | **504**  | Gateway Time-out |
 | **505**  | HTTP Version not supported |
 
-## Estrutura
-### Header
-[Header](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers) é um conjunto de informações que cada requisição HTTP contém e podem ser lidas antes mesmo do conteúdo da mensagem ser processado, esse cabeçalho é uma coleção de dados que chamamos de dicionários, ou seja, uma lista de chave e valor.
-
-Na [RFC que define o modelo HTTP](https://www.rfc-editor.org/rfc/rfc7231.txt), esses campos são descritos e tem grande importância para a integração via APIs ou até mesmo para um browser ser capaz de abrir uma página web.
-
-### Body
-Chamamos de Body o corpo de dados de uma transação HTTP, é a mensagem própriamente dita e ela pode variar totalmente no formato de conteúdo, de acordo com o especificado em alguns campos do Header.
-
-Os campos [Content-Type](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Content-Type), [Content-Length](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Content-Length) e [Content-Encoding](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers/Content-Encoding) se referem diretamente o formato e tamanho do conteúdo do Body.
 
 ## Fontes e links uteis:
 - https://www.w3.org/Protocols/rfc2616/rfc2616.html
