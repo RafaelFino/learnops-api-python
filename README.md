@@ -61,7 +61,15 @@ source bin/activate
 
 
 ## More info
-[Full documentation about APIs (PT-BR)](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/index-PT-BR.md)
+1. [Distributed Systems](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/distributed-systems.md)
+2. [What is an API?](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/api.md)
+3. [HTTP Pattern](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/http.md)
+4. [REST APIs](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/rest.md)
+5. [JSON Format](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/json.md)
+6. [Auth and Sec](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/sec.md)
+6. [JWT - Json Web Token](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/jwt.md)
+7. [Micro Services and APIs](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/micro-services.md)
+8. [Arch and good pratices](https://github.com/RafaelFino/learnops-api-python/blob/main/doc/PT-BR/best-pratices.md)
 
 ## Special Thanks!
 - API managed with [Flask](https://flask.palletsprojects.com/en/2.2.x/)
