@@ -1,6 +1,6 @@
 #!/bin/python3
-
 import requests
+import json
 
 name = input("Type your name: ")
 
