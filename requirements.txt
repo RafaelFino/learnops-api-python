@@ -5,4 +5,5 @@ python-ulid
 requests
 cryptography
 pyjwt
+extracttoc
 seqdiag
