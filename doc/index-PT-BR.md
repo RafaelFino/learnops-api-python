@@ -643,12 +643,10 @@ O JWT é divido em três partes separadas por um “.” essas três partes são
 
 O header é a primeira parte do JWT e ele é divido em duas partes, o algoritmo de codificação e o tipo do token e essas duas partes são encodadas em Base64, ficaria assim:
 
-``` json
+``` JSON
 {
-
-  “alg” : "HS256",
-  “typ” : "JWT"
-
+    "alg": "HS256",
+    "typ": "JWT"
 }
 ```
 
@@ -665,20 +663,20 @@ Os payloads são objetos JSON que contem os claims, nessa parte que nós trabalh
 
 Reserved claims: Atributos não obrigatórios (mas recomendados) que podem ser um conjunto de informações uteis e interoperáveis normalmente utilizados por protocolos de segurança em API’s:
 
-- “iss” (Issuer) Origem do token
-- “iat” (issueAt) Timestamp de quando o token foi gerado
-- “exp” (Expiration) Timestamp de quando o token expira
-- “sub” (Subject) Entidade a quem o token pertence, normalmente o ID do usuário
-- Public claims: São atributos que definem o uso do JWT e informações úteis para a aplicação
-- Private claims: São atributos definidos especialmente para compartilhar informações entre aplicações
+| Chave |  Descrição |
+|:-:|:-|
+|**iss** | (Issuer) Origem do token |
+|**iat** | (issueAt) Timestamp de quando o token foi gerado |
+|**exp** | (Expiration) Timestamp de quando o token expira |
+|**sub** | (Subject) Entidade a quem o token pertence, normalmente o ID do usuário |
+|**Publiclaims** | São atributos que definem o uso do JWT e informações úteis para a aplicação | 
+|**Private claims** | São atributos definidos especialmente para compartilhar informações entre aplicações |
 
-
-``` json
+**Exemplo:**
+``` JSON 
 {
-
-   “nome" : "fulano”,
-   “admin” : true
-
+    "nome":"fulano",
+    "admin": true
 }
 ```
 
