@@ -1,9 +1,9 @@
 # Table of Contents
 1. [JWT](#jwt)
-    1. [Header](#header)
-    2. [Payload (Claims)](#payload-claims)
-    3. [Signature](#signature)
-    4. [Fontes e links uteis](#fontes-e-links-uteis)
+	1. [Header](#header)
+	2. [Payload (Claims)](#payload-claims)
+	3. [Signature](#signature)
+	4. [Fontes e links uteis](#fontes-e-links-uteis)
 
 # JWT
 
