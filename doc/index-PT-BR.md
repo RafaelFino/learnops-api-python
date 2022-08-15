@@ -262,19 +262,19 @@ Cobrando um determinado custo, muitas empresas disponibilizam suas APIs para que
 Uma das infinitas possibilidades oferecidas pela API é a automatização da extração de determinados dados. Assim, diminuem a necessidade do trabalho manual no momento de exportar informações.
 
 ## Entendendo APIs
-### O que é [HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html)?
-O HTTP é um protocolo de comunicação. Através dele o cliente e o servidor conseguem se comunicar, seguindo um conjunto de regras bem definidas (por isso chamamos de protocolo). Por exemplo, se estivermos falando de uma aplicação web, o cliente é o navegador, ele envia um pedido para o servidor web usando o protocolo HTTP, com base nesse pedido, se tudo estiver correto, o servidor responde também usando o mesmo protocolo o conteúdo solicitado.
+### O que é HTTP?
+O [HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) é um protocolo de comunicação. Através dele o cliente e o servidor conseguem se comunicar, seguindo um conjunto de regras bem definidas (por isso chamamos de protocolo). Por exemplo, se estivermos falando de uma aplicação web, o cliente é o navegador, ele envia um pedido para o servidor web usando o protocolo HTTP, com base nesse pedido, se tudo estiver correto, o servidor responde também usando o mesmo protocolo o conteúdo solicitado.
 
 Veja a especificação completa da [RFC HTTP]( https://www.rfc-editor.org/rfc/rfc9110.html) para maiores detalhes
 
-### O que é [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5)?
-A Request ou requisição traduzindo diretamente para português, é o pedido que um cliente realiza a nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa. Vamos pensar que um cliente precisa cadastrar um novo produto, ele deve passar todos os dados necessários para o cadastro acontecer de maneira correta, inclusive os dados que foram digitados pelo usuário em um formulário, no caso de uma aplicação web. No navegador toda vez que trocamos de página ou apertamos enter na barra de endereço uma nova request é feita. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou excluindo.
+### O que é Request?
+A [Request](https://www.rfc-editor.org/rfc/rfc2616.html#section-5) ou requisição traduzindo diretamente para português, é o pedido que um cliente realiza a nosso servidor. Esse pedido contém uma série de dados que são usados para descrever exatamente o que o cliente precisa. Vamos pensar que um cliente precisa cadastrar um novo produto, ele deve passar todos os dados necessários para o cadastro acontecer de maneira correta, inclusive os dados que foram digitados pelo usuário em um formulário, no caso de uma aplicação web. No navegador toda vez que trocamos de página ou apertamos enter na barra de endereço uma nova request é feita. Independente se estamos apenas pedindo a exibição de uma página, cadastrando um novo recurso, atualizando ou excluindo.
 
-### O que é [Response](https://datatracker.ietf.org/doc/html/rfc8246)?
-Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A Response (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
+### O que é Response?
+Vimos que o cliente envia uma Request (requisição) ao servidor. Essa requisição possui todas as informações acerca do que o cliente espera receber de volta. O servidor web ao receber essas informações precisa enviar uma resposta ao cliente, nesse ponto entra a Response. A [Response](https://datatracker.ietf.org/doc/html/rfc8246) (resposta) nada mais é do que a resposta que o servidor envia ao cliente. Essa resposta pode conter os dados que realmente o cliente esperava receber ou uma resposta informando que alguma coisa deu errado.
 
-### O que é 200, 404, 301 e outros números? Esses são os [HTTP Status Code](https://datatracker.ietf.org/doc/html/rfc6585)?
-Esses números são os chamados códigos HTTP. Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
+### O que é 200, 404, 301 e outros números? Esses são os HTTP Status Code?
+Esses números são os chamados [códigos HTTP](https://datatracker.ietf.org/doc/html/rfc6585). Quando o cliente faz uma requisição ele espera uma resposta. O servidor pode realmente responder o que o cliente esperava ou devolver outra informação, justamente nesse ponto entram os códigos HTTP. O servidor utiliza um código desse na resposta para indicar o que aconteceu.
 
 Os códigos estão entre 100 e 500, sendo que cada centena indica uma categoria:
 | Grupos de Código | Descrição |
@@ -373,8 +373,8 @@ Os campos [Content-Type](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Heade
 - https://medium.com/clebertech/como-funciona-uma-requisi%C3%A7%C3%A3o-http-cf76f66fe36e
 - https://www.tutorialspoint.com/http/http_requests.htm
 
-## Mas o que é [Json](https://jsonapi.org/)?
-JSON é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation, ou seja, só posso usar com JavaScript correto? Na verdade não e alguns ainda caem nesta armadilha.
+## Mas o que é Json
+[JSON]((https://jsonapi.org/)?) é basicamente um formato leve de troca de informações/dados entre sistemas. Mas JSON significa JavaScript Object Notation, ou seja, só posso usar com JavaScript correto? Na verdade não e alguns ainda caem nesta armadilha.
 
 O JSON além de ser um formato leve para troca de dados é também muito simples de ler. Mas quando dizemos que algo é simples, é interessante compará-lo com algo mais complexo para entendermos tal simplicidade não é? Neste caso podemos comparar o JSON com o formato XML.
 
@@ -509,15 +509,17 @@ Como os dados armazenados em um arquivo JSON são em formato de texto, é precis
 - https://dicasdeprogramacao.com.br/o-que-e-json/
 
 
-## [REST](https://standards.rest/)
+## REST
 O protocolo HTTP define um conjunto de métodos de requisição responsáveis por indicar a ação a ser executada para um dado recurso. Embora esses métodos possam ser descritos como substantivos, eles também são comumente referenciados como HTTP Verbs (Verbos HTTP). Cada um deles implementa uma semântica diferente, mas alguns recursos são compartilhados por um grupo deles, como por exemplo, qualquer método de requisição pode ser do tipo safe, idempotent ou cacheable.
 
-- API REST são projetadas para recursos, que tratam de qualquer tipo de objeto, dados ou serviço que possa ser acessado pelo cliente;
+- API [REST]((https://standards.rest/)) são projetadas para recursos, que tratam de qualquer tipo de objeto, dados ou serviço que possa ser acessado pelo cliente;
 - Um recurso tem um identificador, o qual se trata de um URI que identifica exclusivamente esse recurso;
 - Os clientes interagem com um serviço por meio da troca de representações de recursos (JSON ou XML)
 
-### O que são os [verbos](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)? GET, POST e etc?
-Tanto GET como POST na verdade são [métodos HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods). Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
+Veja mais no [site do padrão](https://standards.rest/)
+
+### O que são os verbos? GET, POST e etc?
+Tanto GET como POST na verdade são [métodos HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods), definidos pela [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods). Eles indicam para o servidor qual a ação que o cliente deseja realizar. Quando realizamos uma requisição obrigatoriamente precisamos informar um método.
 
  - **[GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get)** – é usado quando o cliente deseja obter recursos do servidor
  - **[POST](https://www.rfc-editor.org/rfc/rfc9110.html#name-post)** – é usado quando o cliente deseja enviar dados para processamento ao servidor, como os dados de um formulário, por exemplo.
@@ -748,13 +750,11 @@ Além disso, APIs podem ajudar a reduzir os custos de TI para fazer uma integra�
 
 Assim, a combinação de microserviços com API permite que você alcance toda a bondade dos microserviços e limite seus inconvenientes.
 
-
-
 ### Fontes e links uteis:
 - https://kinsta.com/pt/blog/microservicos-vs-api/
 
 ## Autenticações e Segurança
-### O que é um [token](https://pt.wikipedia.org/wiki/Token_(inform%C3%A1tica)) de autenticação
+### O que é um token de autenticação
 Chamamos de [token de autenticação](https://pt.wikipedia.org/wiki/Token_(chave_eletr%C3%B4nica)#:~:text=Token%20%C3%A9%20um%20dispositivo%20eletr%C3%B4nico,conectado%20a%20uma%20porta%20USB.) um conjunto de caracteres, chave que indentifica uma operação. Por exemplo:
 
 Imagine uma API que tem um nível de proteção que precisa de usuário e senha (chamamos também de credênciais) para liberar acesso aos seus serviços, a cada requisição o cliente iria precisar enviar esses dados e a API validar se essas credênciais possuem acesso a esses serviços. 
@@ -764,11 +764,12 @@ Parece custoso e pouco seguro, certo? Nesses casos podemos ter um serviço respo
 Nesse caso, na autenticação por token, o usuário insere login e senha na plataforma, o que gera um token (que podemos também chamar de certificado digital) que o permite navegar pelos recursos do seu interesse, dentro de um prazo determinado, sem a necessidade de utilizar os dados do login novamente.
 
 #### Fontes e links uteis:
+- (https://pt.wikipedia.org/wiki/Token_(inform%C3%A1tica)
 - https://blog.engdb.com.br/autenticacao-por-token/
 - https://www.linkedin.com/pulse/autentica%C3%A7%C3%A3o-baseada-em-token-uma-aplica%C3%A7%C3%A3o-rest-tarcisio-carvalho/?originalSubdomain=pt
 
-### [Criptografias](https://en.wikipedia.org/wiki/Cryptography)
-Através da criptografia obtemos diversas propriedades importantes como a confidencialidade (sigilo da informação), integridade (garantia que a mensagem não foi alterada), autenticidade (quem foi a autor da mensagem) e irretratabilidade ou não repúdio (capacidade de não negar a construção da mensagem). Temos ainda que a criptografia Simétrica garante a confidencialidade e a integridade, enquanto que a criptografia Assimétrica garante a confidencialidade, integridade, autenticidade e a irretratabilidade ou não repúdio.
+### Criptografias
+Através da [criptografia](https://en.wikipedia.org/wiki/Cryptography) obtemos diversas propriedades importantes como a confidencialidade (sigilo da informação), integridade (garantia que a mensagem não foi alterada), autenticidade (quem foi a autor da mensagem) e irretratabilidade ou não repúdio (capacidade de não negar a construção da mensagem). Temos ainda que a criptografia Simétrica garante a confidencialidade e a integridade, enquanto que a criptografia Assimétrica garante a confidencialidade, integridade, autenticidade e a irretratabilidade ou não repúdio.
 
 Assim sendo, podemos classificar os algoritmos através do número de chaves (simétrico ou assimétrico). Nos algoritmos simétricos uma chave é usada tanto para criptografar quanto para descriptografar (podemos ter mais que uma se a segunda for facilmente derivada da primeira), enquanto que nos algoritmos assimétricos temos mais que uma chave e ambas são completamente independentes uma das outras.
 
@@ -780,7 +781,7 @@ A criptografia através de cifras ocorre com a cifração da mensagem original a
 
 Os sistemas criptográficos são compostos por dois tipos: Simétricos e Assimétricos. Na próxima seção veremos mais sobre a criptografia Assimétrica estudando seus conceitos, funcionamento, algoritmos e como podemos aplica-los na prática utilizando a linguagem de programação Java que suporta amplamente a criptografia Assimétrica.
 
-#### [Chaves simétricas](https://academy.bit2me.com/pt/que-es-criptografia-simetrica/)
+#### Chaves simétricas
 O ciframento de uma mensagem (processo em que um conteúdo é criptografado) é baseado em 2 componentes:
 
 - um algoritmo;
@@ -790,7 +791,7 @@ O ciframento de uma mensagem (processo em que um conteúdo é criptografado) é 
 O algoritmo trabalha junto com a chave, de forma que eles tornam um conteúdo sigiloso com um conjunto único de regras.
 
 ##### A Chave (senha)
-A criptografia simétrica faz uso de uma única chave, que é compartilhada entre o emissor e o destinatário de um conteúdo. Essa chave é uma cadeia própria de bits, que vai definir a forma como o algoritmo vai cifrar um conteúdo.
+A [criptografia simétrica](https://academy.bit2me.com/pt/que-es-criptografia-simetrica/) faz uso de uma única chave, que é compartilhada entre o emissor e o destinatário de um conteúdo. Essa chave é uma cadeia própria de bits, que vai definir a forma como o algoritmo vai cifrar um conteúdo.
 
 Como vantagem, a criptografia tem uma boa performance e a possibilidade de manter uma comunicação contínua entre várias pessoas simultaneamente. Caso a chave seja comprometida, basta efetuar a troca por uma nova, mantendo o algoritmo inicial.
 
@@ -829,8 +830,8 @@ Em termos de segurança, a criptografia simétrica não é tão confiável devid
 - Após a criptografia das informações, a chave usada para criptografia e descriptografia não pode ser obtida. Nem as informações contidas na mensagem criptografada.
 - O custo da descriptografia de informações deve ser maior que as mesmas informações contidas na mensagem criptografada.
 
-#### [Chaves assimétricas](https://academy.bit2me.com/pt/o-que-%C3%A9-criptografia-assim%C3%A9trica/) (uso de chaves publica e privada)
-Na criptografia Assimétrica (ou criptografia de chave pública) temos que a chave de cifração é diferente da chave de decifração e uma não pode ser facilmente gerada a partir da outra. Basicamente temos que no processo de encriptação utilizaremos uma chave "k1" em cima da mensagem em texto puro que então irá gerar um texto cifrado. Após isso, no processo de descriptografia usaremos outra chave "k2" em cima do texto cifrado e teremos como resposta de volta o texto claro.
+#### Chaves assimétricas (chaves publica e privada)
+Na [criptografia Assimétrica](https://academy.bit2me.com/pt/o-que-%C3%A9-criptografia-assim%C3%A9trica/) (ou criptografia de chave pública) temos que a chave de cifração é diferente da chave de decifração e uma não pode ser facilmente gerada a partir da outra. Basicamente temos que no processo de encriptação utilizaremos uma chave "k1" em cima da mensagem em texto puro que então irá gerar um texto cifrado. Após isso, no processo de descriptografia usaremos outra chave "k2" em cima do texto cifrado e teremos como resposta de volta o texto claro.
 
 Basicamente na criptografia assimétrica temos que a chave pública pode ser conhecida por todos e é utilizada para cifrar o texto claro. Por sua vez, a chave privada deve permanecer secreta e é utilizada para decifrar o texto cifrado. Esse processo nos garante a confidencialidade da informação. Porém, também é possível utilizar a chave privada para cifrar o texto claro e a respectiva chave pública para decifrar a mensagem criptografada. Neste caso, busca-se garantir a autenticidade. É caso típico de assinaturas digitais.
 
@@ -842,8 +843,8 @@ Portanto, uma chave pública é disponibilizada gratuitamente a qualquer pessoa 
 
 Existem diferentes algoritmos assimétricos sendo uns dos mais conhecidos o RSA que tem esse nome devido aos seus desenvolvedores Rivest, Shamir, e Adleman. Este algoritmo é amplamente utilizado nos navegadores, para sites seguros e para criptografar e-mails.
 
-##### [RSA](https://www.rfc-editor.org/rfc/rfc8017.html)
-O RSA é o método de criptografia mais utilizado no mundo. No RSA utilizamos duas chaves, uma chave para encriptação e outra para decriptação. Ele resolve o problema de distribuição de chaves da criptografia simétrica usando envelopamento digital e a segurança é baseada na fatoração de números extensos. Quanto maior a chave maior a segurança, porém o processamento também é maior.
+##### RSA
+O [RSA](https://www.rfc-editor.org/rfc/rfc8017.html) é o método de criptografia mais utilizado no mundo. No RSA utilizamos duas chaves, uma chave para encriptação e outra para decriptação. Ele resolve o problema de distribuição de chaves da criptografia simétrica usando envelopamento digital e a segurança é baseada na fatoração de números extensos. Quanto maior a chave maior a segurança, porém o processamento também é maior.
 
 A construção de chaves é feita através da multiplicação de dois números primos relativamente grandes que gera um número que será elevado a um expoente que é um número público, e após isso ele é novamente elevado a outro expoente que é um número privado. Assim teremos um número público e um número privado. O processo de descriptografia (em que os números primos são novamente gerados) será revertido através de fatoração, que é o inverso da multiplicação.
 
@@ -913,7 +914,7 @@ A criptografia assimétrica é considerada mais segura, pois você não precisa 
 - https://academy.bit2me.com/pt/o-que-%C3%A9-curva-el%C3%ADptica-ecdsa/
 - https://en.wikipedia.org/wiki/PKCS
 
-## [JWT](https://jwt.io/)
+## JWT
 
 O [JWT (JSON Web Token)](https://jwt.io/) é definido no site oficial na seguinte forma http://jwt.io: "JWT é um padrão aberto que define uma forma compacta e auto-contida para transmitir de forma segura, informações entre duas partes como objeto JSON".
 
@@ -1010,12 +1011,53 @@ O Health Checks nada mais é que um middleware que nos fornecem um endpoint conf
 #### Fontes e links uteis:
 - https://balta.io/blog/aspnet-health-check
 
-### Arquitetura de CircuitBrake
-### Caches
-### API Gateways/ BFF
-### SQL Injections
+### Arquitetura de CircuitBraker
+É um desenho de arquitetura que, ao identificar que um serviço/API não está saudável para receber requisições, entra em um modo de recuperação (falha rapidamente) e evita que o acumulo de requisições piore o seu estado já degradado.
 
-## [Swagger e OpenAPI](https://swagger.io/docs/specification/about/)
+Atualmente são bem conhecidas as vantagens que uma arquitetura microservices possui. Dentre muitas, podemos citar como exemplo: aplicações distribuídas na nuvem, baixo acoplamento, reusabilidade e agilidade para o negócio. Mas, ao mesmo tempo, esta é uma arquitetura frágil porque quando falamos de um sistema distribuído sabemos que cada ação do usuário invocará diversos serviços separados. O que antes — na arquitetura monolítica — eram chamadas in-memory, agora são remotas através da rede, o que funciona muito bem quando os serviços estão online e rodando.
+
+Mas o que acontece quando um ou mais serviços ficam indisponíveis ou respondem com alta latência (o infame time out)? Estes casos quando não tratados podem levar a falhas em cascata afetando diversos serviços da empresa.
+
+O padrão de projeto (Design Pattern) [Circuit Breaker](https://en.wikipedia.org/wiki/Microservices) ajuda a evitar a ocorrência dessas falhas em cascata. Ele permite que você construa um serviço tolerante a falhas e resiliente que consiga sobreviver quando os principais serviços que ele consome estiverem indisponíveis ou com alta latência.
+
+#### Problemas ocorrem
+> “A sabedoria consiste na antecipação das consequências”. Norman Cousins
+
+Vamos combinar, todos os serviços falharão em algum momento, é tudo uma questão de tempo. Os Circuit Breakers permitem que o sistema lide com essas falhas normalmente. Ao aplicar este padrão, estamos antecipando possíveis problemas (ou consequências 😃) da aplicação. A tradução literal de Circuit Breaker é “disjuntor”, e a finalidade desse padrão de projeto é a mesma deste aparelho. O conceito é simples e direto. Ele envolve uma função com uma regra que monitora e rastreia possíveis falhas. Quando uma falha ocorre determinado número de vezes, o “disjuntor cai” e protege o sistema para evitar as falhas catastróficas. Para entender melhor, vamos analisar os seus três estados: Closed, Open e Half-Open:
+|[Diagrama](https://martinfowler.com/bliki/CircuitBreaker.html)|
+|-|
+|![circuit-breker-diagram](https://martinfowler.com/bliki/images/circuitBreaker/state.png) |
+|  |
+
+- **Closed**: Quando tudo está normal, o Circuit Breaker permanece Closed e todas as chamadas para os serviços ocorrem normalmente. Se o número de falhas excede um limite predeterminado, o estado muda para Open.
+
+- **Open**: Neste estado, o Circuit Breaker não executará a chamada do serviço e retornará um erro tratado (existem casos que, ao invés disso, pode retornar uma informação do cache).
+
+- **Half-Open**: Após um período, o estado é alternado para Half-Open para testar se o problema original ainda ocorre. Se uma única falha ocorrer, o estado será alternado para Open novamente. Se for bem-sucedido, ele volta ao normal (Closed).
+
+#### Implementações
+Existem várias maneiras de implementar este Design Pattern no seu projeto. Você pode implementar seu próprio algoritmo utilizando o paradigma preferido (orientação a objetos, funcional, etc). Outra opção é utilizar alguma biblioteca já pronta. Na minha opinião, não existe certo ou errado, mas prefiro sempre aproveitar a experiê ncia e maturidade dessas ferramentas já utilizadas por outros desenvolvedores. Durante a elaboração deste post conheci diversas opções, vou listar algumas:
+
+- **Hystrix**: Este é de longe o mais famoso de todos. É uma biblioteca Java criada pelo Netflix. O Hystrix também possui um dashboard próprio para monitorar os serviços.
+- **PyBreaker**: Como o nome já entrega, esta é uma biblioteca do Python. É uma das mais famosas — de acordo com o git stars ⭐️— da linguagem.
+- **Polly**: O Polly é uma biblioteca que garante a resiliência de aplicações .NET. Ela implementa diversos algoritmos para garantir isso, um deles é o Circuit Breaker.
+- **Opossum**: Uma das bibliotecas Circuit Breakers para Node. (Existem muitas opções)
+
+
+#### Fontes e links uteis:
+- https://martinfowler.com/bliki/CircuitBreaker.html
+- https://medium.com/trainingcenter/design-pattern-para-microservices-circuit-breaker-f4a5b68f73d1
+- https://en.wikipedia.org/wiki/Microservices
+
+### Cache
+|[Diagrama](https://womakerscode.gitbook.io/pwa-workshop/4.-estrategia-de-cache-para-rest-api)|
+|:-:|
+|![cache_diagram](https://149276298-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-Lm0i7_LcOK6f63R9uAb%2F-Lm2KHIe2YW1uL0db7oY%2F-Lm2K_uRqreSUQmUkQRm%2Fimage.png?alt=media&token=e08f012e-e25e-4b7f-891f-51b449933cfa)|
+#### Fontes e links uteis:
+- https://developer.mozilla.org/pt-BR/docs/Web/API/Cache
+- https://womakerscode.gitbook.io/pwa-workshop/4.-estrategia-de-cache-para-rest-api
+
+## Swagger e OpenAPI
 #### Fontes e links uteis:
 - https://swagger.io/docs/specification/about/
 - https://gr1d.io/2022/04/15/swagger/
