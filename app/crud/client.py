@@ -10,41 +10,41 @@ from datetime import datetime
 from logger import Logger
 
 def ExecuteRequest(method, url, body={}):
-    Logger.Info(f">>> [{method}] {url}: Body: {body}")    
+    Logger.Info(f">>> Request: [{method}] {url} -> Body:{body}")    
     response = requests.request(method=method, url=url, json=body, headers={'Content-Type': 'application/json'})
     try:
         responseBody = response.json()
     except:
         responseBody = {}
-    Logger.Info(f"<<< [{method}] Respose: {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(responseBody)}")
+    Logger.Info(f"<<< Respose: [{method}] {HTTPStatus(response.status_code).name}:{response.status_code} -> Body:{json.dumps(responseBody)}")
 
     return response
 
 def TestRequest(method, url, body={}, message="", expected=[ HTTPStatus.OK ]):
-    Logger.Info(f">>> {message} -> expecting HTTP {expected}" )
+    Logger.Info(f"### {message} -> expecting HTTP {expected}" )
     response = ExecuteRequest(method, url, body)
    
     if response.status_code in expected:
-        Logger.Success(f"<<< OK!\n\tAccepted values:\t{expected}\n\tReceived value:\t\tHTTP {response.status_code}")
+        Logger.Success(f"### OK!\n\tAccepted values:\t{expected}\n\tReceived value:\t\tHTTP {response.status_code}")
     else:
-        Logger.Error(f"<<< FAIL!\n\tAccepted values:\t{expected}\n\tReceived value:\t\tHTTP {response.status_code}")
+        Logger.Error(f"### FAIL!\n\tAccepted values:\t{expected}\n\tReceived value:\t\tHTTP {response.status_code}")
 
 url = "http://localhost:5000/items"
 
-Logger.Ask(f"### Let's try to load all items, are there any there? (press any key to continue)")
+Logger.Ask(f" -> Let's try to load all items, are there any there? (press any key to continue)")
 TestRequest('GET', url, {}, "Trying to get all items", [ HTTPStatus.OK, HTTPStatus.NOT_FOUND])
 
 items = {}
 qty = 5
 
-Logger.Ask(f"### Let's try to insert some items now, {qty} in total (press any key to continue)")
+Logger.Ask(f" -> Let's try to insert some items now, {qty} in total (press any key to continue)")
 
 for i in range(qty):
     id = f"item{i}"        
     items[id] = {} 
     items[id]['item'] = { f"key{i}" : f"value_{i}"  }
     
-    TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert items for first time", [ HTTPStatus.CREATED ])
+    TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert items for first time", [ HTTPStatus.CREATED, HTTPStatus.OK ])
     TestRequest('POST', f"{url}/{id}", items[id], "Trying to insert an item that already exists", [ HTTPStatus.OK ])
     TestRequest('GET', f"{url}/{id}", {}, f"Trying to get all item, by ID (key = {id})", [ HTTPStatus.OK ])
 
