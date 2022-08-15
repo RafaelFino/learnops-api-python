@@ -470,7 +470,19 @@ Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados
 ## Qual a relação entre as APIs e os microserviços?
 
 ## Autenticações e Segurança
-### O que é um token
+### O que é um [token](https://pt.wikipedia.org/wiki/Token_(inform%C3%A1tica)) de autenticação
+Chamamos de [token de autenticação](https://pt.wikipedia.org/wiki/Token_(chave_eletr%C3%B4nica)#:~:text=Token%20%C3%A9%20um%20dispositivo%20eletr%C3%B4nico,conectado%20a%20uma%20porta%20USB.) um conjunto de caracteres, chave que indentifica uma operação. Por exemplo:
+
+Imagine uma API que tem um nível de proteção que precisa de usuário e senha (chamamos também de credênciais) para liberar acesso aos seus serviços, a cada requisição o cliente iria precisar enviar esses dados e a API validar se essas credênciais possuem acesso a esses serviços. 
+
+Parece custoso e pouco seguro, certo? Nesses casos podemos ter um serviço responsável por validar se um usuário e senha são válidos e gerar um **token**, que pode identificar esse usuário nas próximas requisições.
+
+Nesse caso, na autenticação por token, o usuário insere login e senha na plataforma, o que gera um token (que podemos também chamar de certificado digital) que o permite navegar pelos recursos do seu interesse, dentro de um prazo determinado, sem a necessidade de utilizar os dados do login novamente.
+
+#### Fontes e links uteis:
+- https://blog.engdb.com.br/autenticacao-por-token/
+- https://www.linkedin.com/pulse/autentica%C3%A7%C3%A3o-baseada-em-token-uma-aplica%C3%A7%C3%A3o-rest-tarcisio-carvalho/?originalSubdomain=pt
+
 ### [Criptografias](https://en.wikipedia.org/wiki/Cryptography)
 Através da criptografia obtemos diversas propriedades importantes como a confidencialidade (sigilo da informação), integridade (garantia que a mensagem não foi alterada), autenticidade (quem foi a autor da mensagem) e irretratabilidade ou não repúdio (capacidade de não negar a construção da mensagem). Temos ainda que a criptografia Simétrica garante a confidencialidade e a integridade, enquanto que a criptografia Assimétrica garante a confidencialidade, integridade, autenticidade e a irretratabilidade ou não repúdio.
 
@@ -618,6 +630,81 @@ A criptografia assimétrica é considerada mais segura, pois você não precisa 
 - https://en.wikipedia.org/wiki/PKCS
 
 ## [JWT](https://jwt.io/)
+
+O [JWT (JSON Web Token)](https://jwt.io/) é definido no site oficial na seguinte forma http://jwt.io: “JWT é um padrão aberto que define uma forma compacta e auto-contida para transmitir de forma segura, informações entre duas partes como objeto JSON”.
+
+Quando estamos trabalhando com API’s, nós precisamos pensar na segurança no momento no momento de trafegar os dados e principalmente no nível de permissão que cada usuário deverá ter. Existem muitas formas de se fazer isso, mas uma que vem se destacando a cada dia que se passa é o JWT (JSON Web Token), por ser muito seguro e fácil de se implementar. Nas próximas sessões, será abordado a sua teoria com alguns exemplos e no final iremos criar uma aplicação com Node.js para exemplificarmos melhor o seu funcionamento.
+
+Bom, o JWT (JSON Web Token) é um sistema de transferência de dados que pode ser enviado via POST ou em um cabeçalho HTTP (header) de maneira “segura”, essa informação é assinada digitalmente por um algoritmo HMAC, ou um par de chaves pública/privada usando RSA. Podemos ver na imagem a baixo um cenário onde será requisitado um token através do Verbo HTTP POST, que irá devolver um token validado para que nas próximas requisições que utilizem os Verbos HTTP possam utilizar.
+
+O JWT é divido em três partes separadas por um “.” essas três partes são o Header,Payload e a Signature
+
+### Header
+
+O header é a primeira parte do JWT e ele é divido em duas partes, o algoritmo de codificação e o tipo do token e essas duas partes são encodadas em Base64, ficaria assim:
+
+``` json
+{
+
+  “alg” : "HS256",
+  “typ” : "JWT"
+
+}
+```
+
+A propriedade “alg" define o algoritmo do token que nesse caso é o HMAC SHA256 e a propriedade “typ" é o tipo do token que é o JWT. 
+
+Após ser enconcado em Base64 o header fica assim:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+### Payload (Claims)
+Os payloads são objetos JSON que contem os claims, nessa parte que nós trabalhamos com os “pedidos”, carga de dados ou dados enviados. Existem 3 tipos de claims em Payloads: reserved, public, e private claims.
+
+Reserved claims: Atributos não obrigatórios (mas recomendados) que podem ser um conjunto de informações uteis e interoperáveis normalmente utilizados por protocolos de segurança em API’s:
+
+- “iss” (Issuer) Origem do token
+- “iat” (issueAt) Timestamp de quando o token foi gerado
+- “exp” (Expiration) Timestamp de quando o token expira
+- “sub” (Subject) Entidade a quem o token pertence, normalmente o ID do usuário
+- Public claims: São atributos que definem o uso do JWT e informações úteis para a aplicação
+- Private claims: São atributos definidos especialmente para compartilhar informações entre aplicações
+
+
+``` json
+{
+
+   “nome" : "fulano”,
+   “admin” : true
+
+}
+```
+
+Após ser enconcado em Base64 o payload ficaria assim:
+
+```
+eyJub21lIjoiRnVsYW5vIiwiYWRtaW4iOnRydWV9
+```
+
+### Signature
+
+Por último temos signature que é o header e payload codificado com o algoritmo do header junto com uma palavra segredo que é usada pra codificar e não deve ser compartilhada com ninguém.
+
+Após ser enconcado em Base64 ficaria assim:
+
+```
+IShPdPgMqjygLcv6FpePbFuRLJHBTdeKSNDQIpR-X2E
+
+``` 
+
+Então nosso token completo fica assim:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiRnVsYW5vIiwiYWRtaW4iOnRydWV9.IShPdPgMqjygLcv6FpePbFuRLJHBTdeKSNDQIpR-X2E 
+```
+
 ### Fontes e links uteis:
 - https://jwt.io/
 - https://www.rfc-editor.org/rfc/rfc7519
