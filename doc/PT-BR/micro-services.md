@@ -1,21 +1,20 @@
 # Table of Contents
 1. [Micro Serviços](#micro-servios)
-	1. [Qual a relação entre as APIs e os microserviços?](#qual-a-relao-entre-as-apis-e-os-microservios)
-		1. [O que são Microserviços?](#o-que-so-microservios)
-		2. [Componentes do Microserviços](#componentes-do-microservios)
-		3. [Tipos de Microserviços](#tipos-de-microservios)
-	2. [Os microserviços são RESTful?](#os-microservios-so-restful)
-		1. [Como os Microserviços funcionam?](#como-os-microservios-funcionam)
-		2. [Como as APIs funcionam?](#como-as-apis-funcionam)
-		3. [Microserviços vs API: Benefícios de cada um deles](#microservios-vs-api-benefcios-de-cada-um-deles)
-		4. [Benefícios do uso de APIs](#benefcios-do-uso-de-apis)
-		5. [Microserviços e API podem trabalhando juntos](#microservios-e-api-podem-trabalhando-juntos)
-		6. [Fontes e links uteis:](#fontes-e-links-uteis)
+2. [O que são Microserviços?](#o-que-so-microservios)
+	1. [Componentes do Microserviços](#componentes-do-microservios)
+	2. [Tipos de Microserviços](#tipos-de-microservios)
+	3. [Os microserviços são RESTful?](#os-microservios-so-restful)
+	4. [Como os Microserviços funcionam?](#como-os-microservios-funcionam)
+3. [Como as APIs funcionam?](#como-as-apis-funcionam)
+4. [Microserviços vs API: Benefícios de cada um deles](#microservios-vs-api-benefcios-de-cada-um-deles)
+	1. [Benefícios da utilização de Microserviços](#benefcios-da-utilizao-de-microservios)
+	2. [Benefícios do uso de APIs](#benefcios-do-uso-de-apis)
+	3. [Microserviços e API podem trabalhando juntos](#microservios-e-api-podem-trabalhando-juntos)
+5. [Fontes e links uteis](#fontes-e-links-uteis)
+
 
 # Micro Serviços
-## Qual a relação entre as APIs e os microserviços?
-
-### O que são Microserviços?
+# O que são Microserviços?
 Microserviços são serviços menores, acoplados frouxamente, que você pode implantar independentemente. Aqui, “serviços” referem-se a diferentes funções de um aplicativo.
 
 Assim, em uma arquitetura de microserviços, as funções de um aplicativo são divididas em muitos componentes menores que servem a propósitos específicos. Estes componentes ou serviços são de granulação fina e normalmente têm pilhas de tecnologia, métodos de gerenciamento de dados e bancos de dados separados. Eles podem se comunicar com outros serviços do aplicativo através de APIs REST, corretores de mensagens e streaming.
@@ -26,7 +25,7 @@ O acoplamento solto ajuda a reduzir as complexidades e dependências de um aplic
 
 Aqui, os termos “microserviços” e “microserviços” são distintos um do outro. Um microserviço representa a funcionalidade central de um aplicativo e roda independentemente. Por outro lado, o termo “microserviços” significa a arquitetura completa para a construção de um aplicativo. Ele vai além das funções principais e do acoplamento solto – ele também reestrutura seus processos de desenvolvimento e comunicação para permitir a integração de novas funcionalidades, fornecer escalabilidade e prepará-lo para falhas e problemas.
 
-### Componentes do Microserviços
+## Componentes do Microserviços
 Os principais componentes dos microserviços são API, lógica de negócios, camada de acesso aos dados e banco de dados. Vamos olhar para a versão expandida de diferentes componentes:
 
 - Clientes: Estes podem ser aplicativos, sites, ou outros serviços. A arquitetura dos microserviços inclui vários tipos de clientes para lidar com algumas tarefas, tais como realizar uma busca, configuração, construção, etc.
@@ -37,7 +36,7 @@ Os principais componentes dos microserviços são API, lógica de negócios, cam
 - Conteúdo estático: Microserviços, após comunicarem-se entre si, implantam outro conteúdo estático em um serviço de armazenamento em nuvem para permitir a entrega direta do conteúdo aos clientes usando uma rede de entrega de conteúdo (CDN).
 - Entrega do serviço: Este é um guia de microserviços para encontrar rotas de comunicação entre os microserviços. Ele gerencia uma lista de serviços onde os nós são encontrados.
 
-### Tipos de Microserviços
+## Tipos de Microserviços
 Os microserviços podem ser categorizados em dois tipos amplos – microserviços stateless e stateful.
 
 - Microserviços sem Estado: Estes são os blocos de construção de sistemas distribuídos. Eles não mantêm ou armazenam nenhum estado de sessão entre duas solicitações, daí o nome “stateless” micro-services. Além disso, mesmo que uma instância de serviço seja removida, a lógica geral de processamento do serviço não é afetada. Esta é a razão pela qual os sistemas distribuídos aproveitam os microserviços “stateless”.
@@ -58,8 +57,7 @@ Microserviços é sobre o estilo de design e arquitetura de um aplicativo, e voc
 
 O RESTful API surgiu antes dos microserviços. Ela assume que todos os objetos têm interfaces uniformes e são completamente agnósticos de linguagem e acoplados frouxamente. Aqui, a semântica e as interfaces permanecem as mesmas, e a implementação de API pode mudar facilmente a qualquer momento sem afetar os consumidores. Portanto, RESTful e os Microserviços podem resolver problemas diferentes; eles ainda podem trabalhar juntos.
 
-
-### Como os Microserviços funcionam?
+## Como os Microserviços funcionam?
 Para entender como os microserviços funcionam, vamos voltar ao passado.
 
 O desenvolvimento de software tradicional, que ainda continua em muitas organizações, utiliza uma arquitetura monolítica. Um “monólito” se refere a uma única e grande aplicativo que contém todas as suas funcionalidades e características e armazena tudo em um único lugar.
@@ -81,7 +79,7 @@ Essas capacidades tornam os microserviços desejáveis para abordagens modernas 
 
 Usando containers Linux, você pode facilmente executar várias partes do aplicativo separadamente em um único hardware com controles maiores.
 
-### Como as APIs funcionam?
+# Como as APIs funcionam?
 A interface de programação do aplicativo (API) fornece respostas dos usuários aos sistemas e envia as respostas de volta aos usuários.
 
 Esta é a versão mais simples de colocar como uma API funciona, mas muita coisa acontece em segundo plano. Uma API permite que um desenvolvedor faça uma solicitação ou uma chamada para transferir informações. Esta interação acontece através da programação JSON. Ela também executa muitas ações como adicionar e remover dados, coletar informações e atualizar detalhes. 
@@ -98,10 +96,10 @@ Uma vez que você tenha inserido seu PIN e procedido com a transação, o Google
 
 Ao permitir que os produtos e serviços de software se comuniquem entre si, as APIs simplificam o desenvolvimento de aplicativos, o dinheiro e o tempo. APIs dariam a você a flexibilidade e o controle do projeto para inovar.
 
-### Microserviços vs API: Benefícios de cada um deles
+# Microserviços vs API: Benefícios de cada um deles
 Vamos comparar microserviços vs API sobre como eles são benéficos para desenvolvedores, usuários finais e empresas.
 
-#### Benefícios da utilização de Microserviços
+## Benefícios da utilização de Microserviços
 Dividir as funções de um aplicativo em serviços menores ou microserviços tem muitas vantagens. Vejamos um por um.
 
 - Modularidade: Significa dividir os serviços em diferentes módulos com seu próprio conjunto de funcionalidades e dependências para tornar-se um aplicativo fácil de desenvolver, testar e entender. Isto reduz as complexidades e dificuldades que as empresas enfrentam com a abordagem monolítica de desenvolvimento de software.
@@ -125,7 +123,7 @@ Embora os microserviços pareçam ser uma abordagem eficiente que pode lhe ofere
 
 No entanto, o DevOps pode resolver muitos desses problemas; ele pode ter seus próprios desafios. O cálculo dos riscos e benefícios ainda pesa muito mais do que os riscos.
 
-### Benefícios do uso de APIs
+## Benefícios do uso de APIs
 As APIs se tornaram cruciais no mundo moderno dos negócios, com pessoas alavancando a internet e os serviços como nunca antes. Aqui estão alguns dos benefícios das APIs:
 
 - Velocidade: As APIs oferecem uma velocidade incrível para várias tarefas tanto para as empresas quanto para os usuários. Elas ajudam a acelerar as operações para oferecer agilidade para as empresas e reduzir os incômodos para os clientes. Por exemplo, se você quiser encomendar algo online, você pode ir diretamente ao seu aplicativo e verificar se o item está disponível ou não.
@@ -144,7 +142,7 @@ Assim como os microserviços, os APIs também vêm com certos desafios, apesar d
 - APIs podem fazer a performance de seu aplicativo depender da performance deles. Portanto, se a API tiver alguns problemas, ela afetará a performance de seu aplicativo, mesmo que seu aplicativo não tenha nenhum problema em si mesma. Isto implica que se a API for comprometida por um atacante, seus dados também podem ser.
 - As APIs são tão boas que as organizações podem acabar usando muitas delas, mesmo em centenas. Agora, o problema é que quando múltiplas APIs rodam com seus serviços, dependências e pontos finais, pode se tornar difícil para a organização lidar com elas. Você pode se sentir sobrecarregado para controlar o uso das APIs em sua organização, monitorar dados e proteger sua segurança.
 
-### Microserviços e API podem trabalhando juntos
+## Microserviços e API podem trabalhando juntos
 Microserviços e API podem trabalhar juntos em um aplicativo. Embora eles possam existir separadamente, usar ambos juntos em seu aplicativo pode ajudar as organizações a implementar efetivamente a arquitetura de microserviços.
 
 Muitas empresas enfrentam dificuldades para implantar a arquitetura de microserviços quando já possuem outras arquiteturas implantadas. Além disso, integrar múltiplos e menores serviços e se beneficiar deles é problemático.
@@ -159,5 +157,5 @@ Além disso, APIs podem ajudar a reduzir os custos de TI para fazer uma integra�
 
 Assim, a combinação de microserviços com API permite que você alcance toda a bondade dos microserviços e limite seus inconvenientes.
 
-### Fontes e links uteis:
+# Fontes e links uteis
 - https://kinsta.com/pt/blog/microservicos-vs-api/

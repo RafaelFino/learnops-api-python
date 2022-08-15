@@ -1,9 +1,9 @@
 # Table of Contents
 1. [JWT](#jwt)
-		1. [Header](#header)
-		2. [Payload (Claims)](#payload-claims)
-		3. [Signature](#signature)
-		4. [Fontes e links uteis:](#fontes-e-links-uteis)
+    1. [Header](#header)
+    2. [Payload (Claims)](#payload-claims)
+    3. [Signature](#signature)
+    4. [Fontes e links uteis](#fontes-e-links-uteis)
 
 # JWT
 
@@ -15,7 +15,7 @@ Bom, o JWT (JSON Web Token) é um sistema de transferência de dados que pode se
 
 O JWT é divido em três partes separadas por um "." essas três partes são o Header,Payload e a Signature
 
-### Header
+## Header
 
 O header é a primeira parte do JWT e ele é divido em duas partes, o algoritmo de codificação e o tipo do token e essas duas partes são encodadas em Base64, ficaria assim:
 
@@ -34,7 +34,7 @@ Após ser enconcado em Base64 o header fica assim:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
-### Payload (Claims)
+## Payload (Claims)
 Os payloads são objetos JSON que contem os claims, nessa parte que nós trabalhamos com os "pedidos", carga de dados ou dados enviados. Existem 3 tipos de claims em Payloads: reserved, public, e private claims.
 
 Reserved claims: Atributos não obrigatórios (mas recomendados) que podem ser um conjunto de informações uteis e interoperáveis normalmente utilizados por protocolos de segurança em API’s:
@@ -62,7 +62,7 @@ Após ser enconcado em Base64 o payload ficaria assim:
 eyJub21lIjoiRnVsYW5vIiwiYWRtaW4iOnRydWV9
 ```
 
-### Signature
+## Signature
 
 Por último temos signature que é o header e payload codificado com o algoritmo do header junto com uma palavra segredo que é usada pra codificar e não deve ser compartilhada com ninguém.
 
@@ -79,7 +79,7 @@ Então nosso token completo fica assim:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiRnVsYW5vIiwiYWRtaW4iOnRydWV9.IShPdPgMqjygLcv6FpePbFuRLJHBTdeKSNDQIpR-X2E 
 ```
 
-### Fontes e links uteis:
+## Fontes e links uteis
 - https://jwt.io/
 - https://www.rfc-editor.org/rfc/rfc7519
 - https://www.devmedia.com.br/como-o-jwt-funciona/40265
