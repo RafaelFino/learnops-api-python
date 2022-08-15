@@ -1050,10 +1050,15 @@ Existem várias maneiras de implementar este Design Pattern no seu projeto. Voc�
 - https://en.wikipedia.org/wiki/Microservices
 
 ### Cache
+Uma cache é um bloco de memória para o armazenamento temporário de dados que possuem uma grande probabilidade de serem utilizados novamente. Uma definição mais simples de cache poderia ser: uma área de armazenamento temporária onde os dados frequentemente acedidos são armazenados para acesso rápido.
+
+O propósito do cache é acelerar a busca de dados que são muito utilizados e poupar a utilização de recursos de um servidor. Com o cache, você tem os seguintes benefícios na sua API: Redução da latência de rede. Redução de carga de processamento dos servidores.
+
 |[Diagrama](https://womakerscode.gitbook.io/pwa-workshop/4.-estrategia-de-cache-para-rest-api)|
 |:-:|
 |![cache_diagram](https://149276298-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-Lm0i7_LcOK6f63R9uAb%2F-Lm2KHIe2YW1uL0db7oY%2F-Lm2K_uRqreSUQmUkQRm%2Fimage.png?alt=media&token=e08f012e-e25e-4b7f-891f-51b449933cfa)|
 #### Fontes e links uteis:
+- https://en.wikipedia.org/wiki/Cache_(computing)
 - https://developer.mozilla.org/pt-BR/docs/Web/API/Cache
 - https://womakerscode.gitbook.io/pwa-workshop/4.-estrategia-de-cache-para-rest-api
 
@@ -1062,5 +1067,3 @@ Existem várias maneiras de implementar este Design Pattern no seu projeto. Voc�
 - https://swagger.io/docs/specification/about/
 - https://gr1d.io/2022/04/15/swagger/
 - https://medium.com/@ronilsonribeiro/como-interpretar-um-swagger-cdc331b68804
-
-## Outras ferramentas de desenvolvimento de APIs
