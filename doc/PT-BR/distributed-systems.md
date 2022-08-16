@@ -40,7 +40,8 @@ Em sistemas computacionais distrbuídos, ganhamos em escala, independência, res
 - Cliente Servidor: É um tipo de arquitetura muito comum, onde existe um servidor provendo serviços para vários clientes
 - Modelos de alta disponibilidade (HA): São desenhos de arquitetura para entregar um alto nível de resiliência, para que mesmo em situações de falha o serviço continue sendo provido ou que seja capaz de distribuir sua capacidade de processamento em mais do que um único ponto
 
-### SOA - Orientação a serviços: 
+### SOA - Orientação a serviços:
+![SOA](https://blog-static.infra.grancursosonline.com.br/wp-content/uploads/2021/05/28091501/principiosSOA.png)
 Service Oriented Architectures (SOA) é, em tradução livre, Arquitetura Orientada a Serviços. Esse conceito de arquitetura busca disponibilizar as funcionalidades de um sistema como um serviço.
 
 Desta forma, essas funcionalidades podem ser compartilhadas e reutilizadas entre aplicações. Seu principal objetivo é ser mais flexível em atender às necessidades do mercado.
@@ -50,6 +51,127 @@ Em 1996, os pesquisadores do Gartner Roy Schulte e Yefim Natis mencionaram pela 
 Um dos componentes mais importantes do SOA é o Enterprise Service Bus (ESB), um barramento de serviços corporativos.
 
 Esse barramento disponibiliza com maior facilidade os serviços do sistema para os usuários e outras aplicações, acelerando processos de integração.
+
+#### Padronização do contrato de serviço
+Um contrato de serviço representa descrições de um serviço e de outros documentos que descrevem como um serviço pode ser acessado.
+
+O contrato tem por objetivo principal definir as capacidades e o modelo de dados/expressão funcional de determinado serviço. Por meio da leitura de um contrato funcional de serviço, o consumidor deve ter clareza daquilo que o serviço se propõe:
+
+- A fazer
+- Como fazer
+
+O contrato de serviço funciona como uma interface funcional do serviço, expondo somente informações necessárias para consumo do mesmo e desprezando qualquer tipo de informação específica de tecnologia.
+
+O consumidor não precisa se preocupar em:
+- Como a lógica da solução funciona;
+- Qual linguagem de programação foi escrita;
+- Se consome dados de um determinado SGBD;
+- Entre outras informações específicas.
+
+O consumidor apenas precisa se preocupar somente em como consumi-la.
+
+Com a padronização do contrato de serviço, é possível determinar a estrutura de entrada e saída de dados para cada capacidade no contexto funcional do serviço. Essa capacidade é um método ou atividade de serviço para se executar determinado processo da lógica de serviço.
+
+A padronização contribui para evitar a transformação de dados nas mensagens enviadas/recebidas, o que é outra premissa importante na SOA.
+
+#### Abstração do serviço
+Além do que é descrito no contrato de serviço, serviços escondem a lógica do mundo exterior e ocultam detalhes funcionais, tecnológicos e de qualidade.
+
+Abstrair um serviço é uma questão muitas vezes complicada e exige algumas decisões delicadas
+
+O Serviço deve ser genérico o bastante para se adaptar ao máximo de composições possíveis
+Deve-se buscar:
+- O cenário de redundância de recursos
+- O desperdício financeiro
+- O atraso da TI frente ao negócio
+
+Não deve ser abstrato demais a ponto de o consumidor não saber do que se trata o serviço.
+
+Dentro desse princípio, nos deparamos com o termo agnóstico. Ele representa a capacidade de adaptação e serventia a diversos propósitos. Serviços com esta habilidade deixam de ser vistos como meros serviços e ganham uma posição importante na corporação:
+- Sendo reconhecidos como recursos empresariais;
+- Tendo valores estratégicos para o negócio como um todo.
+
+O poder de adaptação e a capacidade de utilização em diversos cenários é um grande passo para:
+- Obter-se um bom retorno de investimento (ROI)
+- Aumentar a agilidade operacional da TI
+- Diminuir a redundância de serviços e aplicações descartáveis para a empresa
+ 
+
+#### Baixo ou fraco acoplamento
+O acoplamento representa o nível de dependência entre recursos e serviços. Está relacionado com a capacidade de um serviço de ser independente de outros para realizar a sua tarefa.
+
+Existem duas formas de acoplamento entre o consumidor e o provedor do serviço:
+- Consumidor para implementação
+- Consumidor para o contrato
+
+O consumidor para implementação acontece quando o consumidor do serviço ignora os termos do contrato e acessa diretamente a funcionalidade de um serviço de forma indiscriminada e despadronizada.
+
+Já o consumidor para o contrato é o acoplamento ideal para consumo de serviço, pois garante-se que a lógica de solução será acessada se somente se o contrato de serviço for respeitado.
+
+#### Autonomia do serviço
+Sobre a autonomia de serviço, temos que os serviços têm controle sobre a lógica que a encapsulam.
+
+Esse princípio é fortemente influenciado pelo princípio de baixo acoplamento do serviço, pois quanto mais recursos compartilhados o serviço utilizar, menor será sua autonomia para o negócio.
+
+A autonomia prega que cada serviço deve ser responsável pelo seu ambiente em tempo de execução e projeto. No entanto, em composições complexas, à medida com que o serviço aproxima-se do topo da cadeia de composição, o nível de autonomia é automaticamente comprometido. Em contrapartida, é possível afirmar que quanto menor for a posição do serviço na composição, maior será sua autonomia.
+
+#### Visibilidade do serviço
+Esse princípio também é chamado de descoberta de serviço.
+
+Os serviços são projetados para ser exteriormente descritos, para que possam ser encontrados e avaliados através de mecanismos de descobertas disponíveis.
+
+Eles devem ser de fácil interpretação e descoberta e também devem ser genéricos o bastante para servirem a diversas causas.
+
+Neste princípio, há dois tipos de capacidades:
+
+- **Capacidade de descoberta:** Um serviço possui a capacidade de descoberta quando tem metadados e contrato coesos e padronizados, os quais permitem a descoberta deste serviço em dado ambiente
+- **Capacidade de interpretação:** Um serviço possui a capacidade de interpretação se, após descoberto, o candidato a consumidor conseguir identificar o objetivo, as capacidades e o modelo funcional necessário para se cumprir com o contrato de serviço.
+
+Relacionamento com outros princípios:
+
+- **Abstração de serviços:** O serviço deve ser sim o mais abstrato possível, mas não ao ponto de perder sua identidade
+- **Padronização do contrato de serviço:** Para auxiliar na modelagem do contrato, a capacidade de descoberta do serviço influencia na criação de convenções para:
+	- Nomenclaturas de capacidades
+	- Normalização de modelos
+ 
+
+#### Sem estado (Stateless)
+Por padrão SOA, serviços não devem guardar estado.
+
+O objetivo desse princípio é garantir o melhor desempenho do serviço por meio do isolamento da responsabilidade de se guardar estado. O serviço deve:
+
+- Receber a mensagem
+- Fazer o devido tratamento na mesma
+- Responder de forma esperada a cada requisição.
+
+Serviços minimizam a retenção da informação em determinada atividade.
+
+Serviços reutilizáveis e composições complexas por si só já aumentam consideravelmente a carga de processamento de infraestrutura e complexidade do projeto. Se adicionado o armazenamento de estado poderia ser o divisor de águas entre o sucesso e o fracasso a longo prazo.
+
+O excesso de dados em memória influenciaria diretamente na escalabilidade e disponibilidade do serviço, ferindo o princípio de autonomia do serviço.
+
+Alguns tipos de estado específicos para serviços:
+- **Ativo:** Indica que o serviço está em atividade, sendo usado ou invocado por um consumidor;
+- **Passivo:** Standby: Indica que o serviço está disponível mas não está em uso.
+ 
+
+#### Reusabilidade
+A lógica é dividida no serviço com a intenção de reuso.
+
+Esse princípio está associado à necessidade de adaptação do serviço a diferentes tipos de requisições e ambientes, dando corpo ao conceito de composição de serviços.
+
+A reusabilidade permite ao serviço contribuir com todos os objetivos estratégicos da arquitetura orientada a serviços de forma que a construção de recursos duplicados seja mitigada, facilitando assim o gerenciamento dos recursos de TI er consequentemente aumentando a agilidade da TI em responder a novas necessidades do negócio, aumentando consideravelmente o retorno de investimento da corporação.
+
+Uma vez que o alinhamento estratégico da TI com o negócio se perpetua por meio da adaptação dos serviços.
+
+#### Composição de serviços
+Vários serviços pequenos podem criar um serviço maior.
+
+#### Heterogeneidade
+Para promover a interoperabilidade, SOA promove na implementação de serviços a independência de:
+- Plataforma de desenvolvimento
+- Tecnologias de implementação
+- Linguagens de programação
 
 #### Principais vantagens do SOA
 O alinhamento com as regras de negócio é um dos maiores benefícios desse tipo de arquitetura. Podemos elencar outras vantagens como:
@@ -272,6 +394,7 @@ Portanto, para obter sucesso na adoção da arquitetura de micro serviços, esse
 ##### Links uteis:
 - https://martinfowler.com/bliki/MicroservicePremium.html
 - https://www.ibm.com/br-pt/cloud/learn/soa
+- https://blog.grancursosonline.com.br/quais-sao-os-principios-basicos-da-soa-teoria/
 - https://www.opus-software.com.br/o-que-e-soa-e-quais-os-beneficios/
 - https://www.redhat.com/pt-br/topics/cloud-native-apps/what-is-service-oriented-architecture
 - https://www.treinaweb.com.br/blog/voce-sabe-o-que-e-arquitetura-orientada-a-servicos-soa
