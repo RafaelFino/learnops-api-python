@@ -150,7 +150,7 @@ Web Service tem que ser visto por um conjunto de tecnologias, que são citadas p
 - UDDI: Descreve um registro mundial de serviços e serve com integração, propaganda e descoberta de serviços.
 
 ## Arquitetura de monolitos e microsserviços
-É possível desenvolver sistemas usando vários modelos de arquitetura de software e levando em conta as peculiaridades de cada desenvolvedor. Uma forte tendência no mercado de software atual é a arquitetura de microsserviços, geralmente colocada em oposição à arquitetura monolítica.
+É possível desenvolver sistemas usando vários modelos de arquitetura de software e levando em conta as peculiaridades de cada desenvolvedor. Uma forte tendência no mercado de software atual é a arquitetura de [microsserviços](https://blog.vinco.com.br/arquitetura-de-microsservicos-x-arquitetura-monolitica/), geralmente colocada em oposição à arquitetura monolítica.
 
 ### Arquitetura monolítica
 As linguagens de desenvolvimento de aplicações permitem que os sistemas sejam quebrados em módulos. No entanto, a forma tradicional projetada para o desenvolvimento de software é a criação de toda a arquitetura em um único executável monolítico, ou seja, todo o sistema em apenas um grande software.
@@ -158,6 +158,24 @@ As linguagens de desenvolvimento de aplicações permitem que os sistemas sejam 
 Esse modelo é a forma de desenvolver um sistema a fim de que todas as funções estejam em um único processo. Os diversos módulos do sistema são executados em uma mesma máquina, compartilhando recursos de processamento, memória, bancos de dados e arquivos.
 
 Como o sistema está inteiro naquele bloco, o desenvolvimento é mais ágil e é possível subir uma prova de conceito (Proof of Concept, ou PoC) ou uma primeira versão (Minimum Viable Product, ou MVP) para validar um produto ou negócio. O sistema monolítico é de desenvolvimento e compreensão simplificados, permitindo a execução por uma equipe menor e com menos qualificação.
+
+#### Desafios da arquitetura monolítica   
+Ao longo do tempo o sistema vai crescendo, se tornando mais complexo e consumindo cada vez mais recursos, o que acaba gerando também alguns desafios substanciais para a manutenção desse tipo de arquitetura. São eles:  
+
+##### Aumento da complexidade e tamanho ao longo do tempo 
+O sistema se torna tão complexo que a manutenção fica cada vez mais cara e lenta, porque os desenvolvedores têm que navegar em uma infinidade de códigos. 
+
+##### Alta dependência de componentes de código
+Muitas funções são interdependentes e entrelaçadas, de forma que a inclusão ou manutenção de componentes do sistema pode causar inconsistências ou comportamentos inesperados. 
+
+##### Escalabilidade do sistema é limitada 
+Mesmo que apenas parte da funcionalidade seja necessária na nova instância, uma arquitetura monolítica exige que todo o sistema seja replicado, o que gera custos maiores do que o esperado.  
+
+##### Falta de flexibilidade 
+Exige que os desenvolvedores fiquem amarrados à tecnologia originalmente escolhida para o sistema, mesmo que em algumas situações ela não seja a melhor escolha. 
+
+##### Dificuldade para colocar alterações em produção 
+Qualquer mudança, por menor que seja, requer a reinicialização do sistema. Como isso pode causar algum risco operacional, é necessário que as equipes de desenvolvimento, testes e manutenção desses sistema acompanhem essas alterações.  
 
 ### Arquitetura de microsserviços
 É uma maneira diferente de organizar e desenvolver softwares que visa criar diversos sistemas independentes, mas interligados. Desse modo, cada um dos microsserviços funciona dentro de seu próprio processo e contexto, com seu código especialista e banco de dados independente. Importante salientar que, por mais que o nome seja micro, não estamos diante de sistemas obrigatoriamente de baixa complexidade ou pequenos. Os microsserviços podem ser grandes e complexos sistemas interligados em outros microsserviços de diversos tamanhos e funcionalidades.
@@ -167,6 +185,29 @@ O maior trunfo é o desenvolvimento de acordo com a função, que fica bem-delim
 Desse modo, basta que seja possível integrá-los, mas eles não necessariamente precisam ser todos desenvolvidos pela mesma equipe. A software house pode até mesmo terceirizar questões específicas para, depois, utilizar os serviços desenvolvidos em seus sistemas de forma integrada.
 
 Por ser uma estrutura mais complexa, exige um maior nível de automação das implementações. Além disso, orquestrar todos os microsserviços é essencial para que tudo funcione. A complexidade exige desenvolvedores com qualificação maior ou, ao menos, uma boa coordenação de DevOps (Desenvolvimento e Operações) para assegurar um bom funcionamento.
+
+#### Benefícios dos micro serviços 
+##### Manutenção e evolução dos serviços mais estáveis 
+Como os desenvolvedores vão trabalhar com códigos que executam uma única função, os serviços individuais não vão acompanhar o potencial crescimento do sistema, evitando que você precise carregar uma parte desnecessária da aplicação.  
+
+##### Serviços com baixo nível de acoplamento e interdependência 
+A manutenção em um serviço específico não interfere diretamente nas outras funcionalidades do sistema. 
+
+##### Escalabilidade do sistema
+Os deploys e replicações de micro serviços são feitos por meio de infraestruturas de servidores, máquinas virtuais e containers que se organizam de forma independente. Isso torna o crescimento e a possibilidade de adaptação do sistema muito mais flexível. 
+
+##### Redução de custos 
+Cada aplicação só utiliza os serviços que necessita. Por isso, você não vai ter gastos extras carregando funcionalidades não utilizadas, afinal os custos estão diretamente associados à funcionalidade e à carga de uso do sistema.  
+
+##### Flexibilidade de tecnologia 
+Por conta do baixo acoplamento entre os serviços, não é necessário amarrar os desenvolvedores a uma tecnologia específica, o que te permite escolher a melhor opção para atender cada caso.  
+
+Isso diminui os riscos de obsolescência tecnológica e possibilita a evolução constante do sistema.  
+
+##### Facilidade de colocar alterações em produção 
+As mudanças no sistema são executadas por meio de alterações e evoluções feitas nos serviços. Portanto, o sistema como um todo não precisa ser reinicializado para continuar funcionando.  
+
+Assim, o time de desenvolvimento que vai precisar acompanhar a mudança será apenas o de responsáveis pelos serviços que estão sendo alterados. 
 
 ### Diferenças entre a arquitetura de microsserviços e a monolítica
 #### Governança
@@ -213,3 +254,5 @@ Escolher entre arquitetura de microsserviços e monolítica não é uma tarefa s
 - https://www.treinaweb.com.br/blog/voce-sabe-o-que-e-arquitetura-orientada-a-servicos-soa
 - https://www.devmedia.com.br/vantagens-e-desvantagens-de-soa/27437
 - https://blog.vinco.com.br/arquitetura-de-microsservicos-x-arquitetura-monolitica/
+- https://www.softplan.com.br/blog/microsservicos/
+- https://www.luiztools.com.br/post/o-que-e-um-micro-servico-ou-microservice/
