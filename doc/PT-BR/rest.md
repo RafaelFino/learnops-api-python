@@ -23,7 +23,7 @@ Tanto GET como POST na verdade são [métodos HTTP](https://developer.mozilla.or
  - **[GET](https://www.rfc-editor.org/rfc/rfc9110.html#name-get)** – é usado quando o cliente deseja obter recursos do servidor
  - **[POST](https://www.rfc-editor.org/rfc/rfc9110.html#name-post)** – é usado quando o cliente deseja enviar dados para processamento ao servidor, como os dados de um formulário, por exemplo.
  - **[PUT](https://www.rfc-editor.org/rfc/rfc9110.html#name-put)** – é usado quando o cliente deseja atualizar um dado de um recurso que está no servidor
- - **[DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#name-delete)** – é usado quando uo cliente deseja apagar um dado dew um recurso que está no servidor
+ - **[DELETE](https://www.rfc-editor.org/rfc/rfc9110.html#name-delete)** – é usado quando um cliente deseja apagar um dado de um recurso que está no servidor
 
 Existem outros métodos HTTP. Os dois métodos citados acima são os mais usados, principalmente em aplicações web. Quando o usuário digita um endereço e aperta enter na barra de endereço do navegador, ele realiza uma requisição do tipo GET. Já quando preenchemos um formulário e clicamos em enviar geralmente o método usado é o POST.
 
