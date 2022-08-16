@@ -247,7 +247,30 @@ As soluções da Vinco se comportam como microsserviços, pois são especializad
 
 Escolher entre arquitetura de microsserviços e monolítica não é uma tarefa simples. Mudar o modelo adotado também é uma escolha complexa, que envolve a análise de diversos fatores.
 
+### Fatores relevantes para adotar a arquitetura de micro serviços 
+Na análise de Martin Fowler, autor reconhecido na área de arquitetura de software, um sistema complexo que utiliza micro serviços tem um custo de manutenção menor do que o de aplicações com arquitetura monolítica, como exemplificado no gráfico a seguir: 
+
+![micro-servicos-Martin-Fowler](https://martinfowler.com/bliki/images/microservice-verdict/productivity.png)
+Ganho de produtividade vs. Aumento de complexidade do sistema Martin Fowler – Microservice Premium
+
+Entretanto, existe uma barreira que pode impactar a adoção de uma arquitetura baseada em micro serviços: o custo na entrada, quando comparamos esse valor com o de um sistema monolítico. Além disso, eventualmente, pode existir a necessidade de um esforço extra para a gestão dos micros serviços que deve ser considerado também. 
+
+Os grandes players do mercado podem ver isso como uma oportunidade para fornecer ferramentas que auxiliem os times na gestão dos micros serviços, com o objetivo de diminuir a barreira de entrada para a adoção dessa arquitetura, tendo em vista os benefícios a médio e longo prazo que ela oferece. 
+
+Por exemplo, a Microsoft já atua nesse sentido com o Azure Service Fabric. Esse recurso pretende atuar como middleware para facilitar a criação e gerenciamento de micro serviços em nível corporativo. Além disso, uma característica interessante do Service Fabric é que ele funciona independentemente da plataforma estar ou não na nuvem. 
+
+Não podemos deixar de mencionar também os possíveis riscos da adoção da arquitetura de micro serviços traz. Afinal, como estamos falando de sistemas complexos sempre há pontos que demandam mais atenção, independente da arquitetura escolhida.  
+
+No caso dos micro serviços, é necessário prestar atenção no(a):  
+
+- Aumento da complexidade da coordenação; 
+- Comunicação entre os micro serviços; 
+- Governança. 
+
+Portanto, para obter sucesso na adoção da arquitetura de micro serviços, esses fatores devem ser bem planejados e adequados para que a execução possa fazer parte da agenda da área de tecnologia da organização. 
+
 ##### Links uteis:
+- https://martinfowler.com/bliki/MicroservicePremium.html
 - https://www.ibm.com/br-pt/cloud/learn/soa
 - https://www.opus-software.com.br/o-que-e-soa-e-quais-os-beneficios/
 - https://www.redhat.com/pt-br/topics/cloud-native-apps/what-is-service-oriented-architecture
