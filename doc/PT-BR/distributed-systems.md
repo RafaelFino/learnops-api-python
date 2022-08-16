@@ -1,11 +1,3 @@
-# Table of Contents
-1. [Sistemas Distribuídos](#sistemas-distribudos)
-	1. [Desafios dos sistemas distrubuídos](#desafios-dos-sistemas-distrubudos)
-		1. [O que é um sistema distribuído?](#o-que-um-sistema-distribudo)
-		2. [Características de um sistema distribuído](#caractersticas-de-um-sistema-distribudo)
-		3. [Conceitos importantes ao se falar de sistemas computacionais distribuídos](#conceitos-importantes-ao-se-falar-de-sistemas-computacionais-distribudos)
-		4. [SOA - Orientação a serviços:](#soa--orientao-a-servios)
-
 # Sistemas Distribuídos
 ## Desafios dos sistemas distrubuídos
 ### O que é um sistema distribuído?
@@ -157,6 +149,62 @@ Web Service tem que ser visto por um conjunto de tecnologias, que são citadas p
 - WSDL: Tecnologia XML que descreve de forma padronizada a interface de um Web Service.
 - UDDI: Descreve um registro mundial de serviços e serve com integração, propaganda e descoberta de serviços.
 
+## Arquitetura de monolitos e microsserviços
+É possível desenvolver sistemas usando vários modelos de arquitetura de software e levando em conta as peculiaridades de cada desenvolvedor. Uma forte tendência no mercado de software atual é a arquitetura de microsserviços, geralmente colocada em oposição à arquitetura monolítica.
+
+### Arquitetura monolítica
+As linguagens de desenvolvimento de aplicações permitem que os sistemas sejam quebrados em módulos. No entanto, a forma tradicional projetada para o desenvolvimento de software é a criação de toda a arquitetura em um único executável monolítico, ou seja, todo o sistema em apenas um grande software.
+
+Esse modelo é a forma de desenvolver um sistema a fim de que todas as funções estejam em um único processo. Os diversos módulos do sistema são executados em uma mesma máquina, compartilhando recursos de processamento, memória, bancos de dados e arquivos.
+
+Como o sistema está inteiro naquele bloco, o desenvolvimento é mais ágil e é possível subir uma prova de conceito (Proof of Concept, ou PoC) ou uma primeira versão (Minimum Viable Product, ou MVP) para validar um produto ou negócio. O sistema monolítico é de desenvolvimento e compreensão simplificados, permitindo a execução por uma equipe menor e com menos qualificação.
+
+### Arquitetura de microsserviços
+É uma maneira diferente de organizar e desenvolver softwares que visa criar diversos sistemas independentes, mas interligados. Desse modo, cada um dos microsserviços funciona dentro de seu próprio processo e contexto, com seu código especialista e banco de dados independente. Importante salientar que, por mais que o nome seja micro, não estamos diante de sistemas obrigatoriamente de baixa complexidade ou pequenos. Os microsserviços podem ser grandes e complexos sistemas interligados em outros microsserviços de diversos tamanhos e funcionalidades.
+
+O maior trunfo é o desenvolvimento de acordo com a função, que fica bem-delimitada e serve a um propósito específico. Se pudéssemos resumir a arquitetura de microsserviços em uma palavra, seria especialização. Como cada serviço tem uma implantação diferente, a subida de uma nova versão não atrapalha a disponibilidade dos demais. Também é possível isolar os itens críticos em uma infraestrutura separada para escalar de forma independente do restante do sistema.
+
+Desse modo, basta que seja possível integrá-los, mas eles não necessariamente precisam ser todos desenvolvidos pela mesma equipe. A software house pode até mesmo terceirizar questões específicas para, depois, utilizar os serviços desenvolvidos em seus sistemas de forma integrada.
+
+Por ser uma estrutura mais complexa, exige um maior nível de automação das implementações. Além disso, orquestrar todos os microsserviços é essencial para que tudo funcione. A complexidade exige desenvolvedores com qualificação maior ou, ao menos, uma boa coordenação de DevOps (Desenvolvimento e Operações) para assegurar um bom funcionamento.
+
+### Diferenças entre a arquitetura de microsserviços e a monolítica
+#### Governança
+O nível de complexidade da coordenação é muito mais baixo em arquitetura monolítica. Existe uma questão relevante que torna a arquitetura monolítica desvantajosa nesse ponto: como tudo é desenvolvido em um único código, um problema em qualquer parte do processo pode causar uma queda completa no serviço. No desenvolvimento em microssistemas, isso não acontece e as crises são pontuais, permitindo o uso de funcionalidades não afetadas pelo problema.
+
+####  Prazo do projeto
+Quem quer testar uma ideia ou lançar rapidamente um sistema deve considerar o desenvolvimento em arquitetura monolítica. Os microsserviços, dada a complexidade, envolvem processos que precisam de mais tempo e podem não ser a melhor opção para testes de conceito.
+
+#### Atualização
+O desenvolvimento em arquitetura monolítica implica em acrescentar itens sempre ao mesmo bloco. Por isso, com o passar do tempo, o sistema fica cada vez maior e mais complexo. As atualizações exigem a reinicialização de todo o sistema e podem causar a perda temporária de funcionalidade de todo o ambiente.
+
+No desenvolvimento monolítico, é importante que o sistema utilize linguagem única. Isso deixa de fora a oportunidade de usar outras opções que poderiam ser mais úteis para a nova funcionalidade.
+
+Na arquitetura de microsserviços, cada um dos serviços é interdependente e tem baixo nível de acoplamento. A inclusão de melhorias ou as atualizações não são capazes de interferir em outras funcionalidades. Esse mesmo baixo acoplamento torna os desenvolvedores independentes, podendo utilizar diversos tipos de tecnologia conforme a necessidade de cada serviço.
+
+Como nos microsserviços não é necessário utilizar uma única linguagem, os sistemas evoluem continuamente. Assim, sua software house evita a obsolescência tecnológica de todo o sistema.
+
+#### Complexidade
+Como o desenvolvimento monolítico é incremental, a complexidade de todo o sistema aumenta com o passar do tempo. Isso faz com que o funcionamento consuma cada vez mais recursos, deixando a manutenção cada vez mais cara e lenta, visto que existe uma alta dependência de componentes de código.
+
+A arquitetura de microssistemas, por outro lado, mantém a complexidade do sistema uniforme, pois as modificações e novas funcionalidades são feitas em novos microsserviços. Como cada um é independente, sua complexidade aumenta muito menos ao longo do tempo.
+
+#### Escalabilidade
+O sistema monolítico tem uma escalabilidade difícil, pois sempre é necessário duplicar a infraestrutura na nova instância. Conforme o sistema cresce, essa duplicação torna a escalabilidade cara, praticamente inviável.
+
+Já nos microsserviços, a implantação e replicação pode ser feita de forma independente em servidores, máquinas virtuais e containers. O crescimento é gerido pela necessidade, sendo feito de forma individual e muito mais flexível para cada serviço.
+
+#### Custos
+A arquitetura monolítica é mais simples e, por isso mesmo, num primeiro momento é mais barata. Com o passar do tempo e o aumento da complexidade e exigência de recursos do sistema, no entanto, a conta fica mais cara.
+
+Já nos microsserviços, ocorre o contrário. A implantação inicial requer um maior investimento, mas a tendência é que com o tempo os sistemas independentes criem uma relação melhor de custo-benefício. Inclusive, a terceirização do desenvolvimento de microsserviços, com integrações prontas, reduz esse custo inicial de forma significativa.
+
+#### Integração
+Quem tem uma arquitetura de software baseada em microsserviços deve cuidar bem da comunicação entre eles. Isso permite a integração com outros serviços desenvolvidos de forma independente, complementando o sistema de forma mais profissional do que as funções desenvolvidas monoliticamente. As possibilidades de integração são inúmeras, tornando mais simples para a empresa oferecer novos produtos e serviços para os clientes.
+
+As soluções da Vinco se comportam como microsserviços, pois são especializadas e se integram ao ERP da empresa. Para o usuário final, fica parecendo que é tudo um sistema só. Como a arquitetura é feita em apartado, a emissão de documentos fiscais eletrônicos não interfere nem sofre interferência do sistema de gestão em si, facilitando a atualização e a manutenção e garantindo o funcionamento do módulo de documentos fiscais para que os clientes cumpram suas obrigações fiscais.
+
+Escolher entre arquitetura de microsserviços e monolítica não é uma tarefa simples. Mudar o modelo adotado também é uma escolha complexa, que envolve a análise de diversos fatores.
 
 ##### Links uteis:
 - https://www.ibm.com/br-pt/cloud/learn/soa
@@ -164,3 +212,4 @@ Web Service tem que ser visto por um conjunto de tecnologias, que são citadas p
 - https://www.redhat.com/pt-br/topics/cloud-native-apps/what-is-service-oriented-architecture
 - https://www.treinaweb.com.br/blog/voce-sabe-o-que-e-arquitetura-orientada-a-servicos-soa
 - https://www.devmedia.com.br/vantagens-e-desvantagens-de-soa/27437
+- https://blog.vinco.com.br/arquitetura-de-microsservicos-x-arquitetura-monolitica/
