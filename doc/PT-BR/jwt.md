@@ -84,5 +84,6 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21lIjoiRnVsYW5vIiwiYWRtaW4iOnRydWV9.IS
 - https://www.rfc-editor.org/rfc/rfc7519
 - https://www.devmedia.com.br/como-o-jwt-funciona/40265
 - https://auth0.com/blog/how-to-handle-jwt-in-python/
+- https://tableless.com.br/autenticacao-em-apis-aspnet-core-com-jwt-refresh-token/
 - https://pyjwt.readthedocs.io/en/latest/usage.html
 - https://imasters.com.br/desenvolvimento/json-web-token-conhecendo-o-jwt-na-teoria-e-na-pratica
